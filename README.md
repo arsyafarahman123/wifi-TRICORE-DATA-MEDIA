@@ -106,6 +106,38 @@ Buka **http://localhost:8000** di browser.
 - `TDM-2604` — Dwi Wahyuni (Terisolir, Belum Bayar)
 - `TDM-2605` — Hendro Wijaya (Pending)
 
+## ☁️ Panduan Hosting Online (Bebas Iklan & Tanpa InfinityFree)
+
+Proyek ini telah dilengkapi dengan `Dockerfile`, `render.yaml`, dan `nixpacks.toml` sehingga **siap di-deploy langsung dari GitHub** ke platform cloud modern:
+
+### Opsi 1: Deploy di Render.com (Sangat Direkomendasikan ⭐)
+1. Buka [render.com](https://render.com) dan login menggunakan akun GitHub (`arsyafarahman123`).
+2. Klik tombol **New +** > pilih **Web Service**.
+3. Hubungkan repository: `arsyafarahman123/wifi-TRICORE-DATA-MEDIA`.
+4. Render akan otomatis mendeteksi `Dockerfile` dan konfigurasi `render.yaml`.
+5. Pilih Region: **Singapore** (agar akses dari Indonesia sangat cepat).
+6. Di bagian Environment Variables, tambahkan:
+   - `APP_KEY`: *(bisa dibuat otomatis atau copy dari artisan key:generate)*
+   - `APP_NAME`: `TRICORE DATA MEDIA`
+   - `APP_ENV`: `production`
+   - `APP_DEBUG`: `false`
+7. Klik **Deploy Web Service**. Website akan live dengan domain seperti: `https://tricore-data-media.onrender.com`.
+
+### Opsi 2: Deploy di Koyeb.com
+1. Buka [koyeb.com](https://koyeb.com) dan Sign in with GitHub.
+2. Klik **Create App** > pilih **GitHub**.
+3. Pilih repo `wifi-TRICORE-DATA-MEDIA` branch `main`.
+4. Pilih builder **Dockerfile** dan region **Singapore**.
+5. Klik **Deploy**. Website akan aktif di `https://<nama-app>.koyeb.app`.
+
+### Opsi 3: Deploy di Railway.app
+1. Buka [railway.app](https://railway.app) dan login dengan GitHub.
+2. Klik **New Project** > **Deploy from GitHub repo**.
+3. Pilih `wifi-TRICORE-DATA-MEDIA`.
+4. Railway akan otomatis build dan memberikan domain `*.up.railway.app`.
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Backend:** Laravel 12 (PHP 8.5)
@@ -123,3 +155,4 @@ Buka **http://localhost:8000** di browser.
 ## 📄 Lisensi
 
 © 2026 TRICORE DATA MEDIA. All rights reserved.
+
