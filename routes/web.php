@@ -46,6 +46,8 @@ Route::prefix('portal')->name('portal.')->middleware(['auth'])->group(function (
 
     // Packages
     Route::get('/packages', [PackageManagementController::class, 'index'])->name('packages.index');
+    Route::post('/packages', [PackageManagementController::class, 'store'])->name('packages.store');
     Route::put('/packages/{package}', [PackageManagementController::class, 'update'])->name('packages.update');
     Route::post('/packages/{package}/toggle', [PackageManagementController::class, 'toggle'])->name('packages.toggle');
+    Route::delete('/packages/{package}', [PackageManagementController::class, 'destroy'])->name('packages.destroy');
 });

@@ -4,21 +4,21 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-extrabold text-white">Daftarkan Pelanggan Baru</h1>
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Daftarkan Pelanggan Baru</h1>
             <p class="text-xs text-slate-400">Pendaftaran pelanggan baru oleh Mitra WiFi TRICORE DATA MEDIA</p>
         </div>
-        <a href="{{ route('portal.customers.index') }}" class="px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition">
+        <a href="{{ route('portal.customers.index') }}" class="self-start sm:self-auto px-3.5 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition">
             &larr; Kembali
         </a>
     </div>
 
-    <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
+    <div class="glass-panel p-5 sm:p-8 rounded-2xl border border-white/10 shadow-2xl">
         <form action="{{ route('portal.customers.store') }}" method="POST" class="space-y-6 text-xs">
             @csrf
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                 <!-- Nama -->
                 <div>
                     <label for="cust-name" class="block font-semibold text-slate-300 mb-1.5">Nama Lengkap Pelanggan <span class="text-rose-400">*</span></label>
@@ -105,9 +105,9 @@
                 </div>
             </div>
 
-            <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
-                <a href="{{ route('portal.customers.index') }}" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition">Batal</a>
-                <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold hover:brightness-110 shadow-lg shadow-cyan-500/20 transition">
+            <div class="pt-4 border-t border-white/10 flex flex-col-reverse sm:flex-row sm:justify-end gap-3">
+                <a href="{{ route('portal.customers.index') }}" class="w-full sm:w-auto text-center px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold hover:bg-slate-700 transition active:scale-95">Batal</a>
+                <button type="submit" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold hover:brightness-110 shadow-lg shadow-cyan-500/20 transition active:scale-95">
                     Simpan & Daftarkan Pelanggan
                 </button>
             </div>

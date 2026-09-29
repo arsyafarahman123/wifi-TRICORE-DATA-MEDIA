@@ -155,6 +155,42 @@
             text-align: center;
             line-height: 1.6;
         }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+            .invoice-card {
+                padding: 20px 16px;
+                border-radius: 12px;
+            }
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+            .invoice-title {
+                text-align: left;
+            }
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .details-box-right {
+                text-align: left !important;
+            }
+            .total-section {
+                justify-content: stretch;
+            }
+            .total-box {
+                width: 100%;
+            }
+        }
         @media print {
             body {
                 background: #ffffff;
@@ -166,15 +202,18 @@
                 padding: 20px;
             }
             .no-print {
-                display: none;
+                display: none !important;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="no-print" style="max-width: 750px; margin: 0 auto 16px auto; text-align: right;">
-        <button onclick="window.print()" style="padding: 10px 20px; background: #0891b2; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer;">
+    <div class="no-print" style="max-width: 750px; margin: 0 auto 16px auto; display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+        <button onclick="window.history.back()" style="padding: 10px 16px; background: #334155; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">
+            &larr; Kembali
+        </button>
+        <button onclick="window.print()" style="padding: 10px 20px; background: #0891b2; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">
             🖨️ Cetak / Simpan PDF
         </button>
     </div>
@@ -214,7 +253,7 @@
                 <p>{{ $invoice->customer->address }}</p>
                 <p>{{ $invoice->customer->district }}, Purwokerto</p>
             </div>
-            <div class="details-box" style="text-align: right;">
+            <div class="details-box details-box-right" style="text-align: right;">
                 <h3>Informasi Tagihan:</h3>
                 <p>Periode: <strong>{{ $invoice->billing_month }}</strong></p>
                 <p>Tanggal Tagihan: {{ $invoice->created_at->format('d/m/Y') }}</p>
@@ -227,36 +266,38 @@
         </div>
 
         <!-- Table of Items -->
-        <table>
-            <thead>
-                <tr>
-                    <th>Deskripsi Layanan</th>
-                    <th>Kecepatan</th>
-                    <th>Periode</th>
-                    <th style="text-align: right;">Jumlah</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <strong>Langganan WiFi Fiber Optic TRICORE</strong><br>
-                        <span style="font-size: 11px; color: #64748b;">{{ $invoice->package->name }} (Unlimited Kuota, Tanpa FUP)</span>
-                    </td>
-                    <td>{{ $invoice->package->speed_mbps }} Mbps Simetris</td>
-                    <td>{{ $invoice->billing_month }}</td>
-                    <td style="text-align: right; font-weight: 700; font-family: monospace;">{{ $invoice->formatted_amount }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Sewa Modem Router Wi-Fi Fiber</strong><br>
-                        <span style="font-size: 11px; color: #64748b;">Fasilitas perangkat ONT aktif</span>
-                    </td>
-                    <td>-</td>
-                    <td>1 Bulan</td>
-                    <td style="text-align: right; font-weight: 700; font-family: monospace; color: #059669;">GRATIS</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Deskripsi Layanan</th>
+                        <th>Kecepatan</th>
+                        <th>Periode</th>
+                        <th style="text-align: right;">Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Langganan WiFi Fiber Optic TRICORE</strong><br>
+                            <span style="font-size: 11px; color: #64748b;">{{ $invoice->package->name }} (Unlimited Kuota, Tanpa FUP)</span>
+                        </td>
+                        <td>{{ $invoice->package->speed_mbps }} Mbps Simetris</td>
+                        <td>{{ $invoice->billing_month }}</td>
+                        <td style="text-align: right; font-weight: 700; font-family: monospace;">{{ $invoice->formatted_amount }}</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Sewa Modem Router Wi-Fi Fiber</strong><br>
+                            <span style="font-size: 11px; color: #64748b;">Fasilitas perangkat ONT aktif</span>
+                        </td>
+                        <td>-</td>
+                        <td>1 Bulan</td>
+                        <td style="text-align: right; font-weight: 700; font-family: monospace; color: #059669;">GRATIS</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- Total Section -->
         <div class="total-section">

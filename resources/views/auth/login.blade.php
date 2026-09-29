@@ -69,18 +69,18 @@
             <!-- Quick Demo Accounts -->
             <div class="pt-4 border-t border-white/10 space-y-2">
                 <span class="text-[11px] text-slate-500 block text-center font-medium">Akun Pengujian Demo (Sekali Klik):</span>
-                <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
                     <button type="button" 
                             onclick="document.getElementById('login-email').value='mitra@tricoredatamedia.net'; document.getElementById('login-password').value='password123';"
-                            class="p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-cyan-500/20 text-left transition">
+                            class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-cyan-500/20 text-left transition active:scale-95">
                         <span class="font-bold text-cyan-300 block">Akun Mitra WiFi</span>
-                        <span class="text-[10px] text-slate-400">mitra@tricoredatamedia.net</span>
+                        <span class="text-[11px] text-slate-400 truncate block">mitra@tricoredatamedia.net</span>
                     </button>
                     <button type="button" 
                             onclick="document.getElementById('login-email').value='admin@tricoredatamedia.net'; document.getElementById('login-password').value='password123';"
-                            class="p-2.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-emerald-500/20 text-left transition">
+                            class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-emerald-500/20 text-left transition active:scale-95">
                         <span class="font-bold text-emerald-300 block">Akun Administrator</span>
-                        <span class="text-[10px] text-slate-400">admin@tricoredatamedia.net</span>
+                        <span class="text-[11px] text-slate-400 truncate block">admin@tricoredatamedia.net</span>
                     </button>
                 </div>
                 <p class="text-[10px] text-slate-500 text-center">Password default: <code class="text-slate-300">password123</code></p>

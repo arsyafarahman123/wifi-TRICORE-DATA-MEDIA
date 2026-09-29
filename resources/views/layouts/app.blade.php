@@ -78,28 +78,35 @@
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center gap-2">
-                    <a href="{{ route('home') }}#daftar" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-cyan-400 text-slate-950">
+                    <a href="{{ route('home') }}#daftar" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 shadow-sm">
                         Daftar
                     </a>
-                    <button type="button" id="mobile-menu-btn" class="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button type="button" id="mobile-menu-btn" aria-label="Buka Menu Navigasi" class="p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/80 border border-white/10 focus:outline-none active:scale-95 transition">
+                        <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Dropdown -->
-            <div id="mobile-menu" class="hidden md:hidden pb-4 pt-2 border-t border-white/10 space-y-2 text-sm font-medium">
-                <a href="{{ route('home') }}#beranda" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Home</a>
-                <a href="{{ route('home') }}#tentang" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Tentang Kami</a>
-                <a href="{{ route('home') }}#paket" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Paket Internet</a>
-                <a href="{{ route('home') }}#coverage" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Coverage Area</a>
-                <a href="{{ route('home') }}#cek-tagihan" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-emerald-400">Cek Tagihan Pelanggan</a>
-                <a href="{{ route('home') }}#kontak" class="block px-3 py-2 rounded-lg hover:bg-slate-800 text-slate-200">Kontak</a>
-                <div class="pt-2 border-t border-slate-800 flex gap-2">
-                    <a href="{{ route('home') }}#daftar" class="flex-1 text-center py-2 text-xs font-bold rounded-lg bg-cyan-500 text-slate-950">Daftar Online</a>
-                    <a href="{{ route('login') }}" class="flex-1 text-center py-2 text-xs font-bold rounded-lg bg-slate-800 text-slate-200 border border-slate-700">Login Mitra</a>
+            <div id="mobile-menu" class="hidden md:hidden pb-5 pt-3 border-t border-white/10 space-y-2 text-sm font-medium">
+                <a href="{{ route('home') }}#beranda" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Home</a>
+                <a href="{{ route('home') }}#tentang" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Tentang Kami</a>
+                <a href="{{ route('home') }}#paket" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Paket Internet</a>
+                <a href="{{ route('home') }}#coverage" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Coverage Area</a>
+                <a href="{{ route('home') }}#cek-tagihan" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-emerald-400 font-semibold transition">Cek Tagihan Pelanggan</a>
+                <a href="{{ route('home') }}#kontak" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Kontak & Helpdesk</a>
+                <div class="pt-3 border-t border-slate-800 flex gap-2">
+                    <a href="{{ route('home') }}#daftar" class="mobile-nav-link flex-1 text-center py-2.5 text-xs font-bold rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950">Daftar Online</a>
+                    @auth
+                        <a href="{{ route('portal.dashboard') }}" class="mobile-nav-link flex-1 text-center py-2.5 text-xs font-bold rounded-xl bg-slate-800 text-cyan-300 border border-cyan-500/30">Portal Mitra</a>
+                    @else
+                        <a href="{{ route('login') }}" class="mobile-nav-link flex-1 text-center py-2.5 text-xs font-bold rounded-xl bg-slate-800 text-slate-200 border border-slate-700">Login Mitra</a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -245,14 +252,38 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
+        // Mobile menu toggle & behavior
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        function toggleMobileMenu() {
+            if (!mobileMenu) return;
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenu.classList.add('hidden');
+                hamburgerIcon?.classList.remove('hidden');
+                closeIcon?.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                hamburgerIcon?.classList.add('hidden');
+                closeIcon?.classList.remove('hidden');
+            }
         }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        // Close mobile menu when clicking any navigation link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
     </script>
     @stack('scripts')
 </body>

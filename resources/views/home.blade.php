@@ -18,7 +18,7 @@
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
                         </span>
-                        <span>ISP FIBER OPTIC PURWOKERTO & SOKARAJA</span>
+                        <span>PENYEDIA INTERNET FIBER OPTIC PURWOKERTO</span>
                         <span class="text-slate-500">|</span>
                         <span class="text-emerald-400 flex items-center gap-1 font-mono">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
@@ -55,22 +55,22 @@
                     </div>
 
                     <!-- Quick Highlights -->
-                    <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/5 max-w-lg mx-auto lg:mx-0">
+                    <div class="grid grid-cols-3 gap-2 sm:gap-4 pt-4 border-t border-white/5 max-w-lg mx-auto lg:mx-0">
                         <div class="text-left">
-                            <span class="block text-xs text-slate-400">Teknologi</span>
-                            <span class="text-sm font-bold text-white flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> 100% Fiber
+                            <span class="block text-[10px] sm:text-xs text-slate-400">Teknologi</span>
+                            <span class="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0"></span> 100% Fiber
                             </span>
                         </div>
                         <div class="text-left">
-                            <span class="block text-xs text-slate-400">Kecepatan</span>
-                            <span class="text-sm font-bold text-white flex items-center gap-1">
-                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Up to 50 Mbps
+                            <span class="block text-[10px] sm:text-xs text-slate-400">Kecepatan</span>
+                            <span class="text-xs sm:text-sm font-bold text-white flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0"></span> Up to 50 Mbps
                             </span>
                         </div>
                         <div class="text-left">
-                            <span class="block text-xs text-slate-400">Biaya Pasang</span>
-                            <span class="text-sm font-bold text-emerald-400">GRATIS Sewa ONT</span>
+                            <span class="block text-[10px] sm:text-xs text-slate-400">Biaya Pasang</span>
+                            <span class="text-xs sm:text-sm font-bold text-emerald-400">GRATIS Sewa ONT</span>
                         </div>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                         $waPackageUrl = "https://wa.me/6282138413292?text={$waText}";
                     @endphp
 
-                    <div class="relative rounded-2xl transition-all duration-300 flex flex-col justify-between {{ $isPopular ? 'glass-panel border-cyan-400 shadow-xl shadow-cyan-500/20 scale-105 z-10' : 'glass-card border-white/10 hover:border-slate-500' }} p-6">
+                    <div class="relative rounded-2xl transition-all duration-300 flex flex-col justify-between {{ $isPopular ? 'glass-panel border-cyan-400 shadow-xl shadow-cyan-500/20 md:scale-105 z-10' : 'glass-card border-white/10 hover:border-slate-500' }} p-6">
                         
                         <!-- Popular Ribbon -->
                         @if($isPopular)
@@ -501,7 +501,7 @@
     <section id="cek-tagihan" class="py-20 relative bg-[#060a12]/80 border-t border-white/10">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z"/></svg>
                 Portal Mandiri Pelanggan
             </div>
             

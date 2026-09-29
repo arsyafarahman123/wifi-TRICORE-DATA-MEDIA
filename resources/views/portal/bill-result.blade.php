@@ -23,10 +23,10 @@
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
                 <div class="space-y-1">
                     <span class="text-xs text-slate-400">Nomor Pelanggan (Customer ID)</span>
-                    <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono flex items-center gap-3">
+                    <div class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white font-mono flex items-center gap-2 sm:gap-3 flex-wrap">
                         <span>{{ $customer->customer_code }}</span>
                         @php $badge = $customer->status_badge; @endphp
-                        <span class="px-3 py-1 rounded-full text-xs font-bold border {{ $badge['class'] }}">
+                        <span class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-bold border {{ $badge['class'] }}">
                             Internet: {{ $badge['label'] }}
                         </span>
                     </div>
@@ -34,7 +34,7 @@
 
                 <div class="text-left sm:text-right">
                     <span class="text-xs text-slate-400">Paket Terdaftar</span>
-                    <div class="text-lg font-bold text-cyan-400">
+                    <div class="text-base sm:text-lg font-bold text-cyan-400">
                         {{ $customer->package->name }} ({{ $customer->package->speed_mbps }} Mbps)
                     </div>
                     <span class="text-xs text-slate-400">{{ $customer->package->formatted_price }} / bulan</span>
@@ -163,7 +163,29 @@
             @if($customer->invoices->count() > 1)
                 <div class="mt-8 pt-6 border-t border-white/10 space-y-4">
                     <h4 class="text-sm font-bold text-white">Riwayat Tagihan Sebelumnya</h4>
-                    <div class="overflow-x-auto">
+                    
+                    <!-- Mobile View (Cards) -->
+                    <div class="md:hidden space-y-3">
+                        @foreach($customer->invoices->skip(1) as $inv)
+                            @php $ib = $inv->status_badge; @endphp
+                            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-white/5 space-y-2 text-xs">
+                                <div class="flex items-center justify-between">
+                                    <span class="font-mono font-medium text-white">{{ $inv->invoice_number }}</span>
+                                    <span class="px-2 py-0.5 rounded text-[10px] font-semibold {{ $ib['class'] }}">{{ $ib['label'] }}</span>
+                                </div>
+                                <div class="flex items-center justify-between text-slate-300">
+                                    <span>Periode: {{ $inv->billing_month }}</span>
+                                    <span class="font-bold font-mono text-emerald-400">{{ $inv->formatted_amount }}</span>
+                                </div>
+                                <div class="text-[11px] text-slate-400">
+                                    Tanggal Bayar: {{ $inv->paid_at ? $inv->paid_at->format('d/m/Y') : '-' }}
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Desktop View (Table) -->
+                    <div class="hidden md:block overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead class="text-slate-400 border-b border-white/10">
                                 <tr>
