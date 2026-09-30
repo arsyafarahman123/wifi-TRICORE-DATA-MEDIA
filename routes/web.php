@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\CustomerPortalController;
 use App\Http\Controllers\HomeController;
@@ -17,6 +18,9 @@ Route::post('/cek-tagihan', [CustomerPortalController::class, 'checkBill'])->nam
 Route::get('/tagihan/{code}', [CustomerPortalController::class, 'viewBill'])->name('bill.view');
 Route::post('/daftar-paket', [CustomerPortalController::class, 'register'])->name('register.submit');
 Route::post('/cek-coverage', [CustomerPortalController::class, 'checkCoverage'])->name('coverage.check');
+
+// Interactive Virtual Assistant / Chatbot API
+Route::post('/chatbot/message', [ChatbotController::class, 'sendMessage'])->name('chatbot.message');
 
 // Authentication (Admin & Mitra)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
