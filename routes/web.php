@@ -44,7 +44,7 @@ Route::prefix('portal')->name('portal.')->middleware(['auth'])->group(function (
 
     // Invoices & Billing
     Route::get('/invoices', [InvoiceManagementController::class, 'index'])->name('invoices.index');
-    Route::post('/invoices/generate-monthly', [InvoiceManagementController::class, 'generateMonthly'])->name('invoices.generate-monthly');
+    Route::match(['get', 'post'], '/invoices/generate-monthly', [InvoiceManagementController::class, 'generateMonthly'])->name('invoices.generate-monthly');
     Route::post('/invoices/{invoice}/pay', [InvoiceManagementController::class, 'markAsPaid'])->name('invoices.pay');
     Route::get('/invoices/{invoice}/print', [InvoiceManagementController::class, 'print'])->name('invoices.print');
 

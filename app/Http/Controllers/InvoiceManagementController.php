@@ -141,7 +141,7 @@ class InvoiceManagementController extends Controller
             $generatedCount++;
         }
 
-        return back()->with('success', "Berhasil menerbitkan {$generatedCount} tagihan untuk periode {$monthName}. ({$skippedCount} pelanggan sudah memiliki tagihan sebelumnya).");
+        return redirect()->route('portal.invoices.index')->with('success', "Berhasil menerbitkan {$generatedCount} tagihan untuk periode {$monthName}. ({$skippedCount} pelanggan sudah memiliki tagihan sebelumnya).");
     }
 
     /**
