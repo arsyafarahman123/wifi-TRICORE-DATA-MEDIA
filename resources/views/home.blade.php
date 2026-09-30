@@ -18,7 +18,7 @@
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                             <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
                         </span>
-                        <span>INTERNET SERVICE PROVIDER FIBER OPTIC PURWOKERTO & SOKARAJA</span>
+                        <span>INTERNET SERVICE PROVIDER</span>
                         <span class="text-slate-500">|</span>
                         <span class="text-emerald-400 flex items-center gap-1 font-mono">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>

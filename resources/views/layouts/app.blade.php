@@ -244,7 +244,7 @@
             <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
                 <p>© 2026 TRICORE DATA MEDIA. All rights reserved.</p>
                 <div class="flex items-center gap-6">
-                    <span class="text-slate-400">Internet Service Provider Fiber Optic Purwokerto & Sokaraja</span>
+                    <span class="text-slate-400">Internet Service Provider</span>
                     <a href="{{ route('home') }}#beranda" class="text-cyan-400 hover:underline">Kembali ke Atas ↑</a>
                 </div>
             </div>
