@@ -75,7 +75,11 @@ class InvoiceManagementController extends Controller
      */
     public function generateMonthly(Request $request): RedirectResponse
     {
-        $monthName = $request->input('billing_month', now()->isoFormat('MMMM Y'));
+        $monthName = trim($request->input('billing_month', now()->isoFormat('MMMM Y')));
+        if (empty($monthName)) {
+            $monthName = now()->isoFormat('MMMM Y');
+        }
+
         $periodStart = now()->startOfMonth();
         $periodEnd = now()->endOfMonth();
         $dueDate = now()->startOfMonth()->addDays(9); // Default due date tanggal 10
@@ -88,9 +92,16 @@ class InvoiceManagementController extends Controller
         $skippedCount = 0;
 
         foreach ($activeCustomers as $customer) {
+            if (! $customer->package) {
+                continue;
+            }
+
             // Check if customer already has invoice for this month
             $exists = Invoice::where('customer_id', $customer->id)
-                ->where('billing_month', $monthName)
+                ->where(function ($q) use ($monthName) {
+                    $q->where('billing_month', $monthName)
+                        ->orWhere('billing_month', 'LIKE', '%'.$monthName.'%');
+                })
                 ->exists();
 
             if ($exists) {
@@ -99,7 +110,20 @@ class InvoiceManagementController extends Controller
                 continue;
             }
 
-            $invoiceNumber = 'INV-'.date('Ym').'-'.str_pad($customer->id, 3, '0', STR_PAD_LEFT);
+            // Ensure unique invoice number without collisions
+            $yearMonth = date('Ym');
+            $baseNumber = 'INV-'.$yearMonth.'-'.str_pad($customer->id, 3, '0', STR_PAD_LEFT);
+            $invoiceNumber = $baseNumber;
+            $counter = 1;
+
+            while (Invoice::where('invoice_number', $invoiceNumber)->exists()) {
+                $invoiceNumber = $baseNumber.'-'.chr(64 + $counter);
+                $counter++;
+                if ($counter > 26) {
+                    $invoiceNumber = $baseNumber.'-'.substr(uniqid(), -4);
+                    break;
+                }
+            }
 
             Invoice::create([
                 'invoice_number' => $invoiceNumber,
@@ -117,7 +141,7 @@ class InvoiceManagementController extends Controller
             $generatedCount++;
         }
 
-        return back()->with('success', "Berhasil menerbitkan {$generatedCount} tagihan untuk periode {$monthName}. ({$skippedCount} pelanggan sudah memiliki tagihan).");
+        return back()->with('success', "Berhasil menerbitkan {$generatedCount} tagihan untuk periode {$monthName}. ({$skippedCount} pelanggan sudah memiliki tagihan sebelumnya).");
     }
 
     /**

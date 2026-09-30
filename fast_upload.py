@@ -49,6 +49,7 @@ def main():
     files_to_upload = [
         'routes/web.php',
         'app/Http/Controllers/ChatbotController.php',
+        'app/Http/Controllers/InvoiceManagementController.php',
         'resources/views/components/chatbot.blade.php',
         'resources/views/layouts/app.blade.php',
     ]
