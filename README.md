@@ -1,4 +1,4 @@
-# ⚡ TRICORE DATA MEDIA - Sistem Manajemen ISP WiFi Fiber Optic
+# ⚡ TRINET-BILL: TRIcore Network Billing — Sistem Manajemen ISP & Billing WiFi Fiber Optic
 
 ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.5-777BB4?style=for-the-badge&logo=php&logoColor=white)
@@ -7,15 +7,16 @@
 
 ## 📖 Tentang Proyek
 
-**TRICORE DATA MEDIA** adalah sistem web all-in-one untuk perusahaan penyedia internet fiber optic (ISP) di Purwokerto, Jawa Tengah. Aplikasi ini mencakup:
+**TRINET-BILL (TRIcore Network Billing)** adalah platform web terintegrasi all-in-one untuk manajemen operasional, monitoring teknis jaringan (ODP & IP), dan sistem penagihan otomatis (*automated billing*) pada **TRICORE DATA MEDIA**, perusahaan penyedia jasa internet fiber optic (ISP) di Purwokerto, Jawa Tengah. Aplikasi ini mencakup:
 
-- 🌐 **Landing Page & Company Profile** — Website promosi profesional untuk menjaring pelanggan baru
-- 📦 **Manajemen Paket Internet** — Kelola paket WiFi (15–50 Mbps) dengan harga & fitur
-- 👥 **Manajemen Pelanggan** — Data lengkap pelanggan, status layanan, ODP, dan IP
-- 💳 **Sistem Billing & Tagihan** — Invoice bulanan, pembayaran, dan riwayat transaksi
-- 🗺️ **Coverage Area** — Informasi wilayah jangkauan fiber optic dengan peta interaktif
-- 📱 **Integrasi WhatsApp** — Semua interaksi pelanggan terintegrasi dengan WhatsApp bisnis
-- 🔒 **Portal Mitra & Admin** — Dashboard terproteksi untuk mitra dan admin
+- 🌐 **Landing Page & Company Profile TRINET-BILL** — Website promosi dan portal publik profesional untuk menjaring pelanggan baru
+- 📦 **Manajemen Paket Internet** — Kelola katalog paket WiFi (15–50 Mbps) dengan tarif dinamis
+- 👥 **Manajemen Siklus Pelanggan** — Data lengkap pelanggan, status layanan (Aktif/Pending/Terisolir), port ODP, dan alokasi IP
+- 💳 **Sistem Billing & Faktur Digital** — Generator tagihan bulanan otomatis, rekonsiliasi pembayaran, dan ekspor invoice PDF
+- 🗺️ **Coverage Area Interaktif** — Informasi dan verifikasi wilayah jangkauan kabel fiber optic
+- 📱 **Integrasi Notifikasi WhatsApp** — Jembatan notifikasi status tagihan dan pendaftaran langsung ke WhatsApp
+- 🔒 **Portal Mitra & Admin TRINET-BILL** — Dashboard terproteksi untuk mitra teknisi dan manajemen
+- 🤖 **Virtual Assistant AI Helpdesk** — Chatbot pintar 24 jam untuk panduan teknis dan cek tagihan mandiri
 
 ## 🚀 Fitur Utama
 

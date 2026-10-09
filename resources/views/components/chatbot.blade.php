@@ -39,10 +39,10 @@
             <!-- Button Label -->
             <div class="text-left leading-tight pr-1">
                 <div class="text-[13px] font-extrabold tracking-wide text-white drop-shadow-sm flex items-center gap-1.5">
-                    <span>Tanya Tricore Bot</span>
+                    <span>Tanya Trinet Bot</span>
                     <span class="w-2 h-2 rounded-full bg-emerald-300 animate-ping"></span>
                 </div>
-                <div class="text-[10px] font-medium text-cyan-100 opacity-90">Bantuan 24/7 & Cek Tagihan</div>
+                <div class="text-[10px] font-medium text-cyan-100 opacity-90">TRINET-BILL AI & Cek Tagihan</div>
             </div>
         </button>
     </div>
@@ -64,8 +64,8 @@
                 </div>
                 <div>
                     <h3 class="text-sm font-bold text-white flex items-center gap-1.5 leading-tight">
-                        TRICORE Assistant
-                        <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">AI Verified</span>
+                        TRINET-BILL Assistant
+                        <span class="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">AI Helpdesk</span>
                     </h3>
                     <p class="text-[11px] text-emerald-400 flex items-center gap-1">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'TRICORE DATA MEDIA - Internet Fiber Optic Cepat & Stabil Purwokerto')</title>
-    <meta name="description" content="TRICORE DATA MEDIA penyedia internet fiber optic (ISP) berkecepatan tinggi, unlimited tanpa FUP untuk rumah dan bisnis di Purwokerto Timur, Purwokerto Wetan, dan Sokaraja.">
+    <title>@yield('title', 'TRINET-BILL - Sistem Operasional & Billing ISP TRICORE DATA MEDIA Purwokerto')</title>
+    <meta name="description" content="TRINET-BILL (TRIcore Network Billing) oleh TRICORE DATA MEDIA penyedia internet fiber optic (ISP) berkecepatan tinggi, unlimited tanpa FUP untuk rumah dan bisnis di Purwokerto Timur, Purwokerto Wetan, dan Sokaraja.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,11 +33,11 @@
                         </div>
                     </div>
                     <div>
-                        <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-slate-100 to-cyan-300 bg-clip-text text-transparent block leading-tight">
-                            TRICORE
+                        <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-cyan-100 to-emerald-300 bg-clip-text text-transparent block leading-tight">
+                            TRINET-BILL
                         </span>
-                        <span class="text-[10px] tracking-[0.25em] font-semibold text-cyan-400 uppercase block">
-                            DATA MEDIA
+                        <span class="text-[9px] tracking-[0.22em] font-semibold text-cyan-400 uppercase block">
+                            TRICORE NETWORK BILLING
                         </span>
                     </div>
                 </a>
@@ -164,12 +164,12 @@
                             </div>
                         </div>
                         <div>
-                            <span class="text-xl font-extrabold tracking-wider text-white">TRICORE</span>
-                            <span class="text-xs tracking-[0.2em] font-semibold text-cyan-400 uppercase block">DATA MEDIA</span>
+                            <span class="text-xl font-extrabold tracking-wider text-white">TRINET-BILL</span>
+                            <span class="text-[9px] tracking-[0.2em] font-semibold text-cyan-400 uppercase block">TRIcore Network Billing</span>
                         </div>
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-                        TRICORE DATA MEDIA adalah perusahaan penyedia internet fiber optic (ISP) terpercaya di Purwokerto. Kami menghadirkan koneksi internet super cepat, stabil, tanpa batas kuota (unlimited FUP) dengan layanan pelanggan dan tim teknisi siaga 24/7.
+                        <strong>TRINET-BILL</strong> adalah platform operasional dan penagihan terintegrasi untuk <strong>TRICORE DATA MEDIA</strong>, penyedia internet fiber optic (ISP) terpercaya di Purwokerto. Kami menghadirkan koneksi internet super cepat, stabil, tanpa batas kuota (unlimited FUP) dengan layanan pelanggan dan tim teknisi siaga 24/7.
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -232,9 +232,9 @@
 
             <!-- Bottom Copyright Bar -->
             <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-                <p>© 2026 TRICORE DATA MEDIA. All rights reserved.</p>
+                <p>© 2026 TRINET-BILL (TRIcore Network Billing) — TRICORE DATA MEDIA. All rights reserved.</p>
                 <div class="flex items-center gap-6">
-                    <span class="text-slate-400">Internet Service Provider</span>
+                    <span class="text-slate-400">Internet Service Provider & Billing System</span>
                     <a href="{{ route('home') }}#beranda" class="text-cyan-400 hover:underline">Kembali ke Atas ↑</a>
                 </div>
             </div>

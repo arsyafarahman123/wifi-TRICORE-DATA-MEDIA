@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login Portal Mitra & Admin - TRICORE DATA MEDIA')
+@section('title', 'Login TRINET-BILL - Portal Mitra & Admin (TRICORE DATA MEDIA)')
 
 @section('content')
 <section class="py-16 sm:py-24 relative flex items-center justify-center min-h-[calc(100vh-200px)]">
@@ -17,8 +17,8 @@
                         </svg>
                     </div>
                 </div>
-                <h1 class="text-2xl font-extrabold text-white">Portal Mitra & Admin</h1>
-                <p class="text-xs text-slate-400">Masuk untuk mengelola pelanggan, tagihan & transaksi</p>
+                <h1 class="text-2xl font-extrabold text-white">TRINET-BILL Portal</h1>
+                <p class="text-xs text-slate-400">Masuk untuk mengelola pelanggan, ODP, tagihan & transaksi</p>
             </div>
 
             <!-- Login Form -->

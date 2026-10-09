@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>@yield('title', 'Portal Mitra & Admin | TRICORE DATA MEDIA')</title>
+    <title>@yield('title', 'TRINET-BILL | Portal Mitra & Admin - TRICORE DATA MEDIA')</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
                 </div>
             </div>
             <div>
-                <span class="text-sm font-extrabold text-white tracking-wider block leading-tight">TRICORE</span>
-                <span class="text-[9px] text-cyan-400 font-bold uppercase tracking-widest block">Portal Mitra</span>
+                <span class="text-sm font-extrabold text-white tracking-wider block leading-tight">TRINET-BILL</span>
+                <span class="text-[9px] text-cyan-400 font-bold uppercase tracking-widest block">Portal Mitra & Admin</span>
             </div>
         </a>
 
@@ -60,8 +60,8 @@
                         </div>
                     </div>
                     <div>
-                        <span class="text-lg font-extrabold text-white block leading-tight tracking-wider">TRICORE</span>
-                        <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-wider block">PORTAL MITRA</span>
+                        <span class="text-lg font-extrabold text-white block leading-tight tracking-wider">TRINET-BILL</span>
+                        <span class="text-[9px] text-cyan-400 font-bold uppercase tracking-wider block">TRICORE NETWORK BILLING</span>
                     </div>
                 </a>
 

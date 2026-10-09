@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: tricore-data-media
+    name: trinet-bill
     env: docker
     dockerfilePath: Dockerfile
     plan: free
@@ -8,7 +8,7 @@ services:
     branch: main
     envVars:
       - key: APP_NAME
-        value: "TRICORE DATA MEDIA"
+        value: "TRINET-BILL"
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
