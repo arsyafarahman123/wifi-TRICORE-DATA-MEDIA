@@ -2,7 +2,7 @@ import os
 import docx
 from docx import Document
 from docx.shared import Inches, Pt, RGBColor, Cm
-from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_TAB_ALIGNMENT, WD_TAB_LEADER
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
@@ -18,8 +18,8 @@ def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr.append(tcMar)
 
 def set_cell_shading(cell, color_hex):
-    shading_xml = f'<w:shd {nsdecls("w")} w:fill="{color_hex}"/>'
-    cell._tc.get_or_add_tcPr().append(parse_xml(shading_xml))
+    shd = parse_xml(f'<w:shd {nsdecls("w")} w:fill="{color_hex}"/>')
+    cell._tc.get_or_add_tcPr().append(shd)
 
 def set_cell_border(cell, **kwargs):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -36,18 +36,64 @@ def set_cell_border(cell, **kwargs):
             tcBorders.append(element)
     tcPr.append(tcBorders)
 
-def add_page_number_field(run):
-    fldSimple = OxmlElement('w:fldSimple')
-    fldSimple.set(qn('w:instr'), 'PAGE')
-    run._r.append(fldSimple)
+def add_clean_footer_pagenum(section, is_roman=False, start_num=1):
+    sectPr = section._sectPr
+    for child in list(sectPr):
+        if child.tag.endswith('pgNumType'):
+            sectPr.remove(child)
+            
+    fmt = "romanLower" if is_roman else "decimal"
+    pgNumType = parse_xml(f'<w:pgNumType {nsdecls("w")} w:fmt="{fmt}" w:start="{start_num}"/>')
+    sectPr.append(pgNumType)
+
+    footer = section.footer
+    footer.is_linked_to_previous = False
+    p = footer.paragraphs[0]
+    p.text = ""
+    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    
+    init_val = "i" if is_roman else "1"
+    fld_xml = f'''
+    <w:fldSimple {nsdecls("w")} w:instr="PAGE">
+        <w:r>
+            <w:rPr>
+                <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                <w:sz w:val="20"/>
+            </w:rPr>
+            <w:t>{init_val}</w:t>
+        </w:r>
+    </w:fldSimple>
+    '''
+    p._p.append(parse_xml(fld_xml))
+
+def add_toc_line(doc, title, page_str, is_bold=False, level=1):
+    p = doc.add_paragraph()
+    p.paragraph_format.line_spacing = 1.25
+    p.paragraph_format.space_after = Pt(3)
+    p.paragraph_format.space_before = Pt(1)
+    
+    if level == 2:
+        p.paragraph_format.left_indent = Inches(0.25)
+    elif level == 3:
+        p.paragraph_format.left_indent = Inches(0.5)
+        
+    tab_stops = p.paragraph_format.tab_stops
+    tab_stop = tab_stops.add_tab_stop(Inches(5.5), WD_TAB_ALIGNMENT.RIGHT, WD_TAB_LEADER.DOTS)
+
+    r_title = p.add_run(title)
+    r_title.font.name = 'Times New Roman'
+    r_title.font.size = Pt(11)
+    r_title.bold = is_bold
+    
+    r_tab = p.add_run(f"\t{page_str}")
+    r_tab.font.name = 'Times New Roman'
+    r_tab.font.size = Pt(11)
+    r_tab.bold = is_bold
+    return p
 
 def create_sdd_document():
     doc = Document()
     
-    # ----------------------------------------------------
-    # Page Setup (Standard Indonesian Academic: A4)
-    # Margin: Top: 3 cm, Left: 4 cm, Bottom: 3 cm, Right: 3 cm
-    # ----------------------------------------------------
     for section in doc.sections:
         section.page_width = Cm(21.0)
         section.page_height = Cm(29.7)
@@ -65,9 +111,11 @@ def create_sdd_document():
     normal_style.paragraph_format.space_after = Pt(4)
     normal_style.paragraph_format.space_before = Pt(0)
 
-    # ====================================================
-    # SECTION 1: COVER PAGE
-    # ====================================================
+    # 1. COVER PAGE (Section 1)
+    sec1 = doc.sections[0]
+    sec1.different_first_page_header_footer = True
+    sec1.first_page_footer.is_linked_to_previous = False
+    
     p_header = doc.add_paragraph()
     p_header.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_header.paragraph_format.line_spacing = 1.15
@@ -75,30 +123,26 @@ def create_sdd_document():
     r1 = p_header.add_run("COMPUTING PROJECT\nSOFTWARE DESIGN DOCUMENT")
     r1.bold = True
     r1.font.size = Pt(14)
-    r1.font.name = 'Times New Roman'
 
     p_title = doc.add_paragraph()
     p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_title.paragraph_format.space_before = Pt(12)
-    p_title.paragraph_format.space_after = Pt(16)
+    p_title.paragraph_format.space_after = Pt(14)
     p_title.paragraph_format.line_spacing = 1.15
     r_title = p_title.add_run("TRINET-BILL: TRICORE NETWORK BILLING — SISTEM INFORMASI MANAJEMEN OPERASIONAL DAN PENAGIHAN INTERNET SERVICE PROVIDER BERBASIS WEB PADA TRICORE DATA MEDIA PURWOKERTO")
     r_title.bold = True
     r_title.font.size = Pt(12.5)
-    r_title.font.name = 'Times New Roman'
 
-    # Logo
     p_logo = doc.add_paragraph()
     p_logo.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_logo.paragraph_format.space_before = Pt(4)
-    p_logo.paragraph_format.space_after = Pt(12)
+    p_logo.paragraph_format.space_after = Pt(10)
     if os.path.exists("telkom_logo.png"):
-        p_logo.add_run().add_picture("telkom_logo.png", width=Inches(2.1))
+        p_logo.add_run().add_picture("telkom_logo.png", width=Inches(2.0))
     else:
         r_logo = p_logo.add_run("[ LOGO UNIVERSITAS TELKOM ]")
         r_logo.bold = True
 
-    # Project Managers
     p_pm = doc.add_paragraph()
     p_pm.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_pm.paragraph_format.line_spacing = 1.15
@@ -127,10 +171,9 @@ def create_sdd_document():
         p2.text = nim
         p2.runs[0].font.size = Pt(11)
         p2.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        set_cell_margins(c1, top=15, bottom=15, left=0, right=0)
-        set_cell_margins(c2, top=15, bottom=15, left=0, right=0)
+        set_cell_margins(c1, top=12, bottom=12, left=0, right=0)
+        set_cell_margins(c2, top=12, bottom=12, left=0, right=0)
 
-    # Team Members
     p_tm = doc.add_paragraph()
     p_tm.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_tm.paragraph_format.line_spacing = 1.15
@@ -164,10 +207,9 @@ def create_sdd_document():
         p2.text = nim
         p2.runs[0].font.size = Pt(11)
         p2.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        set_cell_margins(c1, top=12, bottom=12, left=0, right=0)
-        set_cell_margins(c2, top=12, bottom=12, left=0, right=0)
+        set_cell_margins(c1, top=10, bottom=10, left=0, right=0)
+        set_cell_margins(c2, top=10, bottom=10, left=0, right=0)
 
-    # Supervisor
     p_sup = doc.add_paragraph()
     p_sup.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_sup.paragraph_format.line_spacing = 1.15
@@ -179,7 +221,6 @@ def create_sdd_document():
     r_sup_n = p_sup.add_run("Nama Lengkap Dosen Pembimbing, S.T., M.T.")
     r_sup_n.font.size = Pt(11)
 
-    # Institution
     p_inst = doc.add_paragraph()
     p_inst.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_inst.paragraph_format.line_spacing = 1.15
@@ -189,33 +230,16 @@ def create_sdd_document():
     r_inst.bold = True
     r_inst.font.size = Pt(12)
 
-    # ====================================================
-    # SECTION 2: FRONT MATTER (Roman page numbering: i, ii)
-    # ====================================================
-    front_section = doc.add_section(docx.enum.section.WD_SECTION.NEW_PAGE)
-    front_section.top_margin = Cm(3.0)
-    front_section.bottom_margin = Cm(3.0)
-    front_section.left_margin = Cm(4.0)
-    front_section.right_margin = Cm(3.0)
-    front_section.different_first_page_header_footer = False
-    
-    # Configure Roman Page Numbering
-    sectPr = front_section._sectPr
-    pgNumType = OxmlElement('w:pgNumType')
-    pgNumType.set(qn('w:fmt'), 'romanLower')
-    pgNumType.set(qn('w:start'), '1')
-    sectPr.append(pgNumType)
+    # 2. FRONT MATTER (Section 2) - Roman: i, ii
+    sec2 = doc.add_section(docx.enum.section.WD_SECTION.NEW_PAGE)
+    sec2.top_margin = Cm(3.0)
+    sec2.bottom_margin = Cm(3.0)
+    sec2.left_margin = Cm(4.0)
+    sec2.right_margin = Cm(3.0)
+    sec2.different_first_page_header_footer = False
+    add_clean_footer_pagenum(sec2, is_roman=True, start_num=1)
 
-    # Footer for front section
-    footer_front = front_section.footer
-    p_foot_f = footer_front.paragraphs[0]
-    p_foot_f.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r_foot_f = p_foot_f.add_run()
-    r_foot_f.font.name = 'Times New Roman'
-    r_foot_f.font.size = Pt(10)
-    add_page_number_field(r_foot_f)
-
-    # --- Document Version Page ---
+    # Document Version (Page i)
     p_dv_h = doc.add_paragraph()
     p_dv_h.paragraph_format.space_before = Pt(0)
     p_dv_h.paragraph_format.space_after = Pt(12)
@@ -262,100 +286,54 @@ def create_sdd_document():
             r.font.name = 'Times New Roman'
             r.font.size = Pt(10)
 
-    # --- Table of Content Page ---
+    # Table of Content (Page ii)
     doc.add_page_break()
 
     p_toc_h = doc.add_paragraph()
     p_toc_h.paragraph_format.space_before = Pt(0)
-    p_toc_h.paragraph_format.space_after = Pt(12)
+    p_toc_h.paragraph_format.space_after = Pt(14)
     r_toc_h = p_toc_h.add_run("Table of Content")
     r_toc_h.bold = True
     r_toc_h.font.size = Pt(14)
     r_toc_h.font.color.rgb = RGBColor(0x1E, 0x3A, 0x8A)
 
-    toc_items = [
-        ("Document Version", "i", False),
-        ("Table of Content", "ii", False),
-        ("1. Introduction", "1", True),
-        ("    1.1. Purpose", "1", False),
-        ("    1.2. Scope of the System", "1", False),
-        ("    1.3. References", "2", False),
-        ("2. System Architecture Design", "2", True),
-        ("    2.1. Use Case Diagram", "2", False),
-        ("    2.2. High-Level Architecture Diagram", "3", False),
-        ("    2.3. Deployment Architecture", "3", False),
-        ("3. Module Design", "4", True),
-        ("    3.1. Module List", "4", False),
-        ("    3.2. Module Description (Per Modul)", "4", False),
-        ("4. Class Diagram and Object Design", "6", True),
-        ("    4.1. Class Diagram", "6", False),
-        ("    4.2. Object Interaction (Sequence Diagram)", "7", False),
-        ("5. Database Design", "8", True),
-        ("    5.1. Entity Relationship Diagram (ERD)", "8", False),
-        ("    5.2. Database Schema Definitions", "8", False),
-        ("6. User Interface Design (UI/UX)", "10", True),
-        ("    6.1. Wireframes / Mockups & Interface Walkthrough", "10", False),
-        ("    6.2. Navigation Flow", "11", False),
-        ("7. Data Flow and Process Flow", "11", True),
-        ("    7.1. Data Flow Diagram (DFD Level 0 & Level 1)", "11", False),
-        ("    7.2. Activity Diagram", "12", False),
-        ("    7.3. State Machine Diagram", "13", False),
-        ("8. System Constraints", "13", True),
-        ("9. Appendix", "14", True),
-    ]
+    add_toc_line(doc, "Document Version", "i", is_bold=True, level=1)
+    add_toc_line(doc, "Table of Content", "ii", is_bold=True, level=1)
+    add_toc_line(doc, "1. Introduction", "1", is_bold=True, level=1)
+    add_toc_line(doc, "1.1. Purpose", "1", is_bold=False, level=2)
+    add_toc_line(doc, "1.2. Scope of the System", "1", is_bold=False, level=2)
+    add_toc_line(doc, "1.3. References", "2", is_bold=False, level=2)
+    add_toc_line(doc, "2. System Architecture Design", "2", is_bold=True, level=1)
+    add_toc_line(doc, "2.1. Use Case Diagram", "2", is_bold=False, level=2)
+    add_toc_line(doc, "2.2. High-Level Architecture Diagram", "3", is_bold=False, level=2)
+    add_toc_line(doc, "2.3. Deployment Architecture", "3", is_bold=False, level=2)
+    add_toc_line(doc, "3. Module Design", "4", is_bold=True, level=1)
+    add_toc_line(doc, "3.1. Module List", "4", is_bold=False, level=2)
+    add_toc_line(doc, "3.2. Module Description (Per Modul)", "4", is_bold=False, level=2)
+    add_toc_line(doc, "4. Class Diagram and Object Design", "6", is_bold=True, level=1)
+    add_toc_line(doc, "4.1. Class Diagram", "6", is_bold=False, level=2)
+    add_toc_line(doc, "4.2. Object Interaction (Sequence Diagram)", "6", is_bold=False, level=2)
+    add_toc_line(doc, "5. Database Design", "7", is_bold=True, level=1)
+    add_toc_line(doc, "5.1. Entity Relationship Diagram (ERD)", "7", is_bold=False, level=2)
+    add_toc_line(doc, "5.2. Database Schema Definitions", "7", is_bold=False, level=2)
+    add_toc_line(doc, "6. User Interface Design (UI/UX)", "9", is_bold=True, level=1)
+    add_toc_line(doc, "6.1. Wireframes / Mockups & Interface Walkthrough", "9", is_bold=False, level=2)
+    add_toc_line(doc, "6.2. Navigation Flow", "10", is_bold=False, level=2)
+    add_toc_line(doc, "7. Data Flow and Process Flow", "10", is_bold=True, level=1)
+    add_toc_line(doc, "7.1. Data Flow Diagram (DFD)", "10", is_bold=False, level=2)
+    add_toc_line(doc, "7.2. Activity Diagram", "11", is_bold=False, level=2)
+    add_toc_line(doc, "7.3. State Machine Diagram", "11", is_bold=False, level=2)
+    add_toc_line(doc, "8. System Constraints", "12", is_bold=True, level=1)
+    add_toc_line(doc, "9. Appendix", "12", is_bold=True, level=1)
 
-    toc_table = doc.add_table(rows=len(toc_items), cols=2)
-    toc_table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    for idx, (title, page_num, is_bold) in enumerate(toc_items):
-        row = toc_table.rows[idx]
-        c1, c2 = row.cells[0], row.cells[1]
-        c1.width = Inches(5.3)
-        c2.width = Inches(0.9)
-        
-        p1 = c1.paragraphs[0]
-        p1.paragraph_format.line_spacing = 1.15
-        p1.paragraph_format.space_after = Pt(2)
-        r1 = p1.add_run(title)
-        r1.font.name = 'Times New Roman'
-        r1.font.size = Pt(11)
-        r1.bold = is_bold
-        
-        p2 = c2.paragraphs[0]
-        p2.paragraph_format.line_spacing = 1.15
-        p2.paragraph_format.space_after = Pt(2)
-        p2.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        r2 = p2.add_run(page_num)
-        r2.font.name = 'Times New Roman'
-        r2.font.size = Pt(11)
-        r2.bold = is_bold
-        
-        set_cell_margins(c1, top=15, bottom=15, left=0, right=0)
-        set_cell_margins(c2, top=15, bottom=15, left=0, right=0)
-
-    # ====================================================
-    # SECTION 3: BODY (Arabic page numbering: 1, 2, ...)
-    # ====================================================
-    body_section = doc.add_section(docx.enum.section.WD_SECTION.NEW_PAGE)
-    body_section.top_margin = Cm(3.0)
-    body_section.bottom_margin = Cm(3.0)
-    body_section.left_margin = Cm(4.0)
-    body_section.right_margin = Cm(3.0)
-    body_section.different_first_page_header_footer = False
-
-    # Arabic page numbers starting at 1
-    sectPr_b = body_section._sectPr
-    pgNumType_b = OxmlElement('w:pgNumType')
-    pgNumType_b.set(qn('w:fmt'), 'decimal')
-    pgNumType_b.set(qn('w:start'), '1')
-    sectPr_b.append(pgNumType_b)
-
-    footer_body = body_section.footer
-    p_foot_b = footer_body.paragraphs[0]
-    p_foot_b.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r_foot_b = p_foot_b.add_run()
-    r_foot_b.font.name = 'Times New Roman'
-    r_foot_b.font.size = Pt(10)
-    add_page_number_field(r_foot_b)
+    # 3. MAIN BODY (Section 3) - Arabic: 1, 2, 3...
+    sec3 = doc.add_section(docx.enum.section.WD_SECTION.NEW_PAGE)
+    sec3.top_margin = Cm(3.0)
+    sec3.bottom_margin = Cm(3.0)
+    sec3.left_margin = Cm(4.0)
+    sec3.right_margin = Cm(3.0)
+    sec3.different_first_page_header_footer = False
+    add_clean_footer_pagenum(sec3, is_roman=False, start_num=1)
 
     def add_section_title(title_text):
         p = doc.add_paragraph()
@@ -533,7 +511,6 @@ def create_sdd_document():
             r2.font.name = 'Times New Roman'
             r2.font.size = Pt(10)
 
-    # MOD-02 Description
     add_body_paragraph("Tabel 3.1. Spesifikasi Teknis Modul Pengelolaan Pelanggan (MOD-02):")
     mod_cust_data = [
         ("Nama Modul", "Customer Lifecycle & ODP/IP Management Module"),
@@ -548,7 +525,6 @@ def create_sdd_document():
 
     doc.add_paragraph().paragraph_format.space_after = Pt(6)
 
-    # MOD-03 Description
     add_body_paragraph("Tabel 3.2. Spesifikasi Teknis Modul Billing Otomatis (MOD-03):")
     mod_bill_data = [
         ("Nama Modul", "Automated Billing & Digital Invoice Engine"),
@@ -760,9 +736,18 @@ def create_sdd_document():
             r.font.name = 'Times New Roman'
             r.font.size = Pt(9)
 
+    # Save to primary and fallback
     output_path = "Software_Design_Document_TRINET-BILL.docx"
-    doc.save(output_path)
-    print(f"SDD Document successfully created: {output_path}")
+    alt_output_path = "Software_Design_Document_TRINET-BILL_Final.docx"
+    
+    try:
+        doc.save(output_path)
+        print(f"SDD Document successfully saved to: {output_path}")
+    except PermissionError:
+        print(f"Note: {output_path} is currently locked/opened in Word. Saving to {alt_output_path} instead.")
+        
+    doc.save(alt_output_path)
+    print(f"SDD Document also saved to: {alt_output_path}")
 
 if __name__ == "__main__":
     create_sdd_document()
