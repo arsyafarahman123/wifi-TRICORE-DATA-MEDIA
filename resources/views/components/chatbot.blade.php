@@ -96,20 +96,25 @@
 
         <!-- Quick Suggestions Horizontal Scroll Bar -->
         <div class="px-3 py-2 bg-slate-950 border-b border-white/5 overflow-x-auto whitespace-nowrap flex gap-1.5 text-[11px] no-scrollbar">
-            <button type="button" data-prompt="Cek Tagihan" class="chatbot-pill-btn shrink-0 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-cyan-900/60 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 transition">
-                💳 Cek Tagihan
+            <button type="button" data-prompt="Cek Tagihan" class="chatbot-pill-btn shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-cyan-900/60 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/40 transition">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" stroke-width="2"/><path d="M2 10h20" stroke-width="2"/></svg>
+                Cek Tagihan
             </button>
-            <button type="button" data-prompt="Lampu LOS merah" class="chatbot-pill-btn shrink-0 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-rose-900/60 text-slate-300 hover:text-rose-300 border border-white/10 hover:border-rose-500/40 transition">
-                🔴 Kendala LOS Merah
+            <button type="button" data-prompt="Lampu LOS merah" class="chatbot-pill-btn shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-rose-900/60 text-slate-300 hover:text-rose-300 border border-white/10 hover:border-rose-500/40 transition">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                Kendala LOS Merah
             </button>
-            <button type="button" data-prompt="Paket WiFi" class="chatbot-pill-btn shrink-0 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-blue-900/60 text-slate-300 hover:text-blue-300 border border-white/10 hover:border-blue-500/40 transition">
-                ⚡ Pilihan Paket
+            <button type="button" data-prompt="Paket WiFi" class="chatbot-pill-btn shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-blue-900/60 text-slate-300 hover:text-blue-300 border border-white/10 hover:border-blue-500/40 transition">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Pilihan Paket
             </button>
-            <button type="button" data-prompt="Coverage area" class="chatbot-pill-btn shrink-0 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-900/60 text-slate-300 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/40 transition">
-                📍 Area Cakupan
+            <button type="button" data-prompt="Coverage area" class="chatbot-pill-btn shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-emerald-900/60 text-slate-300 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/40 transition">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Area Cakupan
             </button>
-            <button type="button" data-prompt="Cara ganti password wifi" class="chatbot-pill-btn shrink-0 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-amber-900/60 text-slate-300 hover:text-amber-300 border border-white/10 hover:border-amber-500/40 transition">
-                🔑 Ganti Password
+            <button type="button" data-prompt="Cara ganti password wifi" class="chatbot-pill-btn shrink-0 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-800/90 hover:bg-amber-900/60 text-slate-300 hover:text-amber-300 border border-white/10 hover:border-amber-500/40 transition">
+                <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                Ganti Password
             </button>
         </div>
 
@@ -204,9 +209,43 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 50);
     }
 
+    function sanitizeEmoji(str) {
+        if (!str) return '';
+        return str.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{2300}-\u{23FF}\u{2B50}\u{2B55}\u{FE00}-\u{FEFF}\u{1F1E6}-\u{1F1FF}\u{1F680}-\u{1F6FF}\u{1F900}-\u{1F9FF}\u{1FA70}-\u{1FAFF}\u{200D}\u{2700}-\u{27BF}]/gu, '').trim();
+    }
+
+    function getQuickReplyIcon(label) {
+        const l = (label || '').toLowerCase();
+        if (l.includes('whatsapp') || l.includes('wa ') || l.includes(' cs')) {
+            return `<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>`;
+        }
+        if (l.includes('tagihan') || l.includes('invoice') || l.includes('bayar') || l.includes('rekening') || l.includes('transfer')) {
+            return `<svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2" stroke-width="2"/><path d="M2 10h20" stroke-width="2"/></svg>`;
+        }
+        if (l.includes('paket') || l.includes('speed') || l.includes('internet')) {
+            return `<svg class="w-3.5 h-3.5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`;
+        }
+        if (l.includes('los') || l.includes('merah') || l.includes('kendala') || l.includes('gangguan')) {
+            return `<svg class="w-3.5 h-3.5 text-rose-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`;
+        }
+        if (l.includes('coverage') || l.includes('area') || l.includes('wilayah') || l.includes('cakupan') || l.includes('alamat')) {
+            return `<svg class="w-3.5 h-3.5 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`;
+        }
+        if (l.includes('sandi') || l.includes('password') || l.includes('wifi')) {
+            return `<svg class="w-3.5 h-3.5 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>`;
+        }
+        if (l.includes('menu') || l.includes('utama')) {
+            return `<svg class="w-3.5 h-3.5 text-slate-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+        }
+        if (l.includes('daftar') || l.includes('registrasi')) {
+            return `<svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>`;
+        }
+        return `<svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>`;
+    }
+
     function formatMarkdown(text) {
         if (!text) return '';
-        let escaped = text
+        let escaped = sanitizeEmoji(text)
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
@@ -241,20 +280,24 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.quick_replies && data.quick_replies.length > 0) {
                 contentHtml += `<div class="flex flex-wrap gap-1.5 pt-1">`;
                 data.quick_replies.forEach((btn) => {
+                    const cleanLabel = sanitizeEmoji(btn.label);
+                    const iconSvg = getQuickReplyIcon(cleanLabel);
                     if (btn.url) {
                         contentHtml += `
                             <a href="${btn.url}" target="${btn.url.startsWith('http') ? '_blank' : '_self'}"
-                               class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-cyan-950/90 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 transition transform active:scale-95 shadow-sm">
-                                ${btn.label}
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-semibold bg-cyan-950/90 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 transition transform active:scale-95 shadow-sm">
+                                ${iconSvg}
+                                <span>${cleanLabel}</span>
+                                <svg class="w-3 h-3 opacity-70 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                             </a>`;
                     } else {
                         contentHtml += `
                             <button type="button"
                                     data-intent="${btn.intent || ''}"
-                                    data-label="${btn.label}"
-                                    class="chatbot-quick-reply-btn inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-[11px] font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 hover:border-cyan-400 hover:text-cyan-300 transition transform active:scale-95 shadow-sm">
-                                ${btn.label}
+                                    data-label="${cleanLabel}"
+                                    class="chatbot-quick-reply-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[11px] font-medium bg-slate-800 hover:bg-slate-700 text-slate-200 border border-white/10 hover:border-cyan-400 hover:text-cyan-300 transition transform active:scale-95 shadow-sm">
+                                ${iconSvg}
+                                <span>${cleanLabel}</span>
                             </button>`;
                     }
                 });
@@ -296,78 +339,78 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!query || query === 'menu' || query === 'halo' || query === 'hai' || query === 'p') {
             return {
-                text: "Halo! 👋 Selamat datang di **Pusat Bantuan TRINET-BILL** (TRICORE DATA MEDIA Purwokerto).\n\nTim Support & Teknisi kami siap membantu Anda seputar tagihan, kendala teknis WiFi, paket internet, dan jaringan fiber optic.\n\nSilakan pilih topik bantuan cepat berikut:",
+                text: "Halo! Selamat datang di **Pusat Bantuan TRINET-BILL** (TRICORE DATA MEDIA Purwokerto).\n\nTim Support & Teknisi kami siap membantu Anda seputar tagihan, kendala teknis WiFi, paket internet, dan jaringan fiber optic.\n\nSilakan pilih topik bantuan cepat berikut:",
                 quick_replies: [
-                    { label: '💳 Cek Tagihan', intent: 'check_bill_prompt' },
-                    { label: '⚡ Paket Internet', intent: 'packages' },
-                    { label: '🔴 Kendala LOS Merah', intent: 'troubleshoot_los' },
-                    { label: '📍 Coverage Area', intent: 'coverage' },
-                    { label: '🔑 Cara Ganti Sandi WiFi', intent: 'troubleshoot_password' },
-                    { label: '💬 Chat WhatsApp CS', url: waUrl }
+                    { label: 'Cek Tagihan', intent: 'check_bill_prompt' },
+                    { label: 'Paket Internet', intent: 'packages' },
+                    { label: 'Kendala LOS Merah', intent: 'troubleshoot_los' },
+                    { label: 'Coverage Area', intent: 'coverage' },
+                    { label: 'Cara Ganti Sandi WiFi', intent: 'troubleshoot_password' },
+                    { label: 'Chat WhatsApp CS', url: waUrl }
                 ]
             };
         }
 
         if (query === 'check_bill_prompt' || query.includes('tagihan') || query.includes('bayar') || query.includes('invoice')) {
             return {
-                text: "💳 **Pengecekan Tagihan Pelanggan**\n\nUntuk mengecek status tagihan bulanan dan detail paket Anda:\n1. Buka fitur cek tagihan di halaman beranda.\n2. Masukkan ID Pelanggan (contoh: `TDM-2601`) atau nomor WhatsApp terdaftar.",
+                text: "**Pengecekan Tagihan Pelanggan**\n\nUntuk mengecek status tagihan bulanan dan detail paket Anda:\n1. Buka fitur cek tagihan di halaman beranda.\n2. Masukkan ID Pelanggan (contoh: `TDM-2601`) atau nomor WhatsApp terdaftar.",
                 quick_replies: [
-                    { label: '💳 Buka Form Cek Tagihan', url: '/#cek-tagihan' },
-                    { label: '🏦 Rekening Pembayaran', intent: 'payment_info' },
-                    { label: '💬 Hubungi CS WhatsApp', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Buka Form Cek Tagihan', url: '/#cek-tagihan' },
+                    { label: 'Rekening Pembayaran', intent: 'payment_info' },
+                    { label: 'Hubungi CS WhatsApp', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
 
         if (query.includes('paket') || query.includes('harga') || query.includes('speed') || query.includes('mbps')) {
             return {
-                text: "📦 **Pilihan Paket Internet Fiber TRICORE DATA MEDIA**:\n\n• **Paket Hemat 15 Mbps** - Rp115.000/bln (1-3 perangkat)\n• **Paket Family 20 Mbps** - Rp135.000/bln (3-5 perangkat)\n• **Paket Favorit 25 Mbps** - Rp150.000/bln (5-8 perangkat, Paling Diminati!)\n• **Paket Turbo 35 Mbps** - Rp170.000/bln (8-12 perangkat)\n• **Paket Ultimate 50 Mbps** - Rp200.000/bln (Bisnis / Cafe)\n\n✨ 100% Fiber Optic, Unlimited Tanpa FUP, Gratis Sewa Modem WiFi!",
+                text: "**Pilihan Paket Internet Fiber TRICORE DATA MEDIA**:\n\n• **Paket Hemat 15 Mbps** - Rp115.000/bln (1-3 perangkat)\n• **Paket Family 20 Mbps** - Rp135.000/bln (3-5 perangkat)\n• **Paket Favorit 25 Mbps** - Rp150.000/bln (5-8 perangkat, Paling Diminati!)\n• **Paket Turbo 35 Mbps** - Rp170.000/bln (8-12 perangkat)\n• **Paket Ultimate 50 Mbps** - Rp200.000/bln (Bisnis / Cafe)\n\n100% Fiber Optic, Unlimited Tanpa FUP, Gratis Sewa Modem WiFi!",
                 quick_replies: [
-                    { label: '📝 Daftar Online', url: '/#daftar' },
-                    { label: '💬 Daftar via WhatsApp', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Daftar Online', url: '/#daftar' },
+                    { label: 'Daftar via WhatsApp', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
 
         if (query.includes('los') || query.includes('merah') || query.includes('lampu')) {
             return {
-                text: "🔴 **Panduan Mengatasi Lampu LOS Berkedip Merah**:\n\nLampu LOS merah menandakan sinyal optik dari kabel fiber terputus:\n\n1. Periksa kabel optik tipis (warna kuning/hitam) yang tertancap di belakang modem.\n2. Pastikan konektor biru tertancap erat dan kabel **tidak tertekuk tajam / terjepit**.\n3. Jangan cabut-pasang kabel secara paksa.\n4. Jika kabel sudah rapi namun lampu LOS tetap berkedip merah, segera laporkan ke teknisi kami.",
+                text: "**Panduan Mengatasi Lampu LOS Berkedip Merah**:\n\nLampu LOS merah menandakan sinyal optik dari kabel fiber terputus:\n\n1. Periksa kabel optik tipis (warna kuning/hitam) yang tertancap di belakang modem.\n2. Pastikan konektor biru tertancap erat dan kabel **tidak tertekuk tajam / terjepit**.\n3. Jangan cabut-pasang kabel secara paksa.\n4. Jika kabel sudah rapi namun lampu LOS tetap berkedip merah, segera laporkan ke teknisi kami.",
                 quick_replies: [
-                    { label: '💬 Lapor Gangguan ke Teknisi WA', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Lapor Gangguan ke Teknisi WA', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
 
         if (query.includes('coverage') || query.includes('area') || query.includes('daerah') || query.includes('purwokerto') || query.includes('sokaraja')) {
             return {
-                text: "📍 **Jangkauan Jaringan (Coverage Area)**:\n\nJaringan 100% Fiber Optic TRICORE aktif di:\n• **Purwokerto Timur**: Arcawinangun, Kranji, Mersi, Purwokerto Lor, Sokanegara (88 ODP)\n• **Purwokerto Wetan**: Karangpucung, Tanjung, Teluk (64 ODP)\n• **Sokaraja**: Sokaraja Kidul, Lor, Kulon, Wetan, Banjaranyar (52 ODP)",
+                text: "**Jangkauan Jaringan (Coverage Area)**:\n\nJaringan 100% Fiber Optic TRICORE aktif di:\n• **Purwokerto Timur**: Arcawinangun, Kranji, Mersi, Purwokerto Lor, Sokanegara (88 ODP)\n• **Purwokerto Wetan**: Karangpucung, Tanjung, Teluk (64 ODP)\n• **Sokaraja**: Sokaraja Kidul, Lor, Kulon, Wetan, Banjaranyar (52 ODP)",
                 quick_replies: [
-                    { label: '🔍 Cek Coverage di Web', url: '/#coverage' },
-                    { label: '💬 Konfirmasi Alamat ke WA', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Cek Coverage di Web', url: '/#coverage' },
+                    { label: 'Konfirmasi Alamat ke WA', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
 
         if (query.includes('ganti password') || query.includes('sandi') || query.includes('ssid')) {
             return {
-                text: "🔑 **Cara Mengganti Password & Nama WiFi (SSID)**:\n\n1. Sambungkan HP/Laptop ke WiFi TRICORE Anda.\n2. Buka browser dan ketik alamat IP router: `192.168.1.1`\n3. Masukkan username dan password router (tertera di stiker bawah modem).\n4. Masuk ke menu **Network / Wireless / WLAN** -> **Security**.\n5. Ubah kolom **WPA Passphrase / Pre-shared Key**, lalu klik **Apply / Save**.",
+                text: "**Cara Mengganti Password & Nama WiFi (SSID)**:\n\n1. Sambungkan HP/Laptop ke WiFi TRICORE Anda.\n2. Buka browser dan ketik alamat IP router: `192.168.1.1`\n3. Masukkan username dan password router (tertera di stiker bawah modem).\n4. Masuk ke menu **Network / Wireless / WLAN** -> **Security**.\n5. Ubah kolom **WPA Passphrase / Pre-shared Key**, lalu klik **Apply / Save**.",
                 quick_replies: [
-                    { label: '💬 Butuh Bantuan Teknisi WA', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Butuh Bantuan Teknisi WA', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
 
         if (query.includes('rekening') || query.includes('bayar') || query.includes('transfer')) {
             return {
-                text: "💳 **Metode Pembayaran Resmi TRICORE DATA MEDIA**:\n\n🏦 **Transfer Bank:**\n• BCA: `046-1234-567` (a.n TRICORE DATA MEDIA)\n• BRI: `0022-01-001234-53-1` (a.n TRICORE DATA MEDIA)\n\n📲 **QRIS & E-Wallet**: Menerima BCA Mobile, Livin, GoPay, OVO, DANA, ShopeePay.\n\n⚠️ Cantumkan ID Pelanggan Anda saat transfer dan konfirmasi bukti ke WhatsApp CS.",
+                text: "**Metode Pembayaran Resmi TRICORE DATA MEDIA**:\n\n**Transfer Bank:**\n• BCA: `046-1234-567` (a.n TRICORE DATA MEDIA)\n• BRI: `0022-01-001234-53-1` (a.n TRICORE DATA MEDIA)\n\n**QRIS & E-Wallet**: Menerima BCA Mobile, Livin, GoPay, OVO, DANA, ShopeePay.\n\nCantumkan ID Pelanggan Anda saat transfer dan konfirmasi bukti ke WhatsApp CS.",
                 quick_replies: [
-                    { label: '💬 Kirim Bukti Transfer ke WA', url: waUrl },
-                    { label: '🔙 Menu Utama', intent: 'menu' }
+                    { label: 'Kirim Bukti Transfer ke WA', url: waUrl },
+                    { label: 'Menu Utama', intent: 'menu' }
                 ]
             };
         }
@@ -375,10 +418,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return {
             text: `Terima kasih atas pesan Anda. Untuk pertanyaan lebih lanjut, tim teknisi & CS kami siap melayani Anda melalui WhatsApp:`,
             quick_replies: [
-                { label: '💬 Chat Teknisi WhatsApp', url: waUrl },
-                { label: '💳 Cek Tagihan', intent: 'check_bill_prompt' },
-                { label: '⚡ Pilihan Paket', intent: 'packages' },
-                { label: '🔙 Menu Utama', intent: 'menu' }
+                { label: 'Chat Teknisi WhatsApp', url: waUrl },
+                { label: 'Cek Tagihan', intent: 'check_bill_prompt' },
+                { label: 'Pilihan Paket', intent: 'packages' },
+                { label: 'Menu Utama', intent: 'menu' }
             ]
         };
     }

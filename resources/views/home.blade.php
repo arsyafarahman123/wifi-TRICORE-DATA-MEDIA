@@ -308,8 +308,9 @@
 
                             <!-- Device recommendation -->
                             @if($pkg->device_recommendation)
-                                <div class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-white/5 text-center text-xs text-slate-300 font-medium">
-                                    ⚡ Rekomendasi: <span class="text-cyan-300 font-semibold">{{ $pkg->device_recommendation }}</span>
+                                <div class="px-3 py-1.5 rounded-lg bg-slate-900/60 border border-white/5 text-center text-xs text-slate-300 font-medium flex items-center justify-center gap-1.5">
+                                    <svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                    Rekomendasi: <span class="text-cyan-300 font-semibold">{{ $pkg->device_recommendation }}</span>
                                 </div>
                             @endif
 
@@ -393,8 +394,9 @@
                             <div class="flex flex-wrap gap-1.5">
                                 @if(is_array($area->subdistricts))
                                     @foreach($area->subdistricts as $sub)
-                                        <span class="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-white/5 text-[11px] text-cyan-300 font-medium">
-                                            ✓ {{ $sub }}
+                                        <span class="px-2.5 py-1 rounded-lg bg-slate-900/80 border border-white/5 text-[11px] text-cyan-300 font-medium inline-flex items-center gap-1.5">
+                                            <svg class="w-3 h-3 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                            {{ $sub }}
                                         </span>
                                     @endforeach
                                 @endif
@@ -424,15 +426,17 @@
                             @if(session('is_covered'))
                                 <div class="p-4 rounded-xl bg-emerald-950/80 border border-emerald-500/40 text-emerald-200 text-xs space-y-1">
                                     <div class="font-bold text-sm text-emerald-300 flex items-center gap-1.5">
-                                        ✓ Wilayah Terjangkau!
+                                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                        Wilayah Terjangkau!
                                     </div>
                                     <p>Lokasi "{{ session('searched_location') }}" berada di area coverage <strong>{{ session('matched_area') }}</strong>. Siap pasang fiber optik 24 jam!</p>
                                     <a href="#daftar" class="inline-block mt-2 font-bold underline text-white">Lanjut Daftar Pasang &rarr;</a>
                                 </div>
                             @else
                                 <div class="p-4 rounded-xl bg-amber-950/80 border border-amber-500/40 text-amber-200 text-xs space-y-1">
-                                    <div class="font-bold text-sm text-amber-300">
-                                        ℹ Dalam Tahap Perluasan Jaringan
+                                    <div class="font-bold text-sm text-amber-300 flex items-center gap-1.5">
+                                        <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        Dalam Tahap Perluasan Jaringan
                                     </div>
                                     <p>Lokasi "{{ session('searched_location') }}" sedang kami prioritaskan untuk perluasan tiang ODP. Hubungi CS WhatsApp kami untuk pre-order pemasangan.</p>
                                     <a href="https://wa.me/6282138413292?text=Halo%20TRICORE,%20saya%20ingin%20cek%20tiang%20ODP%20di%20{{ urlencode(session('searched_location')) }}" target="_blank" class="inline-block mt-2 font-bold underline text-white">Hubungi Kami &rarr;</a>

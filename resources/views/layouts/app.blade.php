@@ -122,7 +122,9 @@
                     </svg>
                     <span class="text-sm font-medium">{{ session('success') }}</span>
                 </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-white">✕</button>
+                <button type="button" onclick="this.parentElement.remove()" class="text-emerald-400 hover:text-white p-1 rounded-lg hover:bg-emerald-900/50 transition" aria-label="Tutup">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
         </div>
     @endif
@@ -136,7 +138,9 @@
                     </svg>
                     <span class="text-sm font-medium">{{ session('error') }}</span>
                 </div>
-                <button type="button" onclick="this.parentElement.remove()" class="text-rose-400 hover:text-white">✕</button>
+                <button type="button" onclick="this.parentElement.remove()" class="text-rose-400 hover:text-white p-1 rounded-lg hover:bg-rose-900/50 transition" aria-label="Tutup">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
         </div>
     @endif

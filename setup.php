@@ -38,31 +38,31 @@ if ($action === 'delete') {
     try {
         // Test Database Connection
         DB::connection()->getPdo();
-        $output[] = "✅ Database terkoneksi dengan sukses ke: " . DB::connection()->getDatabaseName();
+        $output[] = " Database terkoneksi dengan sukses ke: " . DB::connection()->getDatabaseName();
 
         // Run Migrations
         Artisan::call('migrate', ['--force' => true]);
-        $output[] = "✅ Migrasi Database berhasil dijalankan:\n" . Artisan::output();
+        $output[] = " Migrasi Database berhasil dijalankan:\n" . Artisan::output();
 
         // Run Seeders
         Artisan::call('db:seed', ['--force' => true]);
-        $output[] = "✅ Data Seeder berhasil dimasukkan (Admin, Paket WiFi, Coverage Area, Pelanggan):\n" . Artisan::output();
+        $output[] = " Data Seeder berhasil dimasukkan (Admin, Paket WiFi, Coverage Area, Pelanggan):\n" . Artisan::output();
 
         // Link Storage
         try {
             Artisan::call('storage:link');
-            $output[] = "✅ Storage link berhasil dibuat.";
+            $output[] = " Storage link berhasil dibuat.";
         } catch (\Throwable $e) {
-            $output[] = "ℹ️ Storage link: " . $e->getMessage();
+            $output[] = "ℹ Storage link: " . $e->getMessage();
         }
 
         // Clear Caches
         Artisan::call('optimize:clear');
-        $output[] = "✅ Cache & Config berhasil dibersihkan:\n" . Artisan::output();
+        $output[] = " Cache & Config berhasil dibersihkan:\n" . Artisan::output();
 
     } catch (\Throwable $e) {
         $status = 'danger';
-        $output[] = "❌ Terjadi Kesalahan: " . $e->getMessage();
+        $output[] = " Terjadi Kesalahan: " . $e->getMessage();
         $output[] = "\nDetail Trace: " . $e->getTraceAsString();
     }
 }
@@ -168,7 +168,7 @@ if ($action === 'delete') {
 </head>
 <body>
     <div class="container">
-        <h1>🌐 Setup Layanan WiFi TriCore</h1>
+        <h1> Setup Layanan WiFi TriCore</h1>
         <div class="badge <?= $status === 'success' ? 'badge-success' : 'badge-danger' ?>">
             <?= $status === 'success' ? 'STATUS: BERHASIL SETUP' : 'STATUS: GAGAL' ?>
         </div>
@@ -177,7 +177,7 @@ if ($action === 'delete') {
 
         <?php if ($status === 'success'): ?>
             <div class="alert-warning">
-                ⚠️ <strong>PENTING:</strong> Demi keamanan website Anda, klik tombol <strong>"Hapus File setup.php"</strong> di bawah sebelum menggunakan website.
+                 <strong>PENTING:</strong> Demi keamanan website Anda, klik tombol <strong>"Hapus File setup.php"</strong> di bawah sebelum menggunakan website.
             </div>
             <div class="btn-group">
                 <a href="/" class="btn btn-primary">Buka Website Utama &rarr;</a>

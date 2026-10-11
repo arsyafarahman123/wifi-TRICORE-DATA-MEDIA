@@ -213,8 +213,9 @@
         <button onclick="window.history.back()" style="padding: 10px 16px; background: #334155; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">
             &larr; Kembali
         </button>
-        <button onclick="window.print()" style="padding: 10px 20px; background: #0891b2; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">
-            🖨️ Cetak / Simpan PDF
+        <button onclick="window.print()" style="display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; background: #0891b2; color: #fff; font-weight: 700; border: none; border-radius: 8px; cursor: pointer; font-size: 13px;">
+            <svg style="width: 16px; height: 16px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4H7v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            <span>Cetak / Simpan PDF</span>
         </button>
     </div>
 

@@ -22,7 +22,7 @@ header('Content-Type: text/html; charset=utf-8');
 </head>
 <body>
 <div class="card">
-    <h1>⚡ Eksekusi SQL Database ke phpMyAdmin</h1>
+    <h1> Eksekusi SQL Database ke phpMyAdmin</h1>
     <div class="log"><?php
 
 $user = 'if0_43041974';
@@ -38,7 +38,7 @@ try {
         PDO::ATTR_TIMEOUT => 10,
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
     ]);
-    echo "[✓] BERHASIL Terhubung ke MySQL Database ($db)!\n\n";
+    echo "[] BERHASIL Terhubung ke MySQL Database ($db)!\n\n";
 
     $sqlFile = __DIR__ . '/tricore_database_full.sql';
     if (!file_exists($sqlFile)) {
@@ -56,13 +56,13 @@ try {
 
     $pdo->exec("SET FOREIGN_KEY_CHECKS = 1;");
 
-    echo "[✓] SEMUA STRUKTUR TABEL & DATA ASLI BERHASIL DIBUAT!\n\n";
+    echo "[] SEMUA STRUKTUR TABEL & DATA ASLI BERHASIL DIBUAT!\n\n";
 
     // Verifikasi tabel yang dibuat
     $stmt = $pdo->query("SHOW TABLES");
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    echo "📊 Daftar Tabel Aktif di phpMyAdmin:\n";
+    echo " Daftar Tabel Aktif di phpMyAdmin:\n";
     foreach ($tables as $t) {
         $countStmt = $pdo->query("SELECT COUNT(*) FROM `$t`");
         $count = $countStmt->fetchColumn();
@@ -79,11 +79,11 @@ try {
         $env = preg_replace('/DB_USERNAME=.*/', "DB_USERNAME=$user", $env);
         $env = preg_replace('/DB_PASSWORD=.*/', "DB_PASSWORD=$pass", $env);
         file_put_contents($envPath, $env);
-        echo "\n[✓] Konfigurasi server .env sudah diarahkan ke MySQL phpMyAdmin!\n";
+        echo "\n[] Konfigurasi server .env sudah diarahkan ke MySQL phpMyAdmin!\n";
     }
 
     echo "\n============================================================\n";
-    echo " 🎉 SELESAI! Silakan buka / refresh phpMyAdmin Anda.\n";
+    echo "  SELESAI! Silakan buka / refresh phpMyAdmin Anda.\n";
     echo "============================================================\n";
 
 } catch (\Throwable $e) {

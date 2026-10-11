@@ -119,8 +119,9 @@
             </div>
 
             @if($pendingInvoices->isEmpty())
-                <div class="text-center py-8 text-xs text-slate-400">
-                    Semua tagihan pelanggan saat ini telah lunas! 🎉
+                <div class="text-center py-8 text-xs text-slate-400 flex flex-col items-center justify-center gap-2">
+                    <svg class="w-8 h-8 text-emerald-400/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span>Semua tagihan pelanggan saat ini telah lunas.</span>
                 </div>
             @else
                 <div class="space-y-3">
@@ -155,8 +156,9 @@
                                             <option value="QRIS">QRIS</option>
                                         </select>
                                         <input type="hidden" name="payment_reference" value="TRX-MITRA-{{ date('YmdHis') }}">
-                                        <button type="submit" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-sm transition active:scale-95 whitespace-nowrap">
-                                            ✓ Lunas
+                                        <button type="submit" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-sm transition active:scale-95 whitespace-nowrap">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                            <span>Lunas</span>
                                         </button>
                                     </div>
                                 </form>

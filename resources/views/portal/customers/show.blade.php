@@ -177,8 +177,9 @@
                                         <option value="QRIS">QRIS</option>
                                     </select>
                                     <input type="hidden" name="payment_reference" value="TRX-{{ date('YmdHis') }}">
-                                    <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-xs">
-                                        ✓ Lunas
+                                    <button type="submit" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-xs">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                        <span>Lunas</span>
                                     </button>
                                 </div>
                             </form>
@@ -240,8 +241,9 @@
                                                 <option value="QRIS">QRIS</option>
                                             </select>
                                             <input type="hidden" name="payment_reference" value="TRX-{{ date('YmdHis') }}">
-                                            <button type="submit" class="px-2 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-[10px]">
-                                                ✓ Lunas
+                                            <button type="submit" class="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-[10px]">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                                <span>Lunas</span>
                                             </button>
                                         </div>
                                     </form>

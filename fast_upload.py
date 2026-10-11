@@ -51,7 +51,13 @@ def main():
         'app/Http/Controllers/ChatbotController.php',
         'app/Http/Controllers/InvoiceManagementController.php',
         'resources/views/components/chatbot.blade.php',
+        'resources/views/home.blade.php',
         'resources/views/layouts/app.blade.php',
+        'resources/views/layouts/portal.blade.php',
+        'resources/views/portal/dashboard.blade.php',
+        'resources/views/portal/customers/show.blade.php',
+        'resources/views/portal/invoices/index.blade.php',
+        'resources/views/portal/invoices/print.blade.php',
     ]
 
     # Upload core updated files

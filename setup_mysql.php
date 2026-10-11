@@ -40,7 +40,7 @@ header('Content-Type: text/html; charset=utf-8');
 </head>
 <body>
 <div class="card">
-    <h1>⚡ Setup MySQL phpMyAdmin Otomatis</h1>
+    <h1> Setup MySQL phpMyAdmin Otomatis</h1>
     <div class="log"><?php
 
 $user = 'if0_43041974';
@@ -54,7 +54,7 @@ try {
         PDO::ATTR_TIMEOUT => 5,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
-    echo "[✓] BERHASIL Terhubung ke MySQL Server: $host\n";
+    echo "[] BERHASIL Terhubung ke MySQL Server: $host\n";
 
     $stmt = $pdo->query('SHOW DATABASES');
     $dbs = $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -89,11 +89,11 @@ try {
         $envContent = preg_replace('/DB_USERNAME=.*/', "DB_USERNAME=$user", $envContent);
         $envContent = preg_replace('/DB_PASSWORD=.*/', "DB_PASSWORD=$pass", $envContent);
         file_put_contents($envPath, $envContent);
-        echo "[✓] File .env server telah diperbarui permanen ke MySQL ($target_db)!\n";
+        echo "[] File .env server telah diperbarui permanen ke MySQL ($target_db)!\n";
     }
 
     echo "\n============================================================\n";
-    echo " 🎉 SEMUA TABEL SUDAH TERHUBUNG PERMANEN DI PHPMYADMIN!\n";
+    echo "  SEMUA TABEL SUDAH TERHUBUNG PERMANEN DI PHPMYADMIN!\n";
     echo "============================================================\n";
 
 } catch (\Throwable $e) {
