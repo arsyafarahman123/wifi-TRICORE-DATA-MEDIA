@@ -1,14 +1,14 @@
 @extends('layouts.portal')
 
-@section('title', 'Tagihan & Transaksi | Portal Mitra TRICORE')
+@section('title', 'Billing & Invoice Report - TRINET-BILL | TRICORE DATA MEDIA')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Tagihan & Transaksi Pelanggan</h1>
-            <p class="text-xs text-slate-400">Pencatatan invoice lunas / belum bayar & konfirmasi pembayaran mitra</p>
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Billing & Invoice Report</h1>
+            <p class="text-xs text-slate-400">Pencatatan invoice lunas / belum bayar & konfirmasi pembayaran TRINET-BILL</p>
         </div>
 
         <form action="{{ route('portal.invoices.generate-monthly') }}" method="POST" onsubmit="return confirm('Terbitkan tagihan baru untuk seluruh pelanggan aktif periode berjalan?')" class="w-full sm:w-auto">

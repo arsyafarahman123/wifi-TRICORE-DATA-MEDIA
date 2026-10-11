@@ -1,6 +1,6 @@
 @extends('layouts.portal')
 
-@section('title', 'Daftar Paket Internet | Portal Mitra TRICORE')
+@section('title', 'Daftar Paket Internet - TRINET-BILL | TRICORE DATA MEDIA')
 
 @section('content')
 <div class="space-y-6">

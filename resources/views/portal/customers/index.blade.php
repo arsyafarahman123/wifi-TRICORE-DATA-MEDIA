@@ -1,14 +1,14 @@
 @extends('layouts.portal')
 
-@section('title', 'Kelola Pelanggan | Portal Mitra TRICORE')
+@section('title', 'Manajemen Pelanggan - TRINET-BILL | TRICORE DATA MEDIA')
 
 @section('content')
 <div class="space-y-6">
     <!-- Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Data Pelanggan WiFi</h1>
-            <p class="text-xs text-slate-400">Total data pelanggan terdaftar di seluruh area coverage TRICORE</p>
+            <h1 class="text-xl sm:text-2xl font-extrabold text-white">Manajemen Pelanggan</h1>
+            <p class="text-xs text-slate-400">Kelola database pelanggan aktif, status ODP, dan paket langganan TRINET-BILL</p>
         </div>
         <a href="{{ route('portal.customers.create') }}" class="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs hover:brightness-110 shadow-md shadow-cyan-500/20 transition flex items-center gap-2 active:scale-95">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>

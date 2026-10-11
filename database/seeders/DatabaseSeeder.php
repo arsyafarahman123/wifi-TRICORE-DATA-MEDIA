@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // 1. Create Admin User
-        $admin = User::firstOrCreate(
+        $admin = User::updateOrCreate(
             ['email' => 'admin@tricoredatamedia.net'],
             [
                 'name' => 'Admin TriCore',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // 2. Create Mitra Partner User
-        $mitra = User::firstOrCreate(
+        $mitra = User::updateOrCreate(
             ['email' => 'mitra@tricoredatamedia.net'],
             [
                 'name' => 'Budi Santoso (Mitra Sokaraja)',

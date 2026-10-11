@@ -19,8 +19,9 @@ Route::get('/tagihan/{code}', [CustomerPortalController::class, 'viewBill'])->na
 Route::post('/daftar-paket', [CustomerPortalController::class, 'register'])->name('register.submit');
 Route::post('/cek-coverage', [CustomerPortalController::class, 'checkCoverage'])->name('coverage.check');
 
-// Interactive Virtual Assistant / Chatbot API
-Route::post('/chatbot/message', [ChatbotController::class, 'sendMessage'])->name('chatbot.message');
+// Helpdesk & Live Support API (GET & POST)
+Route::match(['get', 'post'], '/chatbot/message', [ChatbotController::class, 'sendMessage'])->name('chatbot.message');
+Route::match(['get', 'post'], '/bantuan/pesan', [ChatbotController::class, 'sendMessage'])->name('bantuan.pesan');
 
 // Authentication (Admin & Mitra)
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

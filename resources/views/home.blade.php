@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'TRICORE DATA MEDIA - Internet Fiber Optic Cepat & Stabil Purwokerto')
+@section('title', 'TRINET-BILL - Sistem Operasional & Layanan Internet WiFi TRICORE DATA MEDIA')
 
 @section('content')
 

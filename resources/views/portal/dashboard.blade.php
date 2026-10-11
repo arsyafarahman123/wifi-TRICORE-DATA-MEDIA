@@ -1,6 +1,6 @@
 @extends('layouts.portal')
 
-@section('title', 'Dashboard Mitra TRICORE DATA MEDIA')
+@section('title', 'Executive Dashboard - TRINET-BILL | TRICORE DATA MEDIA')
 
 @section('content')
 <div class="space-y-8">
@@ -8,9 +8,9 @@
     <!-- Top Greeting & Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white">Dashboard Operasional Mitra</h1>
+            <h1 class="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white">Executive Dashboard</h1>
             <p class="text-xs text-slate-400 mt-1">
-                Selamat bekerja, <strong class="text-slate-200">{{ auth()->user()->name }}</strong> ({{ auth()->user()->mitra_name ?? 'Mitra WiFi' }}). Pantau pelanggan, paket & tagihan secara real-time.
+                Selamat bekerja, <strong class="text-slate-200">{{ auth()->user()->name }}</strong> ({{ auth()->user()->mitra_name ?? 'Mitra WiFi' }}). Monitoring sistem operasional & billing TRINET-BILL.
             </p>
         </div>
 

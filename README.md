@@ -16,7 +16,7 @@
 - 🗺️ **Coverage Area Interaktif** — Informasi dan verifikasi wilayah jangkauan kabel fiber optic
 - 📱 **Integrasi Notifikasi WhatsApp** — Jembatan notifikasi status tagihan dan pendaftaran langsung ke WhatsApp
 - 🔒 **Portal Mitra & Admin TRINET-BILL** — Dashboard terproteksi untuk mitra teknisi dan manajemen
-- 🤖 **Virtual Assistant AI Helpdesk** — Chatbot pintar 24 jam untuk panduan teknis dan cek tagihan mandiri
+- 🎧 **Live Support & Helpdesk 24/7** — Pusat bantuan interaktif, panduan teknis jaringan, dan cek tagihan mandiri pelanggan
 
 ## 🚀 Fitur Utama
 

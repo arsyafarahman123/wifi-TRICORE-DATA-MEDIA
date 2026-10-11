@@ -84,7 +84,7 @@ class ChatbotController extends Controller
         if (preg_match('/\b(halo|hai|hay|hello|hi|pagi|siang|sore|malam|assalamu[\w]*|assalamualaikum|tes|test|p)\b/', $normalized)) {
             return [
                 'type' => 'text',
-                'text' => "Halo! 👋 Selamat datang di Layanan Pelanggan **TRICORE DATA MEDIA**.\n\nSaya asisten virtual cerdas yang siap membantu Anda 24/7 seputar tagihan, kendala teknis WiFi, paket, dan jaringan. Ada yang bisa saya bantu hari ini?",
+                'text' => "Halo! 👋 Selamat datang di Layanan Pelanggan & Helpdesk **TRINET-BILL** (TRICORE DATA MEDIA).\n\nTim Support & Teknisi kami siap membantu Anda seputar rincian tagihan, bantuan kendala teknis WiFi, paket internet, dan jaringan fiber optic. Ada yang bisa kami bantu hari ini?",
                 'quick_replies' => $this->getMainMenuQuickReplies(),
             ];
         }
@@ -184,10 +184,10 @@ class ChatbotController extends Controller
             return $this->getContactCSResponse();
         }
 
-        // Default Guardrail Fallback Response (Anti-Hallucination)
+        // Default Guardrail Fallback Response
         return [
             'type' => 'text',
-            'text' => "Saya adalah asisten virtual resmi **TRICORE DATA MEDIA**.\n\nPertanyaan Anda *\"".e($message)."\"* belum ada dalam database panduan standar kami. Untuk menghindari kesalahan informasi, silakan pilih topik bantuan di bawah atau langsung konsultasikan dengan CS Teknisi kami:",
+            'text' => "Terima kasih telah menghubungi **Pusat Layanan TRINET-BILL** (TRICORE DATA MEDIA Purwokerto).\n\nPertanyaan terkait *\"".e($message)."\"* dapat langsung dikonsultasikan dengan teknisi kami, atau silakan pilih topik bantuan cepat berikut:",
             'quick_replies' => $this->getMainMenuQuickReplies(),
         ];
     }
@@ -676,6 +676,18 @@ class ChatbotController extends Controller
                 ['label' => '💬 Buka WhatsApp CS Sekarang', 'url' => $waUrl],
                 ['label' => '🔙 Menu Utama', 'intent' => 'menu'],
             ],
+        ];
+    }
+
+    /**
+     * Welcome response / Menu Utama
+     */
+    private function getWelcomeResponse(): array
+    {
+        return [
+            'type' => 'text',
+            'text' => "Selamat datang di **Pusat Bantuan & Layanan Pelanggan TRINET-BILL** (TRICORE DATA MEDIA Purwokerto).\n\nTim Support & Helpdesk kami siap membantu Anda 24/7 seputar cek tagihan, info paket WiFi, cakupan area, dan panduan kendala teknis jaringan.\n\nSilakan pilih topik bantuan cepat di bawah atau ketik langsung pertanyaan Anda:",
+            'quick_replies' => $this->getMainMenuQuickReplies(),
         ];
     }
 
