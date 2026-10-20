@@ -1,24 +1,24 @@
-# ⚡ TRINET-BILL: TRIcore Network Billing — Sistem Manajemen ISP & Billing WiFi Fiber Optic
+# TRINET-BILL: TRIcore Network Billing — Sistem Manajemen ISP & Billing WiFi Fiber Optic
 
 ![Laravel](https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.5-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-## 📖 Tentang Proyek
+## Tentang Proyek
 
 **TRINET-BILL (TRIcore Network Billing)** adalah platform web terintegrasi all-in-one untuk manajemen operasional, monitoring teknis jaringan (ODP & IP), dan sistem penagihan otomatis (*automated billing*) pada **TRICORE DATA MEDIA**, perusahaan penyedia jasa internet fiber optic (ISP) di Purwokerto, Jawa Tengah. Aplikasi ini mencakup:
 
-- 🌐 **Landing Page & Company Profile TRINET-BILL** — Website promosi dan portal publik profesional untuk menjaring pelanggan baru
-- 📦 **Manajemen Paket Internet** — Kelola katalog paket WiFi (15–50 Mbps) dengan tarif dinamis
-- 👥 **Manajemen Siklus Pelanggan** — Data lengkap pelanggan, status layanan (Aktif/Pending/Terisolir), port ODP, dan alokasi IP
-- 💳 **Sistem Billing & Faktur Digital** — Generator tagihan bulanan otomatis, rekonsiliasi pembayaran, dan ekspor invoice PDF
-- 🗺️ **Coverage Area Interaktif** — Informasi dan verifikasi wilayah jangkauan kabel fiber optic
-- 📱 **Integrasi Notifikasi WhatsApp** — Jembatan notifikasi status tagihan dan pendaftaran langsung ke WhatsApp
-- 🔒 **Portal Mitra & Admin TRINET-BILL** — Dashboard terproteksi untuk mitra teknisi dan manajemen
-- 🎧 **Live Support & Helpdesk 24/7** — Pusat bantuan interaktif, panduan teknis jaringan, dan cek tagihan mandiri pelanggan
+- **Landing Page & Company Profile TRINET-BILL** — Website promosi dan portal publik profesional untuk menjaring pelanggan baru
+- **Manajemen Paket Internet** — Kelola katalog paket WiFi (15–50 Mbps) dengan tarif dinamis
+- **Manajemen Siklus Pelanggan** — Data lengkap pelanggan, status layanan (Aktif/Pending/Terisolir), port ODP, dan alokasi IP
+- **Sistem Billing & Faktur Digital** — Generator tagihan bulanan otomatis, rekonsiliasi pembayaran, dan ekspor invoice PDF
+- **Coverage Area Interaktif** — Informasi dan verifikasi wilayah jangkauan kabel fiber optic
+- **Integrasi Notifikasi WhatsApp** — Jembatan notifikasi status tagihan dan pendaftaran langsung ke WhatsApp
+- **Portal Mitra & Admin TRINET-BILL** — Dashboard terproteksi untuk mitra teknisi dan manajemen
+- **Live Support & Helpdesk 24/7** — Pusat bantuan interaktif, panduan teknis jaringan, dan cek tagihan mandiri pelanggan
 
-## 🚀 Fitur Utama
+## Fitur Utama
 
 ### Landing Page (Public)
 - Hero section dengan informasi layanan ISP
@@ -38,25 +38,25 @@
 - Konfirmasi pembayaran & cetak invoice
 - Manajemen paket internet
 
-## 📋 Paket Internet
+## Paket Internet
 
 | Paket | Kecepatan | Harga/Bulan | Keterangan |
 |-------|-----------|-------------|------------|
 | Hemat | 15 Mbps | Rp115.000 | 1-3 Perangkat |
 | Family | 20 Mbps | Rp135.000 | 3-5 Perangkat |
-| Favorit | 25 Mbps | Rp150.000 | ⭐ Paling Diminati |
+| Favorit | 25 Mbps | Rp150.000 | Paling Diminati |
 | Turbo | 35 Mbps | Rp170.000 | 8-12 Perangkat |
 | Ultimate | 50 Mbps | Rp200.000 | Bisnis & Pro |
 
 *Semua paket: Unlimited, 100% Fiber Optic, Support 24/7, Gratis Modem WiFi*
 
-## 🗺️ Coverage Area
+## Coverage Area
 
 - **Purwokerto Timur** — Arcawinangun, Kranji, Mersi, Purwokerto Lor, Sokanegara
 - **Purwokerto Wetan** — Karangpucung, Tanjung, Teluk
 - **Sokaraja** — Sokaraja Kidul, Sokaraja Lor, Sokaraja Kulon, Sokaraja Wetan
 
-## ⚙️ Instalasi & Setup
+## Instalasi & Setup
 
 ### Prasyarat
 - PHP >= 8.2
@@ -107,11 +107,11 @@ Buka **http://localhost:8000** di browser.
 - `TDM-2604` — Dwi Wahyuni (Terisolir, Belum Bayar)
 - `TDM-2605` — Hendro Wijaya (Pending)
 
-## ☁️ Panduan Hosting Online (Bebas Iklan & Tanpa InfinityFree)
+## Panduan Hosting Online (Bebas Iklan & Tanpa InfinityFree)
 
 Proyek ini telah dilengkapi dengan `Dockerfile`, `render.yaml`, dan `nixpacks.toml` sehingga **siap di-deploy langsung dari GitHub** ke platform cloud modern:
 
-### Opsi 1: Deploy di Render.com (Sangat Direkomendasikan ⭐)
+### Opsi 1: Deploy di Render.com (Sangat Direkomendasikan)
 1. Buka [render.com](https://render.com) dan login menggunakan akun GitHub (`arsyafarahman123`).
 2. Klik tombol **New +** > pilih **Web Service**.
 3. Hubungkan repository: `arsyafarahman123/wifi-TRICORE-DATA-MEDIA`.
@@ -139,7 +139,7 @@ Proyek ini telah dilengkapi dengan `Dockerfile`, `render.yaml`, dan `nixpacks.to
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend:** Laravel 12 (PHP 8.5)
 - **Frontend:** Blade Templates + Tailwind CSS 4 + Vite 8
@@ -147,13 +147,12 @@ Proyek ini telah dilengkapi dengan `Dockerfile`, `render.yaml`, dan `nixpacks.to
 - **Design:** Dark theme, Glassmorphism, Modern UI
 - **Font:** Plus Jakarta Sans (Google Fonts)
 
-## 📞 Kontak
+## Kontak
 
 - **WhatsApp:** +62 821-3841-3292
 - **Email:** support@tricoredatamedia.net
 - **Alamat:** Jl. KAV. Gelora Indah II, Gg. Renang, Purwokerto Timur, Jawa Tengah
 
-## 📄 Lisensi
+## Lisensi
 
 © 2026 TRICORE DATA MEDIA. All rights reserved.
-
