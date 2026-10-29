@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\CustomerPortalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceManagementController;
+use App\Http\Controllers\OdpMapController;
 use App\Http\Controllers\PackageManagementController;
 use App\Http\Controllers\PartnerDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/cek-tagihan', [CustomerPortalController::class, 'checkBill'])->name('bill.check');
 Route::get('/tagihan/{code}', [CustomerPortalController::class, 'viewBill'])->name('bill.view');
 Route::post('/daftar-paket', [CustomerPortalController::class, 'register'])->name('register.submit');
+Route::get('/odp.kml', [OdpMapController::class, 'kml'])->name('odp.kml');
 Route::post('/cek-coverage', [CustomerPortalController::class, 'checkCoverage'])->name('coverage.check');
 
 // Helpdesk & Live Support API (GET & POST)
