@@ -474,27 +474,8 @@
                     </div>
                 </div>
 
-                <!-- Google Maps Purwokerto Embed -->
-                <div class="lg:col-span-7 rounded-2xl overflow-hidden glass-panel border border-white/10 shadow-xl min-h-[350px] relative">
-                    <iframe 
-                        title="Peta Lokasi TRICORE DATA MEDIA Purwokerto"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15825.96213602111!2d109.24522944358897!3d-7.423984922129532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655c3c0e3532f1%3A0x6a0c5c306d866415!2sPurwokerto%20Timur%2C%20Banyumas%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1710000000000!5m2!1sen!2sid" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; min-height: 400px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-full filter invert-[0.88] hue-rotate-180 contrast-125">
-                    </iframe>
-                    <div class="absolute bottom-4 left-4 right-4 bg-slate-950/90 backdrop-blur-md p-3 rounded-xl border border-white/10 text-xs flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span class="text-slate-200">Titik Pusat ODP: <strong>Purwokerto Timur & Sokaraja</strong></span>
-                        </div>
-                        <a href="https://maps.google.com/?q=Purwokerto+Timur" target="_blank" class="text-cyan-400 font-bold hover:underline">Buka Maps &rarr;</a>
-                    </div>
-                </div>
+                <!-- Peta titik ODP (Leaflet, data dari Google My Maps) -->
+                @include('partials.odp-map')
             </div>
         </div>
     </section>
