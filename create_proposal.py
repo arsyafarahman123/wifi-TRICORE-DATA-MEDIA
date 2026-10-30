@@ -528,7 +528,7 @@ def create_proposal_document():
             r.font.size = Pt(10)
 
     add_subsection_title("5.4. High-Level Business Requirements")
-    add_bullet("HLBR-01", "TRINET-BILL harus menyediakan mekanisme penomoran pelanggan otomatis dengan format unik terstruktur (misal: TDM-2601).")
+    add_bullet("HLBR-01", "TRINET-BILL harus menyediakan mekanisme penomoran pelanggan otomatis dengan format unik terstruktur (misal: 89912345678).")
     add_bullet("HLBR-02", "TRINET-BILL harus mampu menghasilkan invoice bulanan serentak untuk seluruh pelanggan berstatus aktif dengan satu klik (batch billing).")
     add_bullet("HLBR-03", "TRINET-BILL harus menyediakan pengelolaan status pelanggan berjenjang: Aktif, Pending, dan Terisolir.")
     add_bullet("HLBR-04", "TRINET-BILL harus menyajikan dasbor analitik real-time yang menampilkan total pendapatan, tagihan belum terbayar, dan pertumbuhan pelanggan.")
@@ -572,7 +572,7 @@ def create_proposal_document():
         "Mekanisme operasional TRINET-BILL beroperasi melalui alur Input - Proses - Output (IPO) berikut:"
     )
     add_bullet("Input Sistem", "Data registrasi pelanggan baru, data master paket internet, penyesuaian biaya instalasi/diskon, bukti mutasi transfer, dan nomor tiang ODP.")
-    add_bullet("Proses Sistem", "Generate ID Pelanggan otomatis (TDM-XXXX), kalkulasi total tagihan bulanan, enkripsi kata sandi, verifikasi hak akses peran, dan pembuatan dokumen PDF.")
+    add_bullet("Proses Sistem", "Generate ID Pelanggan otomatis (899-XXXXXXXX), kalkulasi total tagihan bulanan, enkripsi kata sandi, verifikasi hak akses peran, dan pembuatan dokumen PDF.")
     add_bullet("Output Sistem", "Faktur tagihan digital (PDF), kuitansi pelunasan resmi, format pesan notifikasi WhatsApp, dan grafik analitik keuangan usaha.")
 
     # --- 8. Project Deliverables ---

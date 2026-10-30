@@ -509,7 +509,7 @@
                             <input type="text" 
                                    name="search_query" 
                                    value="{{ old('search_query') }}"
-                                   placeholder="Masukkan No Pelanggan (misal: TDM-2601) atau No WA" 
+                                   placeholder="Masukkan No Pelanggan (misal: 89912345675) atau No WA" 
                                    required 
                                    class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm">
                         </div>
@@ -522,8 +522,8 @@
                 <!-- Quick Help / Demo hint -->
                 <div class="mt-4 pt-4 border-t border-white/5 text-xs text-slate-400 flex flex-wrap items-center justify-center gap-2">
                     <span>Coba nomor demo:</span>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='TDM-2601'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-cyan-300 border border-cyan-500/20 hover:bg-slate-700">TDM-2601 (Lunas)</button>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='TDM-2604'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-rose-300 border border-rose-500/20 hover:bg-slate-700">TDM-2604 (Belum Bayar)</button>
+                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='89912345671'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-cyan-300 border border-cyan-500/20 hover:bg-slate-700">89912345671 (Lunas)</button>
+                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='89912345674'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-rose-300 border border-rose-500/20 hover:bg-slate-700">89912345674 (Belum Bayar)</button>
                 </div>
             </div>
         </div>

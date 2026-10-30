@@ -188,7 +188,7 @@ class DatabaseSeeder extends Seeder
         // 5. Seed Realistic Customers
         $customersData = [
             [
-                'customer_code' => 'TDM-2601',
+                'customer_code' => '89912345671',
                 'name' => 'Rizky Pratama',
                 'phone' => '082199887766',
                 'email' => 'rizky.pratama@gmail.com',
@@ -207,7 +207,7 @@ class DatabaseSeeder extends Seeder
                 'notes' => 'Pemasangan lancar di tiang ODP depan rumah.',
             ],
             [
-                'customer_code' => 'TDM-2602',
+                'customer_code' => '89912345672',
                 'name' => 'Siti Nurhaliza',
                 'phone' => '085711223344',
                 'email' => 'siti.nurhaliza@yahoo.com',
@@ -226,7 +226,7 @@ class DatabaseSeeder extends Seeder
                 'notes' => 'Paket keluarga 20 Mbps.',
             ],
             [
-                'customer_code' => 'TDM-2603',
+                'customer_code' => '89912345673',
                 'name' => 'Agus Setiawan (Kopi Sokaraja)',
                 'phone' => '081344556677',
                 'email' => 'agus.kopisokaraja@gmail.com',
@@ -245,7 +245,7 @@ class DatabaseSeeder extends Seeder
                 'notes' => 'Usaha Kafe Kopi Sokaraja (Paket Bisnis 50 Mbps).',
             ],
             [
-                'customer_code' => 'TDM-2604',
+                'customer_code' => '89912345674',
                 'name' => 'Dwi Wahyuni',
                 'phone' => '087811992288',
                 'email' => 'dwi.wahyuni@gmail.com',
@@ -264,7 +264,7 @@ class DatabaseSeeder extends Seeder
                 'notes' => 'Menunggu pelunasan tagihan September 2026.',
             ],
             [
-                'customer_code' => 'TDM-2605',
+                'customer_code' => '89912345675',
                 'name' => 'Hendro Wijaya',
                 'phone' => '089622334455',
                 'email' => 'hendro.w@gmail.com',

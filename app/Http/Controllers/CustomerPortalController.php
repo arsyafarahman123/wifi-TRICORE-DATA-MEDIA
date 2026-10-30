@@ -21,7 +21,7 @@ class CustomerPortalController extends Controller
 
         if (empty($query)) {
             return redirect()->route('home', ['#cek-tagihan'])
-                ->with('error', 'Silakan masukkan Nomor Pelanggan (contoh: TDM-2601) atau Nomor WhatsApp.');
+                ->with('error', 'Silakan masukkan Nomor Pelanggan (contoh: 89912345678) atau Nomor WhatsApp.');
         }
 
         $customer = Customer::with(['package', 'invoices' => function ($q) {
@@ -79,7 +79,7 @@ class CustomerPortalController extends Controller
         $year = date('y');
         $lastCustomer = Customer::latest('id')->first();
         $nextId = $lastCustomer ? ($lastCustomer->id + 1) : 1;
-        $customerCode = 'TDM-'.$year.str_pad($nextId, 3, '0', STR_PAD_LEFT);
+        $customerCode = '889'.$year.str_pad($nextId, 8, '0', STR_PAD_LEFT);
 
         $package = Package::findOrFail($validated['package_id']);
 

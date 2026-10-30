@@ -353,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (query === 'check_bill_prompt' || query.includes('tagihan') || query.includes('bayar') || query.includes('invoice')) {
             return {
-                text: "**Pengecekan Tagihan Pelanggan**\n\nUntuk mengecek status tagihan bulanan dan detail paket Anda:\n1. Buka fitur cek tagihan di halaman beranda.\n2. Masukkan ID Pelanggan (contoh: `TDM-2601`) atau nomor WhatsApp terdaftar.",
+                text: "**Pengecekan Tagihan Pelanggan**\n\nUntuk mengecek status tagihan bulanan dan detail paket Anda:\n1. Buka fitur cek tagihan di halaman beranda.\n2. Masukkan ID Pelanggan (contoh: `89912345674`) atau nomor WhatsApp terdaftar.",
                 quick_replies: [
                     { label: 'Buka Form Cek Tagihan', url: '/#cek-tagihan' },
                     { label: 'Rekening Pembayaran', intent: 'payment_info' },

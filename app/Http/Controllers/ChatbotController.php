@@ -42,7 +42,7 @@ class ChatbotController extends Controller
             'menu' => $this->getWelcomeResponse(),
             'check_bill_prompt' => [
                 'type' => 'text',
-                'text' => "**Cek Tagihan Mandiri**\n\nSilakan ketik **Nomor ID Pelanggan** Anda (contoh: `TDM-2601`) atau **Nomor WhatsApp** yang terdaftar.\n\nContoh ketik: `TDM-2601` atau `082138413292`",
+                'text' => "**Cek Tagihan Mandiri**\n\nSilakan ketik **Nomor ID Pelanggan** Anda (contoh: `89912345678`) atau **Nomor WhatsApp** yang terdaftar.\n\nContoh ketik: `89912345678` atau `082138413292`",
                 'quick_replies' => [
                     ['label' => 'Kembali ke Menu', 'intent' => 'menu'],
                     ['label' => 'Chat CS WhatsApp', 'intent' => 'contact_cs'],
@@ -75,8 +75,8 @@ class ChatbotController extends Controller
     {
         $normalized = strtolower($message);
 
-        // Pattern 1: Check if input is Customer Code (TDM-XXXX) or Indonesian Phone Number (08xxx / 628xxx)
-        if (preg_match('/^(tdm-?[0-9a-zA-Z]+)$/i', $message) || preg_match('/^(08[0-9]{8,13}|628[0-9]{8,13})$/', str_replace([' ', '-', '+'], '', $message))) {
+        // Pattern 1: Check if input is Customer Code (889XXXXXXXX) or Indonesian Phone Number (08xxx / 628xxx)
+        if (preg_match('/^(899[0-9]{8})$/', $message) || preg_match('/^(08[0-9]{8,13}|628[0-9]{8,13})$/', str_replace([' ', '-', '+'], '', $message))) {
             return $this->lookupBill($message);
         }
 
@@ -91,7 +91,7 @@ class ChatbotController extends Controller
 
         // Pattern 3: Cek Tagihan / Billing
         if (preg_match('/\b(tagihan|bayar|iuran|cek tagihan|tunggakan|invoice|rekening wifi|belum bayar|status bayar|biaya bulanan)\b/', $normalized)) {
-            if (preg_match('/(tdm-?[0-9a-zA-Z]+)/i', $message, $matches)) {
+            if (preg_match('/(899[0-9]{8})/', $message, $matches)) {
                 return $this->lookupBill($matches[1]);
             }
             if (preg_match('/(08[0-9]{8,13})/', str_replace([' ', '-', '+'], '', $message), $matches)) {
@@ -100,7 +100,7 @@ class ChatbotController extends Controller
 
             return [
                 'type' => 'text',
-                'text' => "Untuk mengecek rincian tagihan dan status koneksi internet Anda, silakan ketik **Nomor ID Pelanggan** (contoh: `TDM-2601`) atau **Nomor WhatsApp** yang terdaftar.",
+                'text' => "Untuk mengecek rincian tagihan dan status koneksi internet Anda, silakan ketik **Nomor ID Pelanggan** (contoh: `89912345678`) atau **Nomor WhatsApp** yang terdaftar.",
                 'quick_replies' => [
                     ['label' => 'Buka Form Cek Tagihan', 'url' => route('home').'#cek-tagihan'],
                     ['label' => 'Info Cara Pembayaran', 'intent' => 'payment_info'],
@@ -211,7 +211,7 @@ class ChatbotController extends Controller
         if (! $customer) {
             return [
                 'type' => 'text',
-                'text' => "Data pelanggan untuk **\"".e($cleanQuery)."\"** tidak ditemukan di sistem database kami.\n\n**Tips:**\n- Pastikan ID Pelanggan sesuai format (contoh: `TDM-2601`).\n- Atau gunakan nomor WhatsApp aktif yang didaftarkan saat instalasi.",
+                'text' => "Data pelanggan untuk **\"".e($cleanQuery)."\"** tidak ditemukan di sistem database kami.\n\n**Tips:**\n- Pastikan ID Pelanggan sesuai format (contoh: `89912345678`).\n- Atau gunakan nomor WhatsApp aktif yang didaftarkan saat instalasi.",
                 'quick_replies' => [
                     ['label' => 'Coba Masukkan Ulang', 'intent' => 'check_bill_prompt'],
                     ['label' => 'Konfirmasi ke CS WhatsApp', 'intent' => 'contact_cs'],
@@ -620,7 +620,7 @@ class ChatbotController extends Controller
         $text .= "- Mendukung semua aplikasi perbankan & e-wallet (GoPay, OVO, DANA, ShopeePay, LinkAja, BCA Mobile, Livin).\n\n";
         $text .= "**Jatuh Tempo:** Tanggal 20 setiap bulannya.\n\n";
         $text .= "**Catatan Penting:**\n";
-        $text .= "Sertakan **ID Pelanggan (contoh: TDM-2601)** pada berita transfer, lalu kirim bukti transfer ke CS WhatsApp kami.";
+        $text .= "Sertakan **ID Pelanggan (contoh: 89912345678)** pada berita transfer, lalu kirim bukti transfer ke CS WhatsApp kami.";
 
         return [
             'type' => 'text',

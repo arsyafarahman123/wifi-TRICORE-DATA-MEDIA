@@ -68,7 +68,7 @@ class CustomerManagementController extends Controller
         $year = date('y');
         $lastCustomer = Customer::latest('id')->first();
         $nextId = $lastCustomer ? ($lastCustomer->id + 1) : 1;
-        $customerCode = 'TDM-'.$year.str_pad($nextId, 3, '0', STR_PAD_LEFT);
+        $customerCode = '899'.$year.str_pad($nextId, 8, '0', STR_PAD_LEFT);
 
         $package = Package::findOrFail($validated['package_id']);
 

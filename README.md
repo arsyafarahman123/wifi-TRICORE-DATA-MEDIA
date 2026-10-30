@@ -103,9 +103,9 @@ Buka **http://localhost:8000** di browser.
 | Mitra | mitra@tricoredatamedia.net | password123 |
 
 ### Nomor Pelanggan Demo
-- `TDM-2601` — Rizky Pratama (Aktif, Lunas)
-- `TDM-2604` — Dwi Wahyuni (Terisolir, Belum Bayar)
-- `TDM-2605` — Hendro Wijaya (Pending)
+- `89912345671` — Rizky Pratama (Aktif, Lunas)
+- `89912345674` — Dwi Wahyuni (Terisolir, Belum Bayar)
+- `89912345675` — Hendro Wijaya (Pending)
 
 ## Panduan Hosting Online (Bebas Iklan & Tanpa InfinityFree)
 
