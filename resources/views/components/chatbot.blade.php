@@ -47,9 +47,9 @@
         </button>
     </div>
 
-    <!-- Chat Box Window (Ukuran Compact & Ramping 350px-360px) -->
+    <!-- Chat Box Window (Ukuran Compact & Ramping 350px) -->
     <div id="chatbot-window"
-         style="width: 360px; max-width: calc(100vw - 28px); height: 470px; max-height: 75vh;"
+         style="width: 350px; max-width: calc(100vw - 24px); height: 460px; max-height: 72vh;"
          class="hidden flex flex-col mb-3 bg-[#0c121e]/98 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl shadow-cyan-950/90 overflow-hidden transition-all duration-300 origin-bottom-right">
         
         <!-- Header -->

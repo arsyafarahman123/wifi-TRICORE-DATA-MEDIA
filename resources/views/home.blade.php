@@ -587,12 +587,7 @@
                     </div>
                 </form>
 
-                <!-- Quick Help / Demo hint -->
-                <div class="mt-4 pt-4 border-t border-white/5 text-xs text-slate-400 flex flex-wrap items-center justify-center gap-2">
-                    <span>Coba nomor demo (11 digit):</span>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='26000000001'; document.querySelector('input[name=search_query]').form.submit();" class="px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 border border-cyan-500/20 hover:bg-slate-700 font-mono">26000000001 (Lunas)</button>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='26000000004'; document.querySelector('input[name=search_query]').form.submit();" class="px-2.5 py-1 rounded-lg bg-slate-800 text-rose-300 border border-rose-500/20 hover:bg-slate-700 font-mono">26000000004 (Belum Bayar)</button>
-                </div>
+
             </div>
         </div>
     </section>

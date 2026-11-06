@@ -15,36 +15,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        /* Responsive Desktop Navbar Spacing */
+        /* Modern Proportional Navbar Spacing */
         .trinet-nav-desktop {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.25rem !important; /* ~20px standard gap */
         }
         @media (min-width: 1280px) {
             .trinet-nav-desktop {
-                gap: 2rem;
+                gap: 1.75rem !important; /* ~28px on wide screens */
             }
         }
         .trinet-nav-item {
-            display: inline-flex;
-            align-items: center;
-            white-space: nowrap;
-            transition: color 0.2s ease;
+            display: inline-flex !important;
+            align-items: center !important;
+            white-space: nowrap !important;
+            padding: 0.35rem 0.5rem !important;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease !important;
+            font-size: 0.84rem !important;
+            letter-spacing: -0.01em;
+        }
+        .trinet-nav-item:hover {
+            color: #22d3ee !important; /* text-cyan-400 */
+            background-color: rgba(255, 255, 255, 0.04);
         }
 
-        /* Compact Chatbot AI Widget */
+        /* Compact Chatbot AI Widget - Tidak Menutupi Layar */
         #chatbot-window {
-            width: 360px !important;
-            max-width: calc(100vw - 28px) !important;
-            height: 470px !important;
-            max-height: 75vh !important;
+            width: 350px !important;
+            max-width: calc(100vw - 24px) !important;
+            height: 460px !important;
+            max-height: 72vh !important;
         }
         @media (max-width: 480px) {
             #chatbot-window {
                 width: calc(100vw - 20px) !important;
-                height: 430px !important;
-                max-height: 70vh !important;
+                height: 420px !important;
+                max-height: 68vh !important;
                 bottom: 60px !important;
                 right: 10px !important;
             }

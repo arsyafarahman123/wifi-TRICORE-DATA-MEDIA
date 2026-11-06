@@ -82,30 +82,7 @@
                 </button>
             </form>
 
-            <!-- Quick Demo Accounts -->
-            <div class="pt-4 border-t border-white/10 space-y-2.5">
-                <span class="text-[11px] text-slate-400 block text-center font-medium">Contoh Nomor Pelanggan Demo (11 Digit):</span>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                    <button type="button" 
-                            onclick="document.getElementById('search-input').value='26000000001'; document.getElementById('search-input').form.submit();"
-                            class="p-2.5 rounded-xl bg-slate-950/70 hover:bg-slate-800 border border-emerald-500/20 text-left transition active:scale-95 flex items-center justify-between">
-                        <div>
-                            <span class="font-bold text-emerald-300 block font-mono">26000000001</span>
-                            <span class="text-[11px] text-slate-400">Rizky Pratama</span>
-                        </div>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">Lunas</span>
-                    </button>
-                    <button type="button" 
-                            onclick="document.getElementById('search-input').value='26000000004'; document.getElementById('search-input').form.submit();"
-                            class="p-2.5 rounded-xl bg-slate-950/70 hover:bg-slate-800 border border-rose-500/20 text-left transition active:scale-95 flex items-center justify-between">
-                        <div>
-                            <span class="font-bold text-rose-300 block font-mono">26000000004</span>
-                            <span class="text-[11px] text-slate-400">Dwi Wahyuni</span>
-                        </div>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30">Belum Bayar</span>
-                    </button>
-                </div>
-            </div>
+
 
             <!-- Features Information Strip -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3 border-t border-white/5 text-[11px] text-slate-400 text-center">
