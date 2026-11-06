@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>@yield('title', 'TRINET-BILL | Portal Mitra & Admin - TRICORE DATA MEDIA')</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,17 +19,7 @@
     <!-- Mobile Top Header (Sticky) -->
     <header class="md:hidden flex items-center justify-between px-4 py-3.5 border-b border-white/10 bg-[#060a12]/95 backdrop-blur-md sticky top-0 z-40">
         <a href="{{ route('portal.dashboard') }}" class="flex items-center gap-2.5">
-            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-emerald-500 p-0.5 shadow-sm">
-                <div class="w-full h-full bg-[#090d16] rounded-[6px] flex items-center justify-center">
-                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-            </div>
-            <div>
-                <span class="text-sm font-extrabold text-white tracking-wider block leading-tight">TRINET-BILL</span>
-                <span class="text-[9px] text-cyan-400 font-bold uppercase tracking-widest block">Portal Mitra & Admin</span>
-            </div>
+            <img src="/tricorenet-logo.png" alt="TRICORE.NET" class="h-8 w-auto object-contain" style="max-width:150px;">
         </a>
 
         <div class="flex items-center gap-2">
@@ -52,17 +47,7 @@
             <!-- Brand & Mobile Close Button -->
             <div class="flex items-center justify-between">
                 <a href="{{ route('portal.dashboard') }}" class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 p-0.5 shadow-md">
-                        <div class="w-full h-full bg-[#090d16] rounded-[10px] flex items-center justify-center">
-                            <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-lg font-extrabold text-white block leading-tight tracking-wider">TRINET-BILL</span>
-                        <span class="text-[9px] text-cyan-400 font-bold uppercase tracking-wider block">TRICORE NETWORK BILLING</span>
-                    </div>
+                    <img src="/tricorenet-logo.png" alt="TRICORE.NET" class="h-9 w-auto object-contain" style="max-width:160px;">
                 </a>
 
                 <!-- Mobile Close 'X' Button -->

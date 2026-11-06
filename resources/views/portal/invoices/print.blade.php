@@ -226,8 +226,8 @@
                 <h1>TRICORE</h1>
                 <span>DATA MEDIA</span>
                 <div class="company-info">
-                    Internet Fiber Optic ISP Purwokerto<br>
-                    Jl. KAV. Gelora Indah II, Gg. Renang, Purwokerto Timur<br>
+                    Internet Service Provider Fiber Optic<br>
+                    Jl. KAV. Gelora Indah II, Gg. Renang, Kab. Banyumas<br>
                     WhatsApp: +62 821-3841-3292 | support@tricoredatamedia.net
                 </div>
             </div>
@@ -252,12 +252,12 @@
                 <p>No. Pelanggan: <strong style="font-family: monospace;">{{ $invoice->customer->customer_code }}</strong></p>
                 <p>WhatsApp: {{ $invoice->customer->phone }}</p>
                 <p>{{ $invoice->customer->address }}</p>
-                <p>{{ $invoice->customer->district }}, Purwokerto</p>
+                <p>{{ $invoice->customer->district }}, Kab. Banyumas</p>
             </div>
             <div class="details-box details-box-right" style="text-align: right;">
                 <h3>Informasi Tagihan:</h3>
                 <p>Periode: <strong>{{ $invoice->billing_month }}</strong></p>
-                <p>Tanggal Tagihan: {{ $invoice->created_at->format('d/m/Y') }}</p>
+                <p>Tanggal Tagihan: {{ $invoice->period_start ? $invoice->period_start->format('d/m/Y') : ($invoice->created_at ? $invoice->created_at->format('d/m/Y') : date('d/m/Y')) }}</p>
                 <p>Jatuh Tempo: <strong>{{ $invoice->due_date ? $invoice->due_date->format('d/m/Y') : '-' }}</strong></p>
                 @if($invoice->status === 'paid')
                     <p>Tanggal Pembayaran: <strong>{{ $invoice->paid_at ? $invoice->paid_at->format('d/m/Y H:i') : '-' }} WIB</strong></p>

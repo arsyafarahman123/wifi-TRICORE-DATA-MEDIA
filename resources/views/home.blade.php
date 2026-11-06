@@ -32,25 +32,25 @@
                             Internet <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Cepat & Stabil</span> untuk Rumah dan Bisnis Anda
                         </h1>
                         <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
-                            Nikmati pengalaman berselancar tanpa batas dengan jaringan 100% murni fiber optic dari <strong class="text-white font-semibold">TRICORE DATA MEDIA</strong>. Tanpa FUP, latency super rendah untuk gaming, streaming 4K tanpa buffering, dan dukungan teknisi siaga 24/7 di Purwokerto.
+                            Nikmati pengalaman berselancar tanpa batas dengan jaringan 100% murni fiber optic dari <strong class="text-white font-semibold">TRICORE DATA MEDIA</strong>. Tanpa FUP, latency super rendah untuk gaming, streaming 4K tanpa buffering, dan dukungan teknisi siaga 24/7.
                         </p>
                     </div>
 
                     <!-- CTA Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-                        <a href="#paket" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm bg-gradient-to-r from-cyan-500 via-teal-400 to-emerald-500 text-slate-950 hover:brightness-110 shadow-lg shadow-cyan-500/25 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group">
-                            <span>Lihat Paket Internet</span>
+                        <button type="button" 
+                                onclick="openChatbotRecommendation()"
+                                class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-extrabold text-sm bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 text-slate-950 hover:brightness-110 shadow-xl shadow-cyan-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5 group cursor-pointer">
+                            <svg class="w-5 h-5 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            <span>Konsultasi Rekomendasi Paket</span>
+                        </button>
+                        <a href="#paket" class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm bg-slate-800/90 text-white border border-white/10 hover:border-cyan-500/50 hover:bg-slate-800 hover:text-cyan-300 transition flex items-center justify-center gap-2 shadow-sm">
+                            <span>Lihat Semua Paket</span>
                             <svg class="w-4 h-4 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
                             </svg>
-                        </a>
-                        <a href="https://wa.me/6282138413292?text=Halo%20TRICORE%20DATA%20MEDIA,%20saya%20ingin%20konsultasi%20pemasangan%20WiFi%20di%20Purwokerto." 
-                           target="_blank" 
-                           class="w-full sm:w-auto px-7 py-3.5 rounded-xl font-bold text-sm bg-slate-800/90 text-white border border-white/10 hover:border-emerald-500/50 hover:bg-slate-800 hover:text-emerald-300 transition flex items-center justify-center gap-2 shadow-sm">
-                            <svg class="w-4 h-4 text-emerald-400 fill-current" viewBox="0 0 24 24">
-                                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-                            </svg>
-                            <span>Hubungi Kami</span>
                         </a>
                     </div>
 
@@ -91,7 +91,7 @@
                                     </div>
                                     <div>
                                         <h3 class="text-sm font-bold text-white">TRICORE LIVE NETWORK</h3>
-                                        <span class="text-xs text-slate-400">Purwokerto Backbone Node</span>
+                                        <span class="text-xs text-slate-400">High-Speed Backbone Node</span>
                                     </div>
                                 </div>
                                 <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">ONLINE</span>
@@ -173,7 +173,7 @@
                         {{ $stats['areas_count'] }}+
                     </div>
                     <p class="text-sm font-medium text-slate-300">Area Coverage Utama</p>
-                    <span class="text-[11px] text-slate-400 block">Purwokerto Timur, Wetan & Sokaraja</span>
+                    <span class="text-[11px] text-slate-400 block">Banyumas, Sokaraja & Area Perluasan</span>
                 </div>
             </div>
         </div>
@@ -187,10 +187,10 @@
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">Tentang TRICORE DATA MEDIA</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
-                    Penyedia Internet Fiber Optic Terpercaya di Purwokerto
+                    Penyedia Internet Fiber Optic Cepat & Terpercaya
                 </h2>
                 <p class="text-slate-300 text-base leading-relaxed">
-                    TRICORE DATA MEDIA adalah perusahaan Internet Service Provider (ISP) yang berkomitmen menghadirkan konektivitas digital berkecepatan tinggi dengan infrastruktur fiber optik modern di wilayah Purwokerto dan sekitarnya. Kami bekerja sama dengan mitra terpercaya untuk memastikan akses internet yang andal, transparan, dan terjangkau untuk seluruh lapisan masyarakat.
+                    TRICORE DATA MEDIA adalah perusahaan Internet Service Provider (ISP) yang berkomitmen menghadirkan konektivitas digital berkecepatan tinggi dengan infrastruktur fiber optik modern yang siap melayani berbagai wilayah pemukiman dan kawasan usaha. Kami bekerja sama dengan mitra terpercaya untuk memastikan akses internet yang andal, transparan, dan terjangkau untuk seluruh lapisan masyarakat.
                 </p>
             </div>
 
@@ -231,7 +231,7 @@
                     </div>
                     <h3 class="text-lg font-bold text-white">Support 24/7 Siaga</h3>
                     <p class="text-sm text-slate-400 leading-relaxed">
-                        Layanan helpdesk WhatsApp dan tim teknisi lapangan di Purwokerto selalu bersiap sedia menangani kendala teknis dengan respon cepat.
+                        Layanan helpdesk WhatsApp dan tim teknisi lapangan kami selalu bersiap sedia menangani kendala teknis dengan respon cepat.
                     </p>
                 </div>
 
@@ -259,23 +259,40 @@
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
                 <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase">PILIHAN PAKET TERBAIK</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
-                    Paket Internet Fiber Optic Purwokerto
+                    Pilihan Paket Internet Fiber Optic TRICORE
                 </h2>
                 <p class="text-slate-300 text-base">
                     Semua paket sudah termasuk <strong class="text-white">Unlimited Kuota</strong>, <strong class="text-white">100% Fiber Optic</strong>, <strong class="text-white">Gratis Modem Wi-Fi</strong>, dan <strong class="text-white">Customer Support 24/7</strong>.
                 </p>
+
+                <!-- Recommendation Banner CTA inside Packages Section -->
+                <div class="pt-4">
+                    <div class="inline-flex flex-col sm:flex-row items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-cyan-950/80 via-slate-900 to-emerald-950/80 border border-cyan-500/40 shadow-xl max-w-xl mx-auto">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <div class="text-left">
+                            <div class="text-xs font-bold text-white">Bingung Memilih Paket Yang Tepat?</div>
+                            <div class="text-[11px] text-slate-400">Gunakan asisten rekomendasi cerdas kami untuk mencocokkan anggaran & kebutuhan Anda.</div>
+                        </div>
+                        <button type="button" onclick="openChatbotRecommendation()" class="px-4 py-2 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-xs font-extrabold whitespace-nowrap shadow transition active:scale-95 cursor-pointer">
+                            Cari Rekomendasi
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Packages Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
+            <div id="packages-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 items-stretch">
                 @foreach($packages as $pkg)
                     @php
                         $isPopular = $pkg->is_popular || $pkg->speed_mbps == 25;
-                        $waText = urlencode("Halo TRICORE DATA MEDIA, saya ingin berlangganan Paket {$pkg->name} ({$pkg->speed_mbps} Mbps - {$pkg->formatted_price}/bulan). Mohon informasi pemasangan untuk area Purwokerto.");
+                        $cleanPkgName = preg_replace('/^Paket\s+/i', '', $pkg->name);
+                        $waText = urlencode("Halo TRICORE DATA MEDIA, saya ingin berlangganan {$pkg->name} ({$pkg->speed_mbps} Mbps - {$pkg->formatted_price}/bulan). Mohon informasi ketersediaan di lokasi saya.");
                         $waPackageUrl = "https://wa.me/6282138413292?text={$waText}";
                     @endphp
 
-                    <div class="relative rounded-2xl transition-all duration-300 flex flex-col justify-between {{ $isPopular ? 'glass-panel border-cyan-400 shadow-xl shadow-cyan-500/20 md:scale-105 z-10' : 'glass-card border-white/10 hover:border-slate-500' }} p-6">
+                    <div id="pkg-card-{{ $pkg->id }}" class="package-card-item relative rounded-2xl transition-all duration-300 flex flex-col justify-between {{ $isPopular ? 'glass-panel border-cyan-400 shadow-xl shadow-cyan-500/20 md:scale-105 z-10' : 'glass-card border-white/10 hover:border-slate-500' }} p-6">
                         
                         <!-- Popular Ribbon -->
                         @if($isPopular)
@@ -362,17 +379,17 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- 5. COVERAGE AREA & GOOGLE MAPS PURWOKERTO   -->
-    <!-- ========================================== -->
+    <!-- 5. COVERAGE AREA & GOOGLE MAPS PERSEBARAN ODP -->
+    <!-- ============================================== -->
     <section id="coverage" class="py-24 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
-                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">WILAYAH JANGKAUAN</span>
+                <span class="text-xs font-bold tracking-widest text-cyan-400 uppercase">WILAYAH JANGKAUAN & TITIK ODP</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
-                    Coverage Area TRICORE DATA MEDIA
+                    Coverage Area Jaringan TRICORE DATA MEDIA
                 </h2>
                 <p class="text-slate-300 text-base">
-                    Jaringan fiber optic kami telah aktif dan melayani ribuan titik di wilayah <strong class="text-white">Purwokerto Timur</strong>, <strong class="text-white">Purwokerto Wetan</strong>, dan <strong class="text-white">Sokaraja</strong>.
+                    Jaringan fiber optic kami telah aktif dan terus meluas melayani ribuan titik di berbagai wilayah pemukiman, sentra usaha, dan perumahan.
                 </p>
             </div>
 
@@ -390,7 +407,7 @@
                         <p class="text-xs text-slate-400">{{ $area->description }}</p>
                         
                         <div class="pt-2 border-t border-white/5">
-                            <span class="text-xs font-semibold text-slate-300 block mb-2">Kelurahan / Desa Tercover:</span>
+                            <span class="text-xs font-semibold text-slate-300 block mb-2">Kelurahan / Area Tercover:</span>
                             <div class="flex flex-wrap gap-1.5">
                                 @if(is_array($area->subdistricts))
                                     @foreach($area->subdistricts as $sub)
@@ -447,7 +464,7 @@
                         <form action="{{ route('coverage.check') }}" method="POST" class="space-y-4">
                             @csrf
                             <div>
-                                <label for="coverage-district" class="block text-xs font-semibold text-slate-300 mb-1">Kecamatan di Purwokerto / Sekitar</label>
+                                <label for="coverage-district" class="block text-xs font-semibold text-slate-300 mb-1">Pilih Wilayah / Kecamatan</label>
                                 <select id="coverage-district" name="district" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-500 focus:outline-none">
                                     <option value="Purwokerto Timur">Purwokerto Timur</option>
                                     <option value="Purwokerto Wetan">Purwokerto Wetan</option>
@@ -455,12 +472,13 @@
                                     <option value="Purwokerto Barat">Purwokerto Barat (Perluasan)</option>
                                     <option value="Purwokerto Utara">Purwokerto Utara (Perluasan)</option>
                                     <option value="Purwokerto Selatan">Purwokerto Selatan (Perluasan)</option>
+                                    <option value="Wilayah Lainnya">Wilayah Lainnya (Perluasan)</option>
                                 </select>
                             </div>
 
                             <div>
                                 <label for="coverage-subdistrict" class="block text-xs font-semibold text-slate-300 mb-1">Kelurahan / Desa / Jalan</label>
-                                <input type="text" id="coverage-subdistrict" name="subdistrict" placeholder="Contoh: Arcawinangun / Jl. KAV. Gelora Indah" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-500 focus:outline-none">
+                                <input type="text" id="coverage-subdistrict" name="subdistrict" placeholder="Contoh: Arcawinangun / Sokaraja Lor / Jl. Raya" required class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-500 focus:outline-none">
                             </div>
 
                             <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-sm hover:brightness-110 transition shadow-md shadow-cyan-500/20">
@@ -474,27 +492,59 @@
                     </div>
                 </div>
 
-                <!-- Google Maps Purwokerto Embed -->
-                <div class="lg:col-span-7 rounded-2xl overflow-hidden glass-panel border border-white/10 shadow-xl min-h-[350px] relative">
-                    <iframe 
-                        title="Peta Lokasi TRICORE DATA MEDIA Purwokerto"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15825.96213602111!2d109.24522944358897!3d-7.423984922129532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e655c3c0e3532f1%3A0x6a0c5c306d866415!2sPurwokerto%20Timur%2C%20Banyumas%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1710000000000!5m2!1sen!2sid" 
-                        width="100%" 
-                        height="100%" 
-                        style="border:0; min-height: 400px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade"
-                        class="w-full h-full filter invert-[0.88] hue-rotate-180 contrast-125">
-                    </iframe>
-                    <div class="absolute bottom-4 left-4 right-4 bg-slate-950/90 backdrop-blur-md p-3 rounded-xl border border-white/10 text-xs flex items-center justify-between">
+                <!-- Google Maps ODP / Homepass Embed -->
+                <div class="lg:col-span-7 flex flex-col rounded-2xl overflow-hidden glass-panel border border-white/10 shadow-2xl relative">
+                    <!-- Map Header bar -->
+                    <div class="bg-slate-900/90 border-b border-white/10 px-4 py-3 flex items-center justify-between flex-wrap gap-2">
                         <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                            <span class="text-slate-200">Titik Pusat ODP: <strong>Purwokerto Timur & Sokaraja</strong></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                            <span class="text-xs font-bold text-white">Peta Titik ODP (Homepass) TRICORE.NET</span>
                         </div>
-                        <a href="https://maps.google.com/?q=Purwokerto+Timur" target="_blank" class="text-cyan-400 font-bold hover:underline">Buka Maps &rarr;</a>
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+                            15 Titik FAT Aktif
+                        </span>
+                    </div>
+
+                    <!-- Responsive Google My Maps Iframe -->
+                    <div class="relative w-full h-[400px] sm:h-[430px] bg-slate-950">
+                        <iframe 
+                            title="Peta Titik Persebaran ODP TRICORE.NET"
+                            src="https://www.google.com/maps/d/embed?mid=1vHlzx_s3i7Fz52MiixANybTWvIwI0OE&ehbc=2E312F" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="w-full h-full">
+                        </iframe>
+                    </div>
+
+                    <!-- ODP Points Cluster Footer & Link -->
+                    <div class="bg-slate-950/95 border-t border-white/10 p-3 sm:p-4 space-y-2">
+                        <div class="flex items-center justify-between text-xs flex-wrap gap-2">
+                            <span class="text-slate-300 font-medium">Cluster ODP Aktif:</span>
+                            <a href="https://www.google.com/maps/d/viewer?mid=1vHlzx_s3i7Fz52MiixANybTWvIwI0OE" target="_blank" class="text-cyan-400 font-bold hover:underline inline-flex items-center gap-1">
+                                <span>Buka di Google Maps Penuh</span>
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                            </a>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 text-[10px]">
+                            <span class="px-2 py-1 rounded bg-slate-900 border border-emerald-500/30 text-emerald-300 font-mono">
+                                Sokaraja (6 FAT)
+                            </span>
+                            <span class="px-2 py-1 rounded bg-slate-900 border border-cyan-500/30 text-cyan-300 font-mono">
+                                Kec. Purwokerto Timur (8 FAT)
+                            </span>
+                            <span class="px-2 py-1 rounded bg-slate-900 border border-purple-500/30 text-purple-300 font-mono">
+                                Kec. Purwokerto Utara (1 FAT)
+                            </span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
             </div>
         </div>
     </section>
@@ -518,8 +568,7 @@
 
             <!-- Search Form Card -->
             <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 shadow-2xl max-w-2xl mx-auto">
-                <form action="{{ route('bill.check') }}" method="POST" class="space-y-4">
-                    @csrf
+                <form action="{{ route('bill.check') }}" method="GET" class="space-y-4">
                     <div class="flex flex-col sm:flex-row gap-3">
                         <div class="relative flex-1">
                             <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
@@ -527,8 +576,8 @@
                             </div>
                             <input type="text" 
                                    name="search_query" 
-                                   value="{{ old('search_query') }}"
-                                   placeholder="Masukkan No Pelanggan (misal: TDM-2601) atau No WA" 
+                                   value="{{ old('search_query', request('search_query')) }}"
+                                   placeholder="Masukkan No Pelanggan (11 digit: 26000000001) atau No WA" 
                                    required 
                                    class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm">
                         </div>
@@ -540,9 +589,9 @@
 
                 <!-- Quick Help / Demo hint -->
                 <div class="mt-4 pt-4 border-t border-white/5 text-xs text-slate-400 flex flex-wrap items-center justify-center gap-2">
-                    <span>Coba nomor demo:</span>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='TDM-2601'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-cyan-300 border border-cyan-500/20 hover:bg-slate-700">TDM-2601 (Lunas)</button>
-                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='TDM-2604'; document.querySelector('input[name=search_query]').form.submit();" class="px-2 py-1 rounded bg-slate-800 text-rose-300 border border-rose-500/20 hover:bg-slate-700">TDM-2604 (Belum Bayar)</button>
+                    <span>Coba nomor demo (11 digit):</span>
+                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='26000000001'; document.querySelector('input[name=search_query]').form.submit();" class="px-2.5 py-1 rounded-lg bg-slate-800 text-cyan-300 border border-cyan-500/20 hover:bg-slate-700 font-mono">26000000001 (Lunas)</button>
+                    <button type="button" onclick="document.querySelector('input[name=search_query]').value='26000000004'; document.querySelector('input[name=search_query]').form.submit();" class="px-2.5 py-1 rounded-lg bg-slate-800 text-rose-300 border border-rose-500/20 hover:bg-slate-700 font-mono">26000000004 (Belum Bayar)</button>
                 </div>
             </div>
         </div>
@@ -600,7 +649,7 @@
                             <label for="reg-package" class="block text-xs font-semibold text-slate-300 mb-1.5">Pilih Paket Internet WiFi <span class="text-rose-400">*</span></label>
                             <select id="reg-package" name="package_id" required class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-400 focus:outline-none font-medium">
                                 @foreach($packages as $pkg)
-                                    <option value="{{ $pkg->id }}" {{ ($pkg->is_popular || $pkg->speed_mbps == 25) ? 'selected' : '' }}>
+                                    <option value="{{ $pkg->id }}" {{ (old('package_id', request('package_id')) == $pkg->id) ? 'selected' : (($pkg->is_popular || $pkg->speed_mbps == 25) ? 'selected' : '') }}>
                                         {{ $pkg->name }} — {{ $pkg->speed_mbps }} Mbps ({{ $pkg->formatted_price }}/bulan) {{ $pkg->badge ? '['.$pkg->badge.']' : '' }}
                                     </option>
                                 @endforeach
@@ -617,6 +666,7 @@
                                 <option value="Purwokerto Barat">Purwokerto Barat</option>
                                 <option value="Purwokerto Utara">Purwokerto Utara</option>
                                 <option value="Purwokerto Selatan">Purwokerto Selatan</option>
+                                <option value="Wilayah Lainnya / Perluasan">Wilayah Lainnya / Perluasan</option>
                             </select>
                         </div>
 
@@ -704,7 +754,7 @@
                             </div>
                             <div>
                                 <span class="text-xs text-slate-400 block font-medium">Kantor Operasional:</span>
-                                <p class="text-sm font-semibold text-white">Jl. KAV. Gelora Indah II, Gg. Renang, Purwokerto Timur, Kab. Banyumas, Jawa Tengah</p>
+                                <p class="text-sm font-semibold text-white">Jl. KAV. Gelora Indah II, Gg. Renang, Kab. Banyumas, Jawa Tengah</p>
                             </div>
                         </div>
                     </div>
@@ -724,13 +774,13 @@
                         </div>
 
                         <div>
-                            <label for="wa-custom-location" class="block text-xs font-semibold text-slate-300 mb-1">Alamat / Lokasi di Purwokerto</label>
-                            <input type="text" id="wa-custom-location" placeholder="Contoh: Sokaraja Kulon RT 02" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-400 focus:outline-none">
+                            <label for="wa-custom-location" class="block text-xs font-semibold text-slate-300 mb-1">Alamat / Lokasi Pemasangan</label>
+                            <input type="text" id="wa-custom-location" placeholder="Contoh: Nama Jalan / Desa / Kecamatan" class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-400 focus:outline-none">
                         </div>
 
                         <div>
                             <label for="wa-custom-msg" class="block text-xs font-semibold text-slate-300 mb-1">Pesan / Pertanyaan</label>
-                            <textarea id="wa-custom-msg" rows="3" placeholder="Saya ingin tanya tentang pemasangan paket WiFi 25 Mbps..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-400 focus:outline-none"></textarea>
+                            <textarea id="wa-custom-msg" rows="3" placeholder="Saya ingin tanya tentang pemasangan paket WiFi TRICORE..." class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white text-sm focus:border-cyan-400 focus:outline-none"></textarea>
                         </div>
 
                         <button type="button" onclick="sendDirectWhatsApp()" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 transition">
@@ -747,6 +797,45 @@
 
 @push('scripts')
 <script>
+    function highlightAndScrollPackage(pkgId) {
+        const card = document.getElementById('pkg-card-' + pkgId);
+        const container = document.getElementById('packages-container');
+        
+        if (card) {
+            // Reposition recommended card to the very first position in the grid if container exists
+            if (container && container.firstElementChild !== card) {
+                container.prepend(card);
+            }
+
+            // Remove previous highlight badges & rings
+            document.querySelectorAll('.recom-badge-tag').forEach(tag => tag.remove());
+            document.querySelectorAll('.package-card-item').forEach(el => {
+                el.classList.remove('ring-4', 'ring-cyan-400', 'ring-offset-4', 'ring-offset-slate-950', 'animate-pulse');
+            });
+
+            // Inject prominent "REKOMENDASI UNTUK ANDA" badge
+            const badgeTag = document.createElement('div');
+            badgeTag.className = 'recom-badge-tag absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-teal-400 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/50 z-20 flex items-center gap-1.5 whitespace-nowrap animate-bounce';
+            badgeTag.innerHTML = `
+                <svg class="w-3.5 h-3.5 text-slate-950" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                REKOMENDASI UNTUK ANDA
+            `;
+            card.appendChild(badgeTag);
+
+            // Add pulse ring and scroll into view smoothly
+            card.classList.add('ring-4', 'ring-cyan-400', 'ring-offset-4', 'ring-offset-slate-950', 'animate-pulse');
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            setTimeout(() => {
+                card.classList.remove('animate-pulse');
+                badgeTag.classList.remove('animate-bounce');
+            }, 3500);
+        } else {
+            const paketSec = document.getElementById('paket');
+            if (paketSec) paketSec.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     function selectPackage(pkgId) {
         const select = document.getElementById('reg-package');
         if (select) {
@@ -760,11 +849,12 @@
 
     function sendDirectWhatsApp() {
         const name = document.getElementById('wa-custom-name').value.trim() || 'Pelanggan';
-        const location = document.getElementById('wa-custom-location').value.trim() || 'Purwokerto';
-        const msg = document.getElementById('wa-custom-msg').value.trim() || 'Saya ingin informasi pemasangan WiFi TRICORE.';
+        const location = document.getElementById('wa-custom-location').value.trim();
+        const msg = document.getElementById('wa-custom-msg').value.trim() || 'Saya ingin informasi ketersediaan pemasangan WiFi TRICORE.';
 
+        const locationText = location ? ` (Lokasi: ${location})` : '';
         const fullText = encodeURIComponent(
-            `Halo TRICORE DATA MEDIA, saya ${name} dari ${location}.\n\n${msg}`
+            `Halo TRICORE DATA MEDIA, saya ${name}${locationText}.\n\n${msg}`
         );
 
         window.open(`https://wa.me/6282138413292?text=${fullText}`, '_blank');

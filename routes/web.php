@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\CustomerManagementController;
 use App\Http\Controllers\CustomerPortalController;
+use App\Http\Controllers\DiagnosisController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceManagementController;
 use App\Http\Controllers\PackageManagementController;
@@ -14,10 +15,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Customer Self-Service & Registration
-Route::post('/cek-tagihan', [CustomerPortalController::class, 'checkBill'])->name('bill.check');
+Route::match(['get', 'post'], '/cek-tagihan', [CustomerPortalController::class, 'checkBill'])->name('bill.check');
 Route::get('/tagihan/{code}', [CustomerPortalController::class, 'viewBill'])->name('bill.view');
 Route::post('/daftar-paket', [CustomerPortalController::class, 'register'])->name('register.submit');
-Route::post('/cek-coverage', [CustomerPortalController::class, 'checkCoverage'])->name('coverage.check');
+Route::match(['get', 'post'], '/cek-coverage', [CustomerPortalController::class, 'checkCoverage'])->name('coverage.check');
+
+// Payment Page & Verification (Bank Neo Commerce)
+Route::get('/pembayaran/{invoice_number}', [CustomerPortalController::class, 'showPaymentPage'])->name('payment.page');
+Route::post('/pembayaran/{invoice_number}/upload', [CustomerPortalController::class, 'uploadPaymentProof'])->name('payment.upload');
+
+// Sistem Cerdas Diagnosis Gangguan Jaringan (Rule-Based Reasoning)
+Route::match(['get', 'post'], '/diagnosis-gangguan', [DiagnosisController::class, 'index'])->name('diagnosis');
+Route::post('/diagnosis-gangguan/analyze', [DiagnosisController::class, 'analyze'])->name('diagnosis.analyze');
 
 // Helpdesk & Live Support API (GET & POST)
 Route::match(['get', 'post'], '/chatbot/message', [ChatbotController::class, 'sendMessage'])->name('chatbot.message');
@@ -47,6 +56,7 @@ Route::prefix('portal')->name('portal.')->middleware(['auth'])->group(function (
     Route::get('/invoices', [InvoiceManagementController::class, 'index'])->name('invoices.index');
     Route::match(['get', 'post'], '/invoices/generate-monthly', [InvoiceManagementController::class, 'generateMonthly'])->name('invoices.generate-monthly');
     Route::post('/invoices/{invoice}/pay', [InvoiceManagementController::class, 'markAsPaid'])->name('invoices.pay');
+    Route::post('/invoices/{invoice}/reject', [InvoiceManagementController::class, 'rejectPayment'])->name('invoices.reject');
     Route::get('/invoices/{invoice}/print', [InvoiceManagementController::class, 'print'])->name('invoices.print');
 
     // Packages

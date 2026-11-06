@@ -67,7 +67,25 @@ class InvoiceManagementController extends Controller
             $invoice->update(['notes' => $validated['notes']]);
         }
 
-        return back()->with('success', "Tagihan {$invoice->invoice_number} berhasil ditandai LUNAS! Status internet pelanggan {$invoice->customer->name} otomatis AKTIF.");
+        return back()->with('success', "Tagihan {$invoice->invoice_number} berhasil diverifikasi LUNAS! Status internet pelanggan {$invoice->customer->name} otomatis AKTIF.");
+    }
+
+    /**
+     * Reject uploaded payment proof with reason
+     */
+    public function rejectPayment(Request $request, Invoice $invoice): RedirectResponse
+    {
+        $validated = $request->validate([
+            'rejection_reason' => 'required|string|max:500',
+        ]);
+
+        $invoice->update([
+            'status' => 'cancelled',
+            'rejection_reason' => $validated['rejection_reason'],
+            'notes' => ($invoice->notes ? $invoice->notes . "\n" : '') . '[Ditolak Admin: ' . $validated['rejection_reason'] . ']',
+        ]);
+
+        return back()->with('error', "Pembayaran tagihan {$invoice->invoice_number} berhasil DITOLAK. Alasan penolakan telah disimpan.");
     }
 
     /**

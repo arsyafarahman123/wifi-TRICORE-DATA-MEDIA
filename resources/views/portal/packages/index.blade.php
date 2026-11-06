@@ -8,7 +8,7 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
             <h1 class="text-xl sm:text-2xl font-extrabold text-white">Daftar Paket Internet WiFi</h1>
-            <p class="text-xs text-slate-400">Paket resmi TRICORE DATA MEDIA untuk wilayah Purwokerto dan sekitarnya</p>
+            <p class="text-xs text-slate-400">Paket resmi TRICORE DATA MEDIA untuk layanan internet fiber optic</p>
         </div>
         <!-- Tombol Tambah Paket -->
         <button type="button" onclick="openAddModal()" class="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs hover:brightness-110 shadow-md shadow-cyan-500/20 transition flex items-center gap-2 active:scale-95">
@@ -66,7 +66,7 @@
                             </button>
 
                             <!-- Toggle Active -->
-                            <form action="{{ route('portal.packages.toggle', $pkg) }}" method="POST">
+                            <form action="{{ route('portal.packages.toggle', $pkg) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin {{ $pkg->is_active ? 'menonaktifkan' : 'mengaktifkan' }} paket {{ addslashes($pkg->name) }}?');">
                                 @csrf
                                 <button type="submit" class="px-2.5 py-1.5 rounded-lg text-xs font-bold transition {{ $pkg->is_active ? 'bg-slate-800 text-rose-300 hover:bg-slate-700' : 'bg-emerald-500 text-slate-950 hover:bg-emerald-400' }} active:scale-95">
                                     {{ $pkg->is_active ? 'Nonaktifkan' : 'Aktifkan' }}

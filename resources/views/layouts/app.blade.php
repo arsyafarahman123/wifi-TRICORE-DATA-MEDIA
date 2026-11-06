@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'TRINET-BILL - Sistem Operasional & Billing ISP TRICORE DATA MEDIA Purwokerto')</title>
-    <meta name="description" content="TRINET-BILL (TRIcore Network Billing) oleh TRICORE DATA MEDIA penyedia internet fiber optic (ISP) berkecepatan tinggi, unlimited tanpa FUP untuk rumah dan bisnis di Purwokerto Timur, Purwokerto Wetan, dan Sokaraja.">
+    <title>@yield('title', 'TRINET-BILL - Sistem Operasional & Billing ISP TRICORE DATA MEDIA')</title>
+    <meta name="description" content="TRINET-BILL (TRIcore Network Billing) oleh TRICORE DATA MEDIA penyedia internet fiber optic (ISP) berkecepatan tinggi, unlimited tanpa FUP untuk rumah, bisnis, dan sentra komersial.">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}?v=3">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png') }}?v=3">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=3">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        /* Responsive Desktop Navbar Spacing */
+        .trinet-nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        @media (min-width: 1280px) {
+            .trinet-nav-desktop {
+                gap: 2rem;
+            }
+        }
+        .trinet-nav-item {
+            display: inline-flex;
+            align-items: center;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+        }
+
+        /* Compact Chatbot AI Widget */
+        #chatbot-window {
+            width: 360px !important;
+            max-width: calc(100vw - 28px) !important;
+            height: 470px !important;
+            max-height: 75vh !important;
+        }
+        @media (max-width: 480px) {
+            #chatbot-window {
+                width: calc(100vw - 20px) !important;
+                height: 430px !important;
+                max-height: 70vh !important;
+                bottom: 60px !important;
+                right: 10px !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-[#090d16] text-slate-100 font-sans antialiased min-h-screen selection:bg-cyan-500 selection:text-white flex flex-col justify-between">
 
@@ -25,36 +66,30 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 via-blue-600 to-emerald-500 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition">
-                        <div class="w-full h-full bg-[#090d16] rounded-[10px] flex items-center justify-center">
-                            <svg class="w-6 h-6 text-cyan-400 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-white via-cyan-100 to-emerald-300 bg-clip-text text-transparent block leading-tight">
-                            TRINET-BILL
-                        </span>
-                        <span class="text-[9px] tracking-[0.22em] font-semibold text-cyan-400 uppercase block">
-                            TRICORE NETWORK BILLING
-                        </span>
-                    </div>
+                    <img src="/tricorenet-logo.png" alt="TRICORE.NET" class="h-10 w-auto object-contain group-hover:brightness-110 transition" style="max-width:180px;">
                 </a>
 
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                    <a href="{{ route('home') }}#beranda" class="hover:text-cyan-400 transition">Home</a>
-                    <a href="{{ route('home') }}#tentang" class="hover:text-cyan-400 transition">Tentang</a>
-                    <a href="{{ route('home') }}#paket" class="hover:text-cyan-400 transition">Paket</a>
-                    <a href="{{ route('home') }}#coverage" class="hover:text-cyan-400 transition">Coverage</a>
-                    <a href="{{ route('home') }}#cek-tagihan" class="hover:text-cyan-400 transition flex items-center gap-1.5">
-                        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <nav class="hidden md:flex items-center text-sm font-medium text-slate-300 trinet-nav-desktop">
+                    <a href="{{ route('home') }}" class="trinet-nav-item hover:text-cyan-400">Home</a>
+                    <a href="{{ route('home') }}#tentang" class="trinet-nav-item hover:text-cyan-400">Tentang</a>
+                    <a href="{{ route('home') }}#paket" class="trinet-nav-item hover:text-cyan-400">Paket</a>
+                    <button type="button" onclick="openChatbotRecommendation()" class="trinet-nav-item hover:text-cyan-300 text-cyan-400 font-bold gap-1.5 cursor-pointer">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        <span>Rekomendasi Paket</span>
+                    </button>
+                    <a href="{{ route('home') }}#coverage" class="trinet-nav-item hover:text-cyan-400">Coverage</a>
+                    <a href="{{ route('bill.check') }}" class="trinet-nav-item hover:text-cyan-400 gap-1.5">
+                        <svg class="w-4 h-4 text-emerald-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
                         </svg>
-                        Cek Tagihan
+                        <span>Cek Tagihan</span>
                     </a>
-                    <a href="{{ route('home') }}#kontak" class="hover:text-cyan-400 transition">Kontak</a>
+                    <a href="{{ route('diagnosis') }}" class="trinet-nav-item hover:text-cyan-400 gap-1 {{ request()->routeIs('diagnosis*') ? 'text-cyan-400 font-bold' : 'text-slate-300' }}">
+                        <svg class="w-4 h-4 text-cyan-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        <span>Diagnosis</span>
+                    </a>
+                    <a href="{{ route('home') }}#kontak" class="trinet-nav-item hover:text-cyan-400">Kontak</a>
                 </nav>
 
                 <!-- Actions -->
@@ -94,11 +129,19 @@
 
             <!-- Mobile Dropdown -->
             <div id="mobile-menu" class="hidden md:hidden pb-5 pt-3 border-t border-white/10 space-y-2 text-sm font-medium">
-                <a href="{{ route('home') }}#beranda" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Home</a>
+                <a href="{{ route('home') }}" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Home</a>
                 <a href="{{ route('home') }}#tentang" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Tentang Kami</a>
                 <a href="{{ route('home') }}#paket" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Paket Internet</a>
+                <button type="button" onclick="openChatbotRecommendation()" class="mobile-nav-link w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-cyan-400 font-bold transition flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Rekomendasi Paket
+                </button>
                 <a href="{{ route('home') }}#coverage" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Coverage Area</a>
-                <a href="{{ route('home') }}#cek-tagihan" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-emerald-400 font-semibold transition">Cek Tagihan Pelanggan</a>
+                <a href="{{ route('bill.check') }}" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-emerald-400 font-semibold transition">Cek Tagihan Pelanggan</a>
+                <a href="{{ route('diagnosis') }}" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-cyan-400 font-semibold transition flex items-center gap-2">
+                    <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    Diagnosis Gangguan (RBR)
+                </a>
                 <a href="{{ route('home') }}#kontak" class="mobile-nav-link block px-3.5 py-2.5 rounded-xl hover:bg-slate-800 text-slate-200 transition">Kontak & Helpdesk</a>
                 <div class="pt-3 border-t border-slate-800 flex gap-2">
                     <a href="{{ route('home') }}#daftar" class="mobile-nav-link flex-1 text-center py-2.5 text-xs font-bold rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950">Daftar Online</a>
@@ -160,20 +203,10 @@
                 <!-- Company Info -->
                 <div class="md:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-emerald-500 p-0.5 shadow-md">
-                            <div class="w-full h-full bg-[#090d16] rounded-[10px] flex items-center justify-center">
-                                <svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="text-xl font-extrabold tracking-wider text-white">TRINET-BILL</span>
-                            <span class="text-[9px] tracking-[0.2em] font-semibold text-cyan-400 uppercase block">TRIcore Network Billing</span>
-                        </div>
+                        <img src="/tricorenet-logo.png" alt="TRICORE.NET" class="h-10 w-auto object-contain" style="max-width:200px;">
                     </div>
                     <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-                        <strong>TRINET-BILL</strong> adalah platform operasional dan penagihan terintegrasi untuk <strong>TRICORE DATA MEDIA</strong>, penyedia internet fiber optic (ISP) terpercaya di Purwokerto. Kami menghadirkan koneksi internet super cepat, stabil, tanpa batas kuota (unlimited FUP) dengan layanan pelanggan dan tim teknisi siaga 24/7.
+                        <strong>TRINET-BILL</strong> adalah platform operasional dan penagihan terintegrasi untuk <strong>TRICORE DATA MEDIA</strong>, penyedia internet fiber optic (ISP) cepat dan terpercaya. Kami menghadirkan koneksi internet super cepat, stabil, tanpa batas kuota (unlimited FUP) dengan layanan pelanggan dan tim teknisi siaga 24/7.
                     </p>
                     <div class="flex items-center gap-3 pt-2">
                         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
@@ -191,8 +224,9 @@
                     <h4 class="text-sm font-bold uppercase tracking-wider text-white">Navigasi Layanan</h4>
                     <ul class="space-y-2 text-sm text-slate-400">
                         <li><a href="{{ route('home') }}#paket" class="hover:text-cyan-400 transition">Pilihan Paket Internet</a></li>
-                        <li><a href="{{ route('home') }}#coverage" class="hover:text-cyan-400 transition">Coverage Area Purwokerto</a></li>
-                        <li><a href="{{ route('home') }}#cek-tagihan" class="hover:text-cyan-400 transition">Cek Tagihan Mandiri</a></li>
+                        <li><a href="{{ route('home') }}#coverage" class="hover:text-cyan-400 transition">Coverage Area Jaringan</a></li>
+                        <li><a href="{{ route('bill.check') }}" class="hover:text-cyan-400 transition">Cek Tagihan Mandiri</a></li>
+                        <li><a href="{{ route('diagnosis') }}" class="hover:text-cyan-400 transition text-cyan-300 font-semibold">Diagnosis Gangguan (RBR)</a></li>
                         <li><a href="{{ route('home') }}#daftar" class="hover:text-cyan-400 transition">Pendaftaran Pasang Baru</a></li>
                         <li><a href="{{ route('login') }}" class="hover:text-cyan-400 transition">Portal Mitra & Admin</a></li>
                     </ul>
@@ -227,7 +261,7 @@
                             </svg>
                             <div>
                                 <span class="block text-xs text-slate-500">Alamat Kantor:</span>
-                                <span class="text-slate-300">Jl. KAV. Gelora Indah II, Gg. Renang, Purwokerto Timur, Jawa Tengah</span>
+                                <span class="text-slate-300">Jl. KAV. Gelora Indah II, Gg. Renang, Kab. Banyumas, Jawa Tengah</span>
                             </div>
                         </li>
                     </ul>
@@ -278,6 +312,30 @@
                 }
             });
         });
+
+        // Global helper to open Chatbot directly in Recommendation Mode
+        function openChatbotRecommendation() {
+            if (typeof window.triggerChatbotRecommendation === 'function') {
+                window.triggerChatbotRecommendation();
+            } else {
+                const chatWindow = document.getElementById('chatbot-window');
+                if (chatWindow) {
+                    chatWindow.classList.remove('hidden');
+                }
+                const toggle = document.getElementById('chatbot-toggle-btn');
+                if (toggle) toggle.click();
+            }
+        }
+
+        // Global helper to open Chatbot directly in General Assistant Mode
+        function openChatbotGeneral() {
+            if (typeof window.triggerChatbotOpen === 'function') {
+                window.triggerChatbotOpen();
+            } else {
+                const toggle = document.getElementById('chatbot-toggle-btn');
+                if (toggle) toggle.click();
+            }
+        }
     </script>
     @stack('scripts')
 </body>

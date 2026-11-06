@@ -51,9 +51,9 @@ class CustomerManagementController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'],
             'email' => 'nullable|email|max:255',
-            'identity_number' => 'nullable|string|max:30',
+            'identity_number' => ['nullable', 'string', 'regex:/^[0-9]{16}$/'],
             'address' => 'required|string|max:500',
             'district' => 'required|string|max:100',
             'subdistrict' => 'nullable|string|max:100',
@@ -63,12 +63,20 @@ class CustomerManagementController extends Controller
             'odp_code' => 'nullable|string|max:50',
             'ip_address' => 'nullable|string|max:50',
             'notes' => 'nullable|string|max:500',
+        ], [
+            'name.required' => 'Nama lengkap pelanggan wajib diisi.',
+            'phone.required' => 'Nomor WhatsApp wajib diisi.',
+            'phone.regex' => 'Nomor WhatsApp hanya boleh berupa angka (10-15 digit) tanpa huruf atau simbol.',
+            'identity_number.regex' => 'NIK harus tepat 16 digit angka.',
+            'address.required' => 'Alamat lengkap wajib diisi.',
+            'district.required' => 'Kecamatan wajib dipilih.',
+            'package_id.required' => 'Paket langganan wajib dipilih.',
         ]);
 
-        $year = date('y');
         $lastCustomer = Customer::latest('id')->first();
         $nextId = $lastCustomer ? ($lastCustomer->id + 1) : 1;
-        $customerCode = 'TDM-'.$year.str_pad($nextId, 3, '0', STR_PAD_LEFT);
+        // Format 11 digit: 3 digit spesial (260) + 8 digit nomor urut/bebas digabung (contoh: 26000000001)
+        $customerCode = '260'.str_pad($nextId, 8, '0', STR_PAD_LEFT);
 
         $package = Package::findOrFail($validated['package_id']);
 
@@ -120,9 +128,9 @@ class CustomerManagementController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
+            'phone' => ['required', 'string', 'regex:/^[0-9]{10,15}$/'],
             'email' => 'nullable|email|max:255',
-            'identity_number' => 'nullable|string|max:30',
+            'identity_number' => ['nullable', 'string', 'regex:/^[0-9]{16}$/'],
             'address' => 'required|string|max:500',
             'district' => 'required|string|max:100',
             'subdistrict' => 'nullable|string|max:100',
@@ -132,9 +140,18 @@ class CustomerManagementController extends Controller
             'odp_code' => 'nullable|string|max:50',
             'ip_address' => 'nullable|string|max:50',
             'notes' => 'nullable|string|max:500',
+        ], [
+            'name.required' => 'Nama lengkap pelanggan wajib diisi.',
+            'phone.required' => 'Nomor WhatsApp wajib diisi.',
+            'phone.regex' => 'Nomor WhatsApp hanya boleh berupa angka (10-15 digit) tanpa huruf atau simbol.',
+            'identity_number.regex' => 'NIK harus tepat 16 digit angka.',
+            'address.required' => 'Alamat lengkap wajib diisi.',
+            'district.required' => 'Kecamatan wajib dipilih.',
+            'package_id.required' => 'Paket langganan wajib dipilih.',
         ]);
 
         $customer->update($validated);
+        
 
         return redirect()->route('portal.customers.show', $customer)
             ->with('success', "Data pelanggan {$customer->name} berhasil diperbarui.");

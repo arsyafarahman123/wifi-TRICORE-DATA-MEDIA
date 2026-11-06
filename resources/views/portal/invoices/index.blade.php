@@ -101,32 +101,66 @@
                         <div class="text-[11px] text-slate-400">
                             Jatuh tempo: {{ $inv->due_date ? $inv->due_date->format('d/m/Y') : '-' }}
                         </div>
+                        @if($inv->payment_proof)
+                            <div class="pt-1 flex items-center gap-2">
+                                <a href="{{ asset($inv->payment_proof) }}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:underline">
+                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                    <span>Lihat Bukti Transfer</span>
+                                </a>
+                                @if($inv->proof_uploaded_at)
+                                    <span class="text-[10px] text-slate-500">({{ $inv->proof_uploaded_at->format('d/m H:i') }})</span>
+                                @endif
+                            </div>
+                        @endif
+                        @if($inv->rejection_reason)
+                            <div class="text-[11px] text-rose-400">
+                                Alasan Ditolak: {{ $inv->rejection_reason }}
+                            </div>
+                        @endif
                     </div>
 
-                    <div class="pt-2 border-t border-white/5 flex items-center justify-end gap-2">
-                        <a href="{{ route('portal.invoices.print', $inv) }}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-medium transition">
-                            Cetak
-                        </a>
+                    <div class="pt-2 border-t border-white/5 flex flex-col gap-2">
+                        <div class="flex items-center justify-between gap-2">
+                            <a href="{{ route('portal.invoices.print', $inv) }}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs font-medium transition">
+                                Cetak
+                            </a>
+                            <a href="{{ route('payment.page', ['invoice_number' => $inv->invoice_number]) }}" target="_blank" class="px-3 py-1.5 rounded-lg bg-cyan-950/60 text-cyan-300 border border-cyan-500/30 text-xs font-medium transition">
+                                Link Bayar BNC
+                            </a>
+                        </div>
 
                         @if($inv->status === 'unpaid')
-                            <form action="{{ route('portal.invoices.pay', $inv) }}" method="POST" class="inline w-full" onsubmit="return confirm('Tandai tagihan {{ $inv->invoice_number }} LUNAS? Layanan internet pelanggan {{ $inv->customer->name }} akan otomatis AKTIF.')">
-                                @csrf
-                                <div class="flex items-center gap-1.5 w-full">
-                                    <select name="payment_method" class="flex-1 px-2 py-1.5 rounded-lg bg-slate-900 border border-white/10 text-white text-[10px] focus:outline-none focus:border-cyan-400">
-                                        <option value="Tunai ke Mitra">Tunai ke Mitra</option>
-                                        <option value="SendIt / Transfer Digital">SendIt / Transfer Digital</option>
-                                        <option value="Transfer Bank BCA">Transfer Bank BCA</option>
-                                        <option value="Transfer Bank BRI">Transfer Bank BRI</option>
-                                        <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
-                                        <option value="QRIS">QRIS</option>
-                                    </select>
-                                    <input type="hidden" name="payment_reference" value="TRX-{{ date('YmdHis') }}">
-                                    <button type="submit" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-sm transition active:scale-95 whitespace-nowrap">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                        <span>Lunas</span>
-                                    </button>
-                                </div>
-                            </form>
+                            <div class="space-y-2 pt-1 border-t border-white/5">
+                                <form action="{{ route('portal.invoices.pay', $inv) }}" method="POST" class="w-full" onsubmit="return confirm('Verifikasi LUNAS tagihan {{ $inv->invoice_number }}? Layanan pelanggan {{ $inv->customer->name }} akan otomatis AKTIF.')">
+                                    @csrf
+                                    <div class="flex items-center gap-1.5 w-full">
+                                        <select name="payment_method" class="flex-1 px-2 py-1.5 rounded-lg bg-slate-900 border border-white/10 text-white text-[10px] focus:outline-none focus:border-cyan-400">
+                                            <option value="Transfer Bank Neo Commerce">Transfer Bank Neo Commerce</option>
+                                            <option value="Tunai ke Mitra">Tunai ke Mitra</option>
+                                            <option value="Transfer Bank BCA">Transfer Bank BCA</option>
+                                            <option value="Transfer Bank BRI">Transfer Bank BRI</option>
+                                            <option value="Transfer Bank Mandiri">Transfer Bank Mandiri</option>
+                                            <option value="QRIS">QRIS</option>
+                                        </select>
+                                        <input type="hidden" name="payment_reference" value="{{ $inv->payment_reference ?: ('VERIF-' . date('YmdHis')) }}">
+                                        <button type="submit" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-sm transition active:scale-95 whitespace-nowrap">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                                            <span>Verifikasi Lunas</span>
+                                        </button>
+                                    </div>
+                                </form>
+
+                                @if($inv->payment_proof)
+                                    <!-- Reject Form for Mobile -->
+                                    <form action="{{ route('portal.invoices.reject', $inv) }}" method="POST" class="flex items-center gap-1.5" onsubmit="return confirm('Tolak bukti transfer {{ $inv->invoice_number }}?')">
+                                        @csrf
+                                        <input type="text" name="rejection_reason" required placeholder="Alasan tolak bukti..." class="flex-1 px-2 py-1 rounded bg-slate-900 border border-rose-500/30 text-rose-300 text-[10px] placeholder-slate-500 focus:outline-none">
+                                        <button type="submit" class="px-2 py-1 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[10px] font-bold hover:bg-rose-500/30">
+                                            Tolak
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -178,31 +212,59 @@
                                 <span class="px-2.5 py-1 rounded-full text-[10px] font-bold border {{ $badge['class'] }}">
                                     {{ $badge['label'] }}
                                 </span>
+                                @if($inv->payment_proof)
+                                    <div class="mt-1">
+                                        <a href="{{ asset($inv->payment_proof) }}" target="_blank" class="inline-flex items-center gap-1 text-[10px] text-amber-400 hover:underline">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                                            <span>Bukti Transfer</span>
+                                        </a>
+                                    </div>
+                                @endif
+                                @if($inv->rejection_reason)
+                                    <div class="text-[9px] text-rose-400 max-w-[130px] truncate" title="{{ $inv->rejection_reason }}">
+                                        Ditolak: {{ $inv->rejection_reason }}
+                                    </div>
+                                @endif
                             </td>
                             <td class="py-3.5 px-4 text-right whitespace-nowrap space-x-1">
-                                <a href="{{ route('portal.invoices.print', $inv) }}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 transition">
+                                <a href="{{ route('payment.page', ['invoice_number' => $inv->invoice_number]) }}" target="_blank" class="px-2 py-1 rounded-lg bg-cyan-950/60 text-cyan-300 border border-cyan-500/30 text-[10px] font-medium transition hover:bg-cyan-900/60">
+                                    Link Bayar
+                                </a>
+                                <a href="{{ route('portal.invoices.print', $inv) }}" target="_blank" class="px-2 py-1 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 transition text-[10px]">
                                     Cetak
                                 </a>
 
                                 @if($inv->status === 'unpaid')
-                                    <form action="{{ route('portal.invoices.pay', $inv) }}" method="POST" class="inline" onsubmit="return confirm('Tandai tagihan {{ $inv->invoice_number }} LUNAS? Layanan internet pelanggan {{ $inv->customer->name }} akan otomatis AKTIF.')">
+                                    <form action="{{ route('portal.invoices.pay', $inv) }}" method="POST" class="inline" onsubmit="return confirm('Verifikasi LUNAS tagihan {{ $inv->invoice_number }}? Layanan pelanggan {{ $inv->customer->name }} akan otomatis AKTIF.')">
                                         @csrf
-                                        <div class="flex items-center gap-1">
+                                        <div class="inline-flex items-center gap-1">
                                             <select name="payment_method" class="px-1.5 py-1 rounded-lg bg-slate-900 border border-white/10 text-white text-[10px] focus:outline-none focus:border-cyan-400">
+                                                <option value="Transfer Bank Neo Commerce">Transfer BNC</option>
                                                 <option value="Tunai ke Mitra">Tunai</option>
-                                                <option value="SendIt / Transfer Digital">SendIt</option>
                                                 <option value="Transfer Bank BCA">BCA</option>
                                                 <option value="Transfer Bank BRI">BRI</option>
                                                 <option value="Transfer Bank Mandiri">Mandiri</option>
                                                 <option value="QRIS">QRIS</option>
                                             </select>
-                                            <input type="hidden" name="payment_reference" value="TRX-{{ date('YmdHis') }}">
-                                            <button type="submit" class="inline-flex items-center gap-1 px-2 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-[10px]">
+                                            <input type="hidden" name="payment_reference" value="{{ $inv->payment_reference ?: ('VERIF-' . date('YmdHis')) }}">
+                                            <button type="submit" class="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold transition active:scale-95 whitespace-nowrap text-[10px]">
                                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                                                <span>Lunas</span>
+                                                <span>Verifikasi</span>
                                             </button>
                                         </div>
                                     </form>
+
+                                    @if($inv->payment_proof)
+                                        <button type="button" 
+                                                onclick="const r = prompt('Masukkan alasan penolakan bukti transfer:'); if(r){ document.getElementById('reject-reason-{{ $inv->id }}').value = r; document.getElementById('reject-form-{{ $inv->id }}').submit(); }" 
+                                                class="px-2 py-1 rounded-lg bg-rose-500/20 text-rose-400 border border-rose-500/30 text-[10px] font-bold hover:bg-rose-500/30">
+                                            Tolak
+                                        </button>
+                                        <form id="reject-form-{{ $inv->id }}" action="{{ route('portal.invoices.reject', $inv) }}" method="POST" class="hidden">
+                                            @csrf
+                                            <input type="hidden" name="rejection_reason" id="reject-reason-{{ $inv->id }}">
+                                        </form>
+                                    @endif
                                 @endif
                             </td>
                         </tr>

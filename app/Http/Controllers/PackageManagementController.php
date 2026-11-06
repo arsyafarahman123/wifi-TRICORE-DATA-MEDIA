@@ -11,7 +11,9 @@ class PackageManagementController extends Controller
 {
     public function index(): View
     {
-        $packages = Package::withCount('customers')
+        $packages = Package::withCount(['customers' => function ($query) {
+                $query->where('status', 'active');
+            }])
             ->orderBy('sort_order')
             ->get();
 

@@ -23,6 +23,9 @@ class Invoice extends Model
         'paid_at',
         'payment_method',
         'payment_reference',
+        'payment_proof',
+        'proof_uploaded_at',
+        'rejection_reason',
         'received_by_user_id',
         'notes',
     ];
@@ -34,6 +37,7 @@ class Invoice extends Model
             'period_end' => 'date',
             'due_date' => 'date',
             'paid_at' => 'datetime',
+            'proof_uploaded_at' => 'datetime',
             'amount' => 'decimal:2',
         ];
     }
@@ -60,10 +64,14 @@ class Invoice extends Model
 
     public function getStatusBadgeAttribute(): array
     {
+        if ($this->status === 'unpaid' && !empty($this->payment_proof)) {
+            return ['label' => 'Menunggu Verifikasi', 'class' => 'bg-amber-500/10 text-amber-400 border-amber-500/30'];
+        }
+
         return match ($this->status) {
-            'paid' => ['label' => 'Lunas', 'class' => 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'],
-            'unpaid' => ['label' => 'Belum Bayar', 'class' => 'bg-rose-500/10 text-rose-400 border-rose-500/30'],
-            'cancelled' => ['label' => 'Dibatalkan', 'class' => 'bg-slate-500/10 text-slate-400 border-slate-500/30'],
+            'paid' => ['label' => 'Berhasil (Lunas)', 'class' => 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'],
+            'unpaid' => ['label' => 'Menunggu Pembayaran', 'class' => 'bg-rose-500/10 text-rose-400 border-rose-500/30'],
+            'cancelled' => ['label' => 'Ditolak / Dibatalkan', 'class' => 'bg-slate-500/10 text-slate-400 border-slate-500/30'],
             default => ['label' => ucfirst($this->status), 'class' => 'bg-slate-500/10 text-slate-400 border-slate-500/30'],
         };
     }
