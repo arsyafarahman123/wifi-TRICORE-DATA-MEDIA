@@ -13,6 +13,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->validateCsrfTokens(except: [
+            'cek-tagihan',
+            'tagihan/*',
+            'daftar-paket',
+            'cek-coverage',
+            'diagnosis-gangguan*',
             'chatbot/*',
             'bantuan/*',
         ]);
