@@ -432,7 +432,7 @@ def create_sdd_document():
     uc_data = [
         ("UC-01", "Pengecekan Cakupan & Paket", "Publik: Melihat katalog paket internet, memverifikasi ketersediaan ODP pada peta coverage area."),
         ("UC-02", "Pendaftaran Sambungan Baru", "Publik: Mengisi formulir online, mengirimkan data calon pelanggan, dan memilih paket langganan."),
-        ("UC-03", "Cek Tagihan Mandiri", "Pelanggan: Memasukkan Nomor ID Pelanggan (TDM-XXXX) untuk melihat rincian dan riwayat invoice."),
+        ("UC-03", "Cek Tagihan Mandiri", "Pelanggan: Memasukkan Nomor ID Pelanggan (899-XXXXXXXX) untuk melihat rincian dan riwayat invoice."),
         ("UC-04", "Otentikasi & Manajemen Sesi", "Admin & Mitra: Melakukan login dengan email dan kata sandi terenkripsi, manajemen sesi RBAC."),
         ("UC-05", "Pengelolaan Data Pelanggan & ODP", "Admin & Mitra: Menambah, mengubah, mengisolir, mencatat nomor port ODP dan alamat IP pelanggan."),
         ("UC-06", "Automated Billing & Invoice", "Admin: Menerbitkan tagihan bulanan serentak (bulk generation), mencetak faktur PDF resmi."),
@@ -516,7 +516,7 @@ def create_sdd_document():
         ("Nama Modul", "Customer Lifecycle & ODP/IP Management Module"),
         ("Tujuan", "Mengelola master data pelanggan, kode registrasi, status konektivitas, serta pemetaan teknis ODP dan IP."),
         ("Input", "Nama lengkap, nomor telepon, alamat, kecamatan/kelurahan, ID paket, nomor tiang ODP, alokasi IP statis."),
-        ("Output", "Record data pelanggan terstruktur, kode pelanggan unik (TDM-XXXX), log status koneksi."),
+        ("Output", "Record data pelanggan terstruktur, kode pelanggan unik (889XXXXXXXX), log status koneksi."),
         ("Dependency", "Package Model, User Model (Partner), Database Migration `customers`."),
         ("Internal Logic", "Sistem memvalidasi keunikan nomor identitas dan IP. Jika lolos validasi, generate nomor urut pelanggan baru dan set status awal `pending`."),
         ("Error Handling", "Penyampaian pesan kesalahan validasi format data (Form Request Exception) dan rollback transaksi basis data jika terjadi gangguan jaringan.")
@@ -607,7 +607,7 @@ def create_sdd_document():
     add_body_paragraph("Tabel 5.1. Definisi Skema Tabel Pelanggan (`customers`):")
     cust_fields = [
         ("id", "BIGINT UNSIGNED", "PK, AI, NOT NULL", "Primary Key identitas baris record"),
-        ("customer_code", "VARCHAR(50)", "UNIQUE, NOT NULL", "Kode unik pelanggan (misal: TDM-2601)"),
+        ("customer_code", "VARCHAR(50)", "UNIQUE, NOT NULL", "Kode unik pelanggan (misal: 89912345678)"),
         ("name", "VARCHAR(255)", "NOT NULL", "Nama lengkap pelanggan"),
         ("phone", "VARCHAR(50)", "NOT NULL", "Nomor WhatsApp aktif pelanggan"),
         ("email", "VARCHAR(255)", "NULLABLE", "Alamat surel korespondensi"),

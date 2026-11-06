@@ -23,7 +23,7 @@
                 <input type="text" 
                        name="search" 
                        value="{{ request('search') }}" 
-                       placeholder="Cari nama, ID (TDM-...), WhatsApp, alamat..." 
+                       placeholder="Cari nama, ID (889...), WhatsApp, alamat..." 
                        class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400">
             </div>
 
