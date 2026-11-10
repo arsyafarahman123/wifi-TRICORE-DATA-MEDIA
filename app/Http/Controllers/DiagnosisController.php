@@ -32,8 +32,8 @@ class DiagnosisController extends Controller
         $powerLight = $request->input('power_light', 'on');
         $ponLight = $request->input('pon_light', 'solid_green');
         $losLight = $request->input('los_light', 'off');
-        $lanLight = $request->input('lan_light', 'on');
-        $wifiLight = $request->input('wifi_light', 'on');
+        $lanLight = $request->input('lan_light', 'off');
+        $wifiLight = $request->input('wifi_light', 'off');
         $issueType = $request->input('issue_type', 'general');
         $customerCode = trim($request->input('customer_code', ''));
 

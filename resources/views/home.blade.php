@@ -506,7 +506,7 @@
                     </div>
 
                     <!-- Responsive Google My Maps Iframe -->
-                    <div class="relative w-full h-[400px] sm:h-[430px] bg-slate-950">
+                    <div class="relative w-full bg-slate-950" style="height: 420px;">
                         <iframe 
                             title="Peta Titik Persebaran ODP TRICORE.NET"
                             src="https://www.google.com/maps/d/embed?mid=1vHlzx_s3i7Fz52MiixANybTWvIwI0OE&ehbc=2E312F" 

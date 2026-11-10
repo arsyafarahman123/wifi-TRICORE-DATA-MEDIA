@@ -205,8 +205,6 @@ document.addEventListener('DOMContentLoaded', function () {
             input.focus();
             if (options.intent) {
                 sendIntent(options.intent, options.label || '');
-            } else if (chatHistory.length === 0) {
-                sendIntent('packages');
             } else {
                 scrollToBottom();
             }
