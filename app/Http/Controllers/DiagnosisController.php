@@ -85,7 +85,7 @@ class DiagnosisController extends Controller
         ?Customer $customer = null
     ): array {
         // VALIDASI ANOMALI / KOMBINASI INDIKATOR YANG TIDAK MASUK AKAL SECARA TEKNIS
-        // 1. Daya mati (Power = OFF), tapi lampu lain menyala (PON, LOS, LAN, WiFi)
+        // 1. Jika Power = OFF tapi lampu lain dilaporkan menyala (PON, LOS, dsb)
         if ($power === 'off' && ($pon !== 'off' || $los !== 'off' || $lan !== 'off' || $wifi !== 'off')) {
             return [
                 'rule_id' => 'RBR-INVALID-01',
@@ -104,6 +104,32 @@ class DiagnosisController extends Controller
                 ],
                 'need_technician' => false,
                 'estimated_fix_time' => 'Periksa Ulang Fisik Modem',
+            ];
+        }
+
+        // RULE 2: Perangkat Mati Daya / Pemadaman Listrik (Power Mati)
+        // Jika Power = OFF dan indikator lainnya OFF (semua mati)
+        if ($power === 'off') {
+            return [
+                'rule_id' => 'RBR-02',
+                'rule_name' => 'IF Lampu Power = Mati THEN Gangguan Suplai Daya / Adaptor Rusak / Listrik Padam',
+                'diagnosis_title' => 'Modem ONT Mati Total (Power Failure)',
+                'severity' => 'high',
+                'badge' => 'Kendala Daya Listrik',
+                'summary' => 'Unit modem ONT tidak menerima arus daya DC dari adaptor listrik.',
+                'root_causes' => [
+                    'Steker adaptor listrik longgar atau stopkontak PLN padam.',
+                    'Adaptor daya 12V 1A / 1.5A mengalami kerusakan komponen (korsleting/overheat).',
+                    'Tombol ON/OFF di bagian samping/belakang modem dalam posisi tertekan OFF.',
+                ],
+                'action_steps' => [
+                    'Cek apakah stopkontak PLN berfungsi normal (coba colokkan charger HP).',
+                    'Pastikan saklar tombol power di belakang router ditekan ke posisi ON.',
+                    'Periksa ujung jack adaptor terpasang kencang di port POWER modem.',
+                    'Jika adaptor panas berlebih dan lampu indikator di adaptor mati, hubungi teknisi untuk penggantian adaptor original.',
+                ],
+                'need_technician' => false,
+                'estimated_fix_time' => '10 Menit (Mandiri) / Penggantian Adaptor',
             ];
         }
 
@@ -151,31 +177,6 @@ class DiagnosisController extends Controller
                 ],
                 'need_technician' => true,
                 'estimated_fix_time' => '1 - 3 Jam Kerja',
-            ];
-        }
-
-        // RULE 2: Perangkat Mati Daya / Adaptor Rusak (Power Mati)
-        if ($power === 'off') {
-            return [
-                'rule_id' => 'RBR-02',
-                'rule_name' => 'IF Lampu Power = Mati THEN Gangguan Suplai Daya / Adaptor Rusak',
-                'diagnosis_title' => 'Modem ONT Mati Total (Power Failure)',
-                'severity' => 'high',
-                'badge' => 'Kendala Daya Listrik',
-                'summary' => 'Unit modem ONT tidak menerima arus daya DC dari adaptor listrik.',
-                'root_causes' => [
-                    'Steker adaptor listrik longgar pada stopkontak PLN.',
-                    'Adaptor daya 12V 1A / 1.5A mengalami kerusakan komponen (korsleting/overheat).',
-                    'Tombol ON/OFF di bagian samping/belakang modem dalam posisi tertekan OFF.',
-                ],
-                'action_steps' => [
-                    'Cek apakah stopkontak PLN berfungsi normal (coba colokkan charger HP).',
-                    'Pastikan saklar tombol power di belakang router ditekan ke posisi ON.',
-                    'Periksa ujung jack adaptor terpasang kencang di port POWER modem.',
-                    'Jika adaptor panas berlebih dan lampu indikator di adaptor mati, hubungi teknisi untuk penggantian adaptor original.',
-                ],
-                'need_technician' => false,
-                'estimated_fix_time' => '10 Menit (Mandiri) / Penggantian Adaptor',
             ];
         }
 

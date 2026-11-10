@@ -182,9 +182,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Global trigger for Recommendation System from any button on page
     window.triggerChatbotRecommendation = function() {
         if (!isOpen) {
-            toggleChat();
+            toggleChat({ intent: 'packages', label: 'Pilihan Paket Rekomendasi' });
+        } else {
+            sendIntent('packages', 'Pilihan Paket Rekomendasi');
         }
-        sendIntent('packages', 'Pilihan Paket Rekomendasi');
     };
 
     // Global trigger to open Chatbot Assistant directly
@@ -195,14 +196,16 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     // Toggle Chat Window
-    function toggleChat() {
+    function toggleChat(options = {}) {
         isOpen = !isOpen;
         if (isOpen) {
             chatWindow.classList.remove('hidden');
             iconOpen.classList.add('hidden');
             iconClose.classList.remove('hidden');
             input.focus();
-            if (chatHistory.length === 0) {
+            if (options.intent) {
+                sendIntent(options.intent, options.label || '');
+            } else if (chatHistory.length === 0) {
                 sendIntent('packages');
             } else {
                 scrollToBottom();
@@ -515,40 +518,24 @@ document.addEventListener('DOMContentLoaded', function () {
             };
         }
 
+        // Troubleshooting Intent: Lemot, Lambat, Putus, dsb
+        if (query.includes('lemot') || query.includes('lambat') || query.includes('lelet') || query.includes('kecepatan turun') || query.includes('putus') || query.includes('down') || query.includes('koneksi bermasalah') || query === 'troubleshoot_slow') {
+            return {
+                text: "🛠️ **Panduan Penanganan Koneksi Internet Lambat / Lemot**:\n\n1. **Restart Modem (Power Cycle):** Cabut adaptor listrik modem selama **15-30 detik**, lalu pasang kembali. Tunggu 2-3 menit hingga lampu PON hijau stabil.\n2. **Beban Pengguna:** Pastikan tidak ada perangkat lain yang sedang mengunduh file besar, update Windows, atau streaming 4K secara bersamaan.\n3. **Jarak dari Router:** Sinyal frekuensi WiFi 2.4GHz rentan terhadap halangan dinding tebal. Uji koneksi dekat router atau gunakan kabel LAN.\n4. **Cek DNS / Cache:** Coba bersihkan cache browser atau ganti DNS HP/Laptop ke Google (`8.8.8.8`) / Cloudflare (`1.1.1.1`).\n\nJika kecepatan tetap tidak sesuai paket setelah langkah di atas, silakan hubungi teknisi kami untuk reset profil bandwidth dari sentral OLT.",
+                quick_replies: [
+                    { label: 'Uji Speedtest', intent: 'troubleshoot_speedtest' },
+                    { label: 'Lapor Teknisi WhatsApp', url: waUrl },
+                    { label: 'Diagnosis Indikator Modem', url: '{{ route('diagnosis') }}' },
+                    { label: 'Menu Utama', intent: 'menu' }
+                ]
+            };
+        }
+
         if (query === 'check_bill_prompt' || query === 'cek tagihan' || query === 'tagihan') {
             return {
-                text: "**Pengecekan Tagihan Pelanggan TRICORE**\n\nMau cek tagihan untuk nomor pelanggan atau nomor WhatsApp yang mana kak?\n\nSilakan ketik **Nomor ID Pelanggan** 11 digit (contoh: `26000000001`) atau nomor WhatsApp. Atau langsung klik salah satu pilihan di bawah ini:",
+                text: "**Pengecekan Tagihan Pelanggan TRICORE**\n\nSilakan ketik **Nomor ID Pelanggan** 11 digit Anda (contoh: `89900000001`) atau nomor WhatsApp yang terdaftar untuk memeriksa tagihan dan status koneksi secara otomatis.",
                 quick_replies: [
-                    { label: '26000000001 (Rizky Pratama)', intent: 'check_bill_tdm2601' },
-                    { label: '26000000004 (Dwi Wahyuni)', intent: 'check_bill_tdm2604' },
-                    { label: '26000000002 (Siti Nurhaliza)', intent: 'check_bill_tdm2602' },
-                    { label: '26000000003 (Agus Setiawan)', intent: 'check_bill_tdm2603' },
                     { label: 'Buka Form Cek Tagihan', url: '{{ route('bill.check') }}' },
-                    { label: 'Menu Utama', intent: 'menu' }
-                ]
-            };
-        }
-
-        // Factual bill details for demo accounts
-        if (query.includes('26000000001') || query === 'check_bill_tdm2601') {
-            return {
-                text: "📊 **Rincian Tagihan Resmi TRINET-BILL**\n\n• **Nama Pelanggan:** **Rizky P***\n• **ID Pelanggan:** `26000000001`\n• **Paket Internet:** Paket Family (20 Mbps)\n• **Status Koneksi:** [ Aktif (Normal) ]\n• **Wilayah:** Arcawinangun, Kec. Purwokerto Timur\n\n💳 **Status Tagihan Bulan Berjalan:**\n• **No. Invoice:** `INV-202610-001`\n• **Periode:** Oktober 2026\n• **Total Tagihan:** **Rp 135.000**\n• **Status Pembayaran:** **[ LUNAS ]**\n• **Jatuh Tempo:** 20 Oktober 2026\n• **Lunas Dibayar:** 01/10/2026 09:15 WIB via Bank Neo Commerce\n\n**Rekening Pembayaran Resmi TRICORE:**\n• Bank Neo Commerce (BNC): `5859459401627129` a.n TRICORE DATA MEDIA",
-                quick_replies: [
-                    { label: 'Lihat Bukti Lunas', url: '/tagihan/26000000001' },
-                    { label: 'Cek Nomor Lain', intent: 'check_bill_prompt' },
-                    { label: 'Diagnosis Gangguan (RBR)', intent: 'diagnosis_menu' },
-                    { label: 'Menu Utama', intent: 'menu' }
-                ]
-            };
-        }
-
-        if (query.includes('26000000004') || query === 'check_bill_tdm2604') {
-            return {
-                text: "📊 **Rincian Tagihan Resmi TRINET-BILL**\n\n• **Nama Pelanggan:** **Dwi W***\n• **ID Pelanggan:** `26000000004`\n• **Paket Internet:** Paket Turbo (35 Mbps)\n• **Status Koneksi:** [ Terisolir (Pending Bayar) ]\n• **Wilayah:** Sokaraja\n\n💳 **Status Tagihan Bulan Berjalan:**\n• **No. Invoice:** `INV-202610-004`\n• **Periode:** Oktober 2026\n• **Total Tagihan:** **Rp 170.000**\n• **Status Pembayaran:** **[ BELUM DIBAYAR ]**\n• **Jatuh Tempo:** 15 Oktober 2026\n\n**Rekening Pembayaran Resmi:**\n• Bank Neo Commerce (BNC / 490): `5859459401627129` a.n TRICORE DATA MEDIA",
-                quick_replies: [
-                    { label: 'Konfirmasi Bayar ke WA', url: waUrl },
-                    { label: 'Buka Halaman Tagihan', url: '/tagihan/26000000004' },
-                    { label: 'Cek Nomor Lain', intent: 'check_bill_prompt' },
                     { label: 'Menu Utama', intent: 'menu' }
                 ]
             };

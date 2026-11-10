@@ -37,7 +37,7 @@
                     Cek Status & Rincian Tagihan
                 </h1>
                 <p class="text-xs sm:text-sm text-slate-400 max-w-lg mx-auto">
-                    Masukkan Nomor ID Pelanggan (11 digit, contoh: <span class="text-cyan-300 font-mono font-bold">26000000001</span>) atau Nomor WhatsApp yang terdaftar untuk melihat tagihan bulan ini.
+                    Masukkan Nomor ID Pelanggan (11 digit, contoh: <span class="text-cyan-300 font-mono font-bold">89900000001</span>) atau Nomor WhatsApp yang terdaftar untuk melihat tagihan bulan ini.
                 </p>
             </div>
 
@@ -69,7 +69,7 @@
                                id="search-input"
                                name="search_query" 
                                value="{{ $searchQuery ?? old('search_query', request('search_query', '')) }}"
-                               placeholder="Contoh: 26000000001 atau 082199887766" 
+                               placeholder="Contoh: 89900000001 atau 082199887766" 
                                required 
                                autocomplete="off"
                                class="w-full pl-11 pr-4 py-3.5 rounded-xl bg-slate-950/80 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 text-sm font-medium transition">

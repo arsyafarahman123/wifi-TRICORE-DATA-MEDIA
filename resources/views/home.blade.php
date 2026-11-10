@@ -577,7 +577,7 @@
                             <input type="text" 
                                    name="search_query" 
                                    value="{{ old('search_query', request('search_query')) }}"
-                                   placeholder="Masukkan No Pelanggan (11 digit: 26000000001) atau No WA" 
+                                   placeholder="Masukkan No Pelanggan (11 digit: 89900000001) atau No WA" 
                                    required 
                                    class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-900 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-sm">
                         </div>

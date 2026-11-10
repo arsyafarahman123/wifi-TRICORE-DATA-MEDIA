@@ -121,8 +121,15 @@
                             </div>
                             <div>
                                 <span class="text-xs text-slate-400 block">Batas Jatuh Tempo</span>
-                                <span class="font-medium text-amber-300 text-sm">
-                                    {{ $latestInvoice->due_date ? $latestInvoice->due_date->format('d F Y') : '-' }}
+                                @php
+                                    $isOverdue = $latestInvoice->due_date && now()->startOfDay()->greaterThan($latestInvoice->due_date->startOfDay()) && $latestInvoice->status !== 'paid';
+                                    $formattedDueDate = $latestInvoice->due_date ? $latestInvoice->due_date->locale('id')->isoFormat('D MMMM Y') : '-';
+                                @endphp
+                                <span class="font-medium {{ $isOverdue ? 'text-rose-400 font-bold' : 'text-amber-300' }} text-sm">
+                                    {{ $formattedDueDate }}
+                                    @if($isOverdue)
+                                        <span class="text-[11px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 ml-1">Terlambat</span>
+                                    @endif
                                 </span>
                             </div>
                             <div class="text-left sm:text-right">
@@ -151,7 +158,11 @@
                                     <svg class="w-5 h-5 text-rose-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                                     <div>
                                         <span class="font-bold block text-sm">Menunggu Pembayaran</span>
-                                        <span>Segera lakukan pelunasan sebelum tanggal jatuh tempo agar koneksi internet tetap aktif tanpa gangguan isolir.</span>
+                                        @if($isOverdue)
+                                            <span class="text-rose-300 font-medium">Tagihan telah <strong>melewati tanggal jatuh tempo (Terlambat)</strong>. Segera lakukan pelunasan untuk menghindari pemblokiran / pemutusan layanan internet.</span>
+                                        @else
+                                            <span>Segera lakukan pelunasan sebelum tanggal jatuh tempo agar koneksi internet tetap aktif tanpa gangguan isolir.</span>
+                                        @endif
                                     </div>
                                 </div>
 

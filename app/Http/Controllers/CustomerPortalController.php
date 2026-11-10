@@ -25,7 +25,7 @@ class CustomerPortalController extends Controller
             }
 
             return redirect()->route('bill.check')
-                ->with('error', 'Silakan masukkan Nomor Pelanggan (contoh: 26000000001) atau Nomor WhatsApp.');
+                ->with('error', 'Silakan masukkan Nomor Pelanggan (contoh: 89900000001) atau Nomor WhatsApp.');
         }
 
         $cleanPhone = preg_replace('/[^0-9]/', '', $query);
@@ -115,10 +115,10 @@ class CustomerPortalController extends Controller
             'address.required' => 'Alamat lengkap pemasangan wajib diisi.',
         ]);
 
-        // Generate customer code: 11 digit angka (3 digit spesial 260 + 8 digit urut/bebas)
+        // Generate customer code: 11 digit angka (3 digit spesial 899 + 8 digit urut/bebas)
         $lastCustomer = Customer::latest('id')->first();
         $nextId = $lastCustomer ? ($lastCustomer->id + 1) : 1;
-        $customerCode = '260'.str_pad($nextId, 8, '0', STR_PAD_LEFT);
+        $customerCode = '899'.str_pad($nextId, 8, '0', STR_PAD_LEFT);
 
         $package = Package::findOrFail($validated['package_id']);
 

@@ -63,7 +63,7 @@
                             <input type="text" 
                                    name="customer_code" 
                                    value="{{ $customerCode ?? old('customer_code', '') }}" 
-                                   placeholder="Contoh: 26000000001 atau kosongkan" 
+                                   placeholder="Contoh: 89900000001 atau kosongkan" 
                                    class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 text-xs font-mono">
                         </div>
 

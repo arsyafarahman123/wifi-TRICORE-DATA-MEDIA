@@ -47,20 +47,12 @@ class ChatbotController extends Controller
             'menu' => $this->getWelcomeResponse(),
             'check_bill_prompt' => [
                 'type' => 'text',
-                'text' => "**Pengecekan Tagihan Pelanggan TRICORE**\n\nMau cek tagihan untuk nomor pelanggan atau nomor WhatsApp yang mana kak?\n\nSilakan ketik **Nomor ID Pelanggan** 11 digit (contoh: `26000000001`) atau nomor WhatsApp. Atau bisa langsung klik salah satu pilihan pengujian di bawah ini:",
+                'text' => "**Pengecekan Tagihan Pelanggan TRICORE**\n\nSilakan ketik **Nomor ID Pelanggan** 11 digit Anda (contoh: `89900000001`) atau nomor WhatsApp yang terdaftar untuk memeriksa tagihan dan status koneksi secara otomatis.",
                 'quick_replies' => [
-                    ['label' => '26000000001 (Rizky Pratama)', 'intent' => 'check_bill_tdm2601'],
-                    ['label' => '26000000004 (Dwi Wahyuni)', 'intent' => 'check_bill_tdm2604'],
-                    ['label' => '26000000002 (Siti Nurhaliza)', 'intent' => 'check_bill_tdm2602'],
-                    ['label' => '26000000003 (Agus Setiawan)', 'intent' => 'check_bill_tdm2603'],
                     ['label' => 'Buka Form Cek Tagihan', 'url' => route('bill.check')],
                     ['label' => 'Menu Utama', 'intent' => 'menu'],
                 ],
             ],
-            'check_bill_tdm2601' => $this->lookupBill('26000000001'),
-            'check_bill_tdm2604' => $this->lookupBill('26000000004'),
-            'check_bill_tdm2602' => $this->lookupBill('26000000002'),
-            'check_bill_tdm2603' => $this->lookupBill('26000000003'),
             'diagnosis_menu' => $this->getDiagnosisMenuResponse(),
             'diagnosis_los' => $this->getDiagnosisRuleResponse('RBR-01'),
             'diagnosis_power' => $this->getDiagnosisRuleResponse('RBR-02'),
@@ -97,8 +89,8 @@ class ChatbotController extends Controller
     {
         $normalized = strtolower($message);
 
-        // Pattern 1: Check if input is Customer Code (TDM-XXXX) or Indonesian Phone Number (08xxx / 628xxx)
-        if (preg_match('/^(tdm-?[0-9a-zA-Z]+)$/i', $message) || preg_match('/^(08[0-9]{8,13}|628[0-9]{8,13})$/', str_replace([' ', '-', '+'], '', $message))) {
+        // Pattern 1: Check if input is Customer Code (Prefix 899 11 digit atau TDM-XXXX) or Phone Number (08xxx / 628xxx)
+        if (preg_match('/^(899[0-9]{8}|tdm-?[0-9a-zA-Z]+)$/i', $message) || preg_match('/^(08[0-9]{8,13}|628[0-9]{8,13})$/', str_replace([' ', '-', '+'], '', $message))) {
             return $this->lookupBill($message);
         }
 
@@ -111,6 +103,31 @@ class ChatbotController extends Controller
             ];
         }
 
+        // Pattern: Kendala Koneksi / Internet Lemot / Lambat / Putus / Mati / Gangguan
+        if (preg_match('/\b(lemot|lambat|lelet|kecepatan turun|putus|putus nyambung|down|mati total|mati lampu|bisa wa tapi web macet|tidak bisa browsing|wifi lelet|koneksi lemot|internet lemot)\b/', $normalized)) {
+            return $this->getTroubleshootSlow();
+        }
+
+        // Pattern: Lampu LOS Merah
+        if (preg_match('/\b(los|lampu merah|merah kedip|los merah|kedip merah|merah terus)\b/', $normalized)) {
+            return $this->getTroubleshootLOS();
+        }
+
+        // Pattern: Lampu PON
+        if (preg_match('/\b(pon|lampu pon|pon kedip|pon mati)\b/', $normalized)) {
+            return $this->getTroubleshootPON();
+        }
+
+        // Pattern: WiFi Terhubung tapi Tidak Ada Internet
+        if (preg_match('/\b(tidak ada internet|no internet|tanda seru|terhubung tanpa internet|connected without internet|gak ada koneksi)\b/', $normalized)) {
+            return $this->getTroubleshootNoInternet();
+        }
+
+        // Pattern: Ping / Game Online / RTO / Lag
+        if (preg_match('/\b(ping|rto|lag|game|mobile legends|ml|valorant|pubg|free fire|ff|ping tinggi|patah-patah|packet loss)\b/', $normalized)) {
+            return $this->getTroubleshootPing();
+        }
+
         // Pattern: Rekomendasi Paket Internet (Rule-Based)
         if (preg_match('/\b(rekomendasi|konsultasi|pilih paket|pilihan paket|cocok|saran paket|bingung pilih|paket apa|cari paket|daftar paket|lihat paket|paket wifi|paket internet)\b/', $normalized)) {
             return $this->getPackagesResponse();
@@ -118,7 +135,7 @@ class ChatbotController extends Controller
 
         // Pattern 3: Cek Tagihan / Billing
         if (preg_match('/\b(tagihan|bayar|iuran|cek tagihan|tunggakan|invoice|rekening wifi|belum bayar|status bayar|biaya bulanan)\b/', $normalized)) {
-            if (preg_match('/(tdm-?[0-9a-zA-Z]+)/i', $message, $matches)) {
+            if (preg_match('/(899[0-9]{8}|tdm-?[0-9a-zA-Z]+)/i', $message, $matches)) {
                 return $this->lookupBill($matches[1]);
             }
             if (preg_match('/(08[0-9]{8,13})/', str_replace([' ', '-', '+'], '', $message), $matches)) {
@@ -239,10 +256,8 @@ class ChatbotController extends Controller
         if (! $customer) {
             return [
                 'type' => 'text',
-                'text' => "Data pelanggan untuk **\"".e($cleanQuery)."\"** tidak ditemukan di database TRINET-BILL.\n\n**Tips:**\n• Pastikan Nomor Pelanggan 11 digit sesuai (contoh: `26000000001`)\n• Atau gunakan nomor WhatsApp yang didaftarkan saat pasang.\n\nAtau coba cek salah satu akun contoh demo berikut:",
+                'text' => "Data pelanggan untuk **\"".e($cleanQuery)."\"** tidak ditemukan di database TRINET-BILL.\n\n**Tips:**\n• Pastikan Nomor Pelanggan 11 digit sesuai (contoh: `89900000001`)\n• Atau gunakan nomor WhatsApp yang didaftarkan saat pasang.",
                 'quick_replies' => [
-                    ['label' => '26000000001 (Rizky Pratama)', 'intent' => 'check_bill_tdm2601'],
-                    ['label' => '26000000004 (Dwi Wahyuni)', 'intent' => 'check_bill_tdm2604'],
                     ['label' => 'Buka Form Cek Tagihan', 'url' => route('bill.check')],
                     ['label' => 'Bantuan CS WhatsApp', 'intent' => 'contact_cs'],
                     ['label' => 'Menu Utama', 'intent' => 'menu'],
@@ -281,10 +296,10 @@ class ChatbotController extends Controller
             $billText .= "• **Total Tagihan:** **{$latestInvoice->formatted_amount}**\n";
             $billText .= "• **Status Pembayaran:** **[ {$invStatusText} ]**\n";
             if ($latestInvoice->due_date) {
-                $billText .= "• **Jatuh Tempo:** {$latestInvoice->due_date->format('d F Y')}\n";
+                $billText .= "• **Jatuh Tempo:** {$latestInvoice->due_date->locale('id')->isoFormat('D MMMM Y')}\n";
             }
             if ($isPaid && $latestInvoice->paid_at) {
-                $billText .= "• **Lunas Dibayar:** {$latestInvoice->paid_at->format('d/m/Y H:i')} WIB\n";
+                $billText .= "• **Lunas Dibayar:** {$latestInvoice->paid_at->locale('id')->isoFormat('D MMMM Y, HH:mm')} WIB\n";
             }
         }
 

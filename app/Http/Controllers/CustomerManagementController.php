@@ -75,8 +75,8 @@ class CustomerManagementController extends Controller
 
         $lastCustomer = Customer::latest('id')->first();
         $nextId = $lastCustomer ? ($lastCustomer->id + 1) : 1;
-        // Format 11 digit: 3 digit spesial (260) + 8 digit nomor urut/bebas digabung (contoh: 26000000001)
-        $customerCode = '260'.str_pad($nextId, 8, '0', STR_PAD_LEFT);
+        // Format 11 digit: 3 digit spesial (899) + 8 digit nomor urut/bebas digabung (contoh: 89900000001)
+        $customerCode = '899'.str_pad($nextId, 8, '0', STR_PAD_LEFT);
 
         $package = Package::findOrFail($validated['package_id']);
 

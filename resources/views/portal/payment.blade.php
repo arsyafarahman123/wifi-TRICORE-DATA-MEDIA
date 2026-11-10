@@ -93,12 +93,34 @@
                 </div>
                 <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/5 space-y-1">
                     <span class="text-slate-500 block">Nama Pemesan</span>
-                    <strong class="text-white text-sm block">{{ $invoice->customer->name }}</strong>
-                    <span class="text-slate-400">{{ $invoice->customer->phone }}</span>
+                    @php
+                        // Mask customer name (tampilkan nama depan, nama belakang di-mask)
+                        $nameParts = explode(' ', trim($invoice->customer->name));
+                        $maskedName = count($nameParts) > 1 
+                            ? $nameParts[0] . ' ' . substr($nameParts[1], 0, 1) . '***' 
+                            : substr($invoice->customer->name, 0, 3) . '***';
+                        
+                        // Mask phone number (0821****3292)
+                        $phoneClean = preg_replace('/[^0-9]/', '', $invoice->customer->phone);
+                        $maskedPhone = strlen($phoneClean) >= 8 
+                            ? substr($phoneClean, 0, 4) . '****' . substr($phoneClean, -4) 
+                            : substr($phoneClean, 0, 3) . '***';
+                    @endphp
+                    <strong class="text-white text-sm block">{{ $maskedName }}</strong>
+                    <span class="text-slate-400 font-mono">{{ $maskedPhone }}</span>
                 </div>
                 <div class="p-4 rounded-2xl bg-slate-900/80 border border-white/5 space-y-1">
                     <span class="text-slate-500 block">Batas Waktu Bayar</span>
-                    <strong class="text-amber-300 text-sm block">{{ $invoice->due_date ? $invoice->due_date->format('d M Y') : '7 Hari' }}</strong>
+                    @php
+                        $isPayOverdue = $invoice->due_date && now()->startOfDay()->greaterThan($invoice->due_date->startOfDay()) && $invoice->status !== 'paid';
+                        $formattedPayDue = $invoice->due_date ? $invoice->due_date->locale('id')->isoFormat('D MMMM Y') : '7 Hari';
+                    @endphp
+                    <strong class="{{ $isPayOverdue ? 'text-rose-400' : 'text-amber-300' }} text-sm block">
+                        {{ $formattedPayDue }}
+                        @if($isPayOverdue)
+                            <span class="text-[10px] px-1 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30 ml-1">Terlambat</span>
+                        @endif
+                    </strong>
                     <span class="text-slate-400">Periode: {{ $invoice->billing_month }}</span>
                 </div>
             </div>

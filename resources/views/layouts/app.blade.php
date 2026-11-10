@@ -326,10 +326,6 @@
             if (typeof window.triggerChatbotRecommendation === 'function') {
                 window.triggerChatbotRecommendation();
             } else {
-                const chatWindow = document.getElementById('chatbot-window');
-                if (chatWindow) {
-                    chatWindow.classList.remove('hidden');
-                }
                 const toggle = document.getElementById('chatbot-toggle-btn');
                 if (toggle) toggle.click();
             }
